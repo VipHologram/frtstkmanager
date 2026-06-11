@@ -147,19 +147,22 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<!-- SETUP WIZARD -->
+<!-- ONE-TIME SETUP WIZARD (only appears if no credentials are hardcoded) -->
 <div id="setupContainer" class="setup-container">
   <div class="setup-card">
     <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
     <h2>One-Time Setup</h2>
-    <p class="setup-sub">Enter your JSONBin credentials and create admin account. This setup runs only once.</p>
+    <p class="setup-sub">This runs ONLY ONCE. After setup, every device goes straight to login.</p>
     <div class="info-box">
       🔐 <strong>Get JSONBin credentials:</strong><br>
       1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
       2. Dashboard → API Keys → Create Access Key (Master Key)<br>
       3. Create a new bin and copy its ID<br>
       <br>
-      ⚠️ <strong>GitHub Required:</strong> Your repo must be connected to Netlify.
+      🔑 <strong>Get GitHub Token:</strong><br>
+      1. GitHub → Settings → Developer settings → Personal access tokens<br>
+      2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
+      3. Copy token (starts with ghp_)
     </div>
     <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
     <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
@@ -209,7 +212,7 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
         <label class="lbl">Username</label>
         <input class="lf-input" type="text" id="regUsername" placeholder="Username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Password">
+        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
         <label class="lbl">WhatsApp Number</label>
         <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
         <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
@@ -243,8 +246,10 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 
 <script>
 // ═══════════════════════════════════════════════════════════
-let HARDCODED_BIN_KEY = '$2a$10$WqxFbbssRW/H.9XZ2NniBOgS4iG4XxQm7WKrMpcfHWRdxZW6j5oa2';
-let HARDCODED_BIN_ID = '6a29fd19da38895dfeaa3639';
+// HARDCODED CREDENTIALS - These get replaced during setup
+// ═══════════════════════════════════════════════════════════
+let HARDCODED_BIN_KEY = '%%BIN_KEY%%';
+let HARDCODED_BIN_ID = '%%BIN_ID%%';
 const HAS_CREDENTIALS = (HARDCODED_BIN_KEY !== '%%BIN_KEY%%' && HARDCODED_BIN_KEY !== '');
 
 let BIN_API_KEY = HAS_CREDENTIALS ? HARDCODED_BIN_KEY : '';
@@ -252,6 +257,9 @@ let BIN_ID = HAS_CREDENTIALS ? HARDCODED_BIN_ID : '';
 let DB_CACHE = null;
 let CU_username = null;
 
+// ═══════════════════════════════════════════════════════════
+// JSONBin API Functions
+// ═══════════════════════════════════════════════════════════
 async function dbRead() {
   if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
   const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
@@ -281,6 +289,9 @@ async function dbWrite(newData) {
 function showSaving(on) { const el = document.getElementById('savingIndicator'); if(el) el.style.display = on ? 'flex' : 'none'; }
 function findUser(db, username) { return (db.users || []).find(u => u.username === username); }
 
+// ═══════════════════════════════════════════════════════════
+// ONE-TIME SETUP - Rewrites this file with credentials
+// ═══════════════════════════════════════════════════════════
 async function saveCredentialsPermanently() {
   const apiKey = document.getElementById('setupApiKey').value.trim();
   const binId = document.getElementById('setupBinId').value.trim();
@@ -299,6 +310,7 @@ async function saveCredentialsPermanently() {
   btn.textContent = '⏳ Creating database...';
   
   try {
+    // Create JSONBin with admin user
     const createRes = await fetch('https://api.jsonbin.io/v3/b', {
       method: 'POST',
       headers: {
@@ -324,6 +336,7 @@ async function saveCredentialsPermanently() {
     const createData = await createRes.json();
     const newBinId = createData.metadata.id;
     
+    // Update GitHub file with hardcoded credentials
     const [owner, repoName] = repo.split('/');
     const fileUrl = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
     
@@ -374,12 +387,15 @@ function showSetupAlert(msg, cls) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// BOOT SEQUENCE - Determines if setup or login
+// ═══════════════════════════════════════════════════════════
 let aTab = 'github';
 let sTab = 'upload';
 
 async function boot() {
   const loading = document.getElementById('loadingScreen');
   
+  // If no hardcoded credentials, show setup wizard
   if (!HAS_CREDENTIALS) {
     loading.classList.add('hide');
     setTimeout(() => { loading.style.display = 'none'; }, 400);
@@ -387,6 +403,7 @@ async function boot() {
     return;
   }
   
+  // Credentials exist - try to connect to JSONBin
   try {
     await dbRead();
     const sess = localStorage.getItem('ff_sess');
@@ -397,6 +414,8 @@ async function boot() {
         loading.classList.add('hide');
         setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
         return;
+      } else {
+        localStorage.removeItem('ff_sess');
       }
     }
     loading.classList.add('hide');
@@ -406,6 +425,7 @@ async function boot() {
       document.body.classList.add('login-active');
     }, 400);
   } catch(e) {
+    console.error(e);
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
@@ -429,6 +449,9 @@ function launchApp() {
 
 function currentUser() { return DB_CACHE ? findUser(DB_CACHE, CU_username) : null; }
 
+// ═══════════════════════════════════════════════════════════
+// AUTHENTICATION FUNCTIONS
+// ═══════════════════════════════════════════════════════════
 async function doLogin() {
   const u = document.getElementById('loginUsername').value.trim();
   const p = document.getElementById('loginPassword').value;
@@ -438,8 +461,8 @@ async function doLogin() {
     const db = await dbRead();
     const user = findUser(db, u);
     if (!user || user.password !== p) { showLF('loginAlert','❌ Invalid credentials','lf-error'); return; }
-    if (user.status === 'pending') { showLF('loginAlert','⏳ Pending approval','lf-error'); return; }
-    if (user.status === 'rejected') { showLF('loginAlert','🚫 Account rejected','lf-error'); return; }
+    if (user.status === 'pending') { showLF('loginAlert','⏳ Account pending admin approval','lf-error'); return; }
+    if (user.status === 'rejected') { showLF('loginAlert','🚫 Account rejected. Contact admin.','lf-error'); return; }
     CU_username = u;
     localStorage.setItem('ff_sess', u);
     launchApp();
@@ -453,14 +476,15 @@ async function doRegister() {
   const password = document.getElementById('regPassword').value;
   const wa = document.getElementById('regWhatsapp').value.trim();
   if (!name||!username||!password) { showLF('registerAlert','❌ All fields required','lf-error'); return; }
+  if (password.length < 4) { showLF('registerAlert','❌ Password must be at least 4 characters','lf-error'); return; }
   const btn = document.getElementById('registerBtn');
   btn.disabled = true; btn.textContent = 'Submitting...';
   try {
     const db = await dbRead();
-    if (findUser(db, username)) { showLF('registerAlert','❌ Username taken','lf-error'); return; }
+    if (findUser(db, username)) { showLF('registerAlert','❌ Username already taken','lf-error'); return; }
     db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
     await dbWrite(db);
-    showLF('registerAlert','✅ Request submitted! Wait for admin approval.','lf-success');
+    showLF('registerAlert','✅ Registration submitted! Wait for admin approval.','lf-success');
     setTimeout(() => switchAuthTab('login'), 2000);
   } catch(e) { showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); }
   finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
@@ -487,6 +511,9 @@ function showLF(id, msg, cls) {
   setTimeout(() => { if(el) el.style.display = 'none'; }, 4000);
 }
 
+// ═══════════════════════════════════════════════════════════
+// RENDER FUNCTIONS - Different UI for Admin vs Sub-admin
+// ═══════════════════════════════════════════════════════════
 function renderMain() {
   const cu = currentUser();
   if (!cu) return;
@@ -538,11 +565,13 @@ function renderGithubTab(gh) {
         🔑 <strong>GitHub Personal Access Token</strong><br>
         1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
         2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-        3. Copy token (starts with ghp_)
+        3. Copy token (starts with ghp_) and paste below<br>
+        <br>
+        ✅ Once saved, credentials are stored in cloud and used by all users.
       </div>
       <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx..."></div>
       <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username"></div>
-      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub</button>
+      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
       <div id="ghAlert" class="alert"></div>
     </div>`;
 }
@@ -552,6 +581,7 @@ function renderUploadTab(gh, savedUrl, hasGist) {
   return `
     <div class="card ${ghReady?'':'step-locked'}">
       <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
+      ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
       ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : ''}
       <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
       <div class="fg"><label>Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
@@ -584,10 +614,10 @@ function renderUsersTab(others, pending) {
       <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
       <td>${escHtml(u.whatsapp||'-')}</td>
       <td><span class="sdot ${u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red'}"></span>${u.status}</td>
-      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button>`}</td>
+      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`}</td>
     </tr>`;
   });
-  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered</td></tr>'}</tbody></table></div>`;
+  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}</tbody></table></div>`;
 }
 
 function renderPwTab() {
@@ -601,6 +631,9 @@ function renderPwTab() {
   </div>`;
 }
 
+// ═══════════════════════════════════════════════════════════
+// ADMIN ACTIONS
+// ═══════════════════════════════════════════════════════════
 async function saveGithub() {
   const token = document.getElementById('ghToken').value.trim();
   const username = document.getElementById('ghUsername').value.trim();
@@ -609,7 +642,7 @@ async function saveGithub() {
     const db = await dbRead();
     db.github = { ...db.github, token, username };
     await dbWrite(db);
-    showAlert('ghAlert', '✅ GitHub credentials saved!', 'a-success');
+    showAlert('ghAlert', '✅ GitHub credentials saved to cloud! All users can now upload.', 'a-success');
     renderMain();
   } catch(e) { showAlert('ghAlert', e.message, 'a-error'); }
 }
@@ -618,7 +651,7 @@ async function approveUser(username) {
   try {
     const db = await dbRead();
     const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); }
+    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); showAlert('ghAlert', `✅ ${username} approved`, 'a-success'); }
   } catch(e) { alert(e.message); }
 }
 
@@ -626,7 +659,7 @@ async function rejectUser(username) {
   try {
     const db = await dbRead();
     const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); }
+    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); showAlert('ghAlert', `❌ ${username} rejected`, 'a-success'); }
   } catch(e) { alert(e.message); }
 }
 
@@ -643,14 +676,16 @@ async function changePassword() {
     const u = db.users.find(x => x.username === CU_username);
     if (u) u.password = nw;
     await dbWrite(db);
-    showAlert('pwAlert', '✅ Password updated!', 'a-success');
+    showAlert('pwAlert', '✅ Password updated successfully!', 'a-success');
     document.getElementById('pwCur').value = '';
     document.getElementById('pwNew').value = '';
     document.getElementById('pwConf').value = '';
   } catch(e) { showAlert('pwAlert', e.message, 'a-error'); }
 }
 
-// FIXED UPLOAD GIST FUNCTION - Creates new gist if none exists, updates if exists
+// ═══════════════════════════════════════════════════════════
+// GITHUB GIST UPLOAD - FIXED VERSION
+// ═══════════════════════════════════════════════════════════
 async function uploadGist() {
   const gh = DB_CACHE.github || {};
   if (!gh.token || !gh.username) { 
@@ -682,13 +717,12 @@ async function uploadGist() {
     const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
     const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
     
-    // Determine if we need to create or update
     const hasExistingGist = gh.gistId && gh.gistId.length > 0;
     
     let method, url, body;
     
     if (hasExistingGist) {
-      // UPDATE existing gist
+      // UPDATE existing gist - use exact same filename
       method = 'PATCH';
       url = `https://api.github.com/gists/${gh.gistId}`;
       body = {
@@ -735,6 +769,10 @@ async function uploadGist() {
     const gist = await res.json();
     console.log('Gist success:', gist.id);
     
+    // Get the raw URL from GitHub's response
+    const rawUrl = gist.files[filename]?.raw_url || 
+                   `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
+    
     // Save the gist ID to database
     const db = await dbRead();
     if (!db.github) db.github = {};
@@ -743,24 +781,10 @@ async function uploadGist() {
     db.github.token = gh.token;
     await dbWrite(db);
     
-    // Update the UI with the new URL
-    const rawUrl = `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
-    const resultCard = document.getElementById('resultCard');
-    const rawUrlSpan = document.getElementById('rawUrl');
-    const gistLink = document.getElementById('gistLink');
+    // Update the UI
+    renderMain();
     
-    // If resultCard doesn't exist, re-render to show it
-    if (!document.getElementById('resultCard')) {
-      renderMain();
-    } else {
-      if (rawUrlSpan) rawUrlSpan.textContent = rawUrl;
-      if (gistLink) gistLink.href = gist.html_url;
-      if (resultCard) resultCard.style.display = 'block';
-    }
-    
-    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items. URL saved to cloud!`, 'a-success');
-    
-    // Show preview
+    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
     showPreview(data);
     
   } catch(e) { 
@@ -772,20 +796,19 @@ async function uploadGist() {
   }
 }
 
+// ═══════════════════════════════════════════════════════════
+// FILE HANDLING FUNCTIONS
+// ═══════════════════════════════════════════════════════════
 async function handleFile(input) {
   const file = input.files[0];
   if (!file) return;
-  const fi = document.getElementById('fileInfo');
-  if(fi) { fi.style.display='block'; fi.textContent=`📄 ${file.name} — Processing...`; }
   try {
     const json = await parseExcel(file);
     document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items`, 'a-success');
+    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
     showPreview(json);
-    if(fi) fi.textContent = `✅ ${file.name} — ${json.length} entries loaded`;
   } catch(e) { 
-    showAlert('uploadAlert', e.message, 'a-error');
-    if(fi) fi.textContent = `❌ ${e.message}`;
+    showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
   }
 }
 
@@ -811,17 +834,17 @@ function showPreview(data) {
   if (!data || !data.length) { if(el) el.style.display = 'none'; return; }
   const headers = Object.keys(data[0]);
   let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
-  html += `<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
   data.slice(0, 10).forEach(row => {
     html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
   });
-  html += `</tbody></table>`;
+  html += `</tbody></table></div>`;
   if (el) { el.innerHTML = html; el.style.display = 'block'; }
 }
 
 function copyUrl() {
   const url = document.getElementById('rawUrl')?.textContent;
-  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied!', 'a-success'); }
+  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success'); }
 }
 
 function triggerWA(url) {
@@ -836,7 +859,7 @@ function closeWA() { document.getElementById('waOverlay').classList.remove('show
 function openWhatsApp() {
   const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
   const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number with country code'); return; }
+  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
   window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
   closeWA();
 }
@@ -859,6 +882,7 @@ if (localStorage.getItem('ff_theme') === 'dark') {
   if(document.getElementById('themeLabel')) document.getElementById('themeLabel').textContent = 'Light';
 }
 
+// Start the app
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
 else boot();
 </script>
