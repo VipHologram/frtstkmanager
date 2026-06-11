@@ -32,22 +32,6 @@ body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--
 .loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
 @keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
 
-.setup-screen{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
-.setup-screen.show{display:flex}
-.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
-.setup-card h2{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
-.setup-card p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
-.setup-input{width:100%;padding:12px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.setup-input::placeholder{color:rgba(255,255,255,.25)}
-.setup-input:focus{outline:none;border-color:#3a7bd5}
-.setup-btn{width:100%;padding:12px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff;transition:opacity .2s}
-.setup-btn:hover{opacity:.9}
-.setup-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.setup-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.setup-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:16px}
-.info-box a{color:#58a6ff}
-
 #loginPage{min-height:100vh;display:none;position:relative}
 #loginPage.show{display:flex}
 .login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
@@ -146,33 +130,8 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 <div id="loadingScreen">
   <div class="loader-logo">📊</div>
   <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Connecting to cloud database...</div>
+  <div class="loader-sub">Connecting to database...</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- SETUP SCREEN - ONLY SHOWS ON FIRST DEVICE EVER -->
-<div id="setupScreen" class="setup-screen">
-  <div class="setup-card">
-    <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>One-Time Setup</h2>
-    <p>This setup runs only once. After this, every device will go directly to login.</p>
-    <div class="info-box">
-      🔐 <strong>Get JSONBin credentials (free):</strong><br>
-      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up<br>
-      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
-      3. Create a new bin → Copy the Bin ID from URL
-    </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
-    <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 67f9a6fcacd3cb34a8e8a1a2">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Create admin password (min 4 chars)">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
-    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
-    <button class="setup-btn" onclick="saveCloudConfig()">💾 Save to Cloud →</button>
-    <div id="setupAlert" class="setup-alert"></div>
-  </div>
 </div>
 
 <!-- LOGIN PAGE -->
@@ -243,211 +202,131 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 
 <script>
 // ============================================================
-// FABRICFLOW - ONE TIME SETUP, THEN EVERY DEVICE GOES DIRECTLY TO LOGIN
+// FABRICFLOW STOCK MANAGER - COMPLETE WORKING VERSION
+// Hardcoded credentials - No setup needed on any device
+// Admin can update credentials via Settings tab
 // ============================================================
+
+// ========== HARDCODED CREDENTIALS (Update these if needed) ==========
+const HARDCODED_API_KEY = '$2a$10$WqxFbbssRW/H.9XZ2NniBOgS4iG4XxQm7WKrMpcfHWRdxZW6j5oa2';
+const HARDCODED_BIN_ID = '6a2a2355f5f4af5e29dc505e';
+// =====================================================================
+
+// Use hardcoded credentials as fallback if nothing in localStorage
+let BIN_API_KEY = localStorage.getItem('ff_api_key') || HARDCODED_API_KEY;
+let BIN_ID = localStorage.getItem('ff_bin_id') || HARDCODED_BIN_ID;
 
 let DB_CACHE = null;
 let CU_username = null;
 
-// Check if cloud config exists (credentials stored in localStorage of this device)
-function hasLocalConfig() {
-  return !!(localStorage.getItem('ff_api_key') && localStorage.getItem('ff_bin_id'));
-}
-
-function saveLocalConfig(apiKey, binId) {
-  localStorage.setItem('ff_api_key', apiKey);
-  localStorage.setItem('ff_bin_id', binId);
-}
-
-function getLocalConfig() {
-  return {
-    apiKey: localStorage.getItem('ff_api_key'),
-    binId: localStorage.getItem('ff_bin_id')
-  };
-}
-
 // JSONBin API functions
-async function dbRead(apiKey, binId) {
-  const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-    headers: { 'X-Master-Key': apiKey }
+async function dbRead() {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+    headers: { 'X-Master-Key': BIN_API_KEY }
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return (await res.json()).record;
+  if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+  const data = await res.json();
+  DB_CACHE = data.record;
+  return DB_CACHE;
 }
 
-async function dbWrite(apiKey, binId, data) {
-  const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+async function dbWrite(newData) {
+  showSaving(true);
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'X-Master-Key': apiKey
+      'X-Master-Key': BIN_API_KEY
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(newData)
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return (await res.json()).record;
+  showSaving(false);
+  if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+  const data = await res.json();
+  DB_CACHE = data.record;
+  return DB_CACHE;
 }
 
-// ONE-TIME SETUP - Saves credentials to CLOUD (JSONBin) and to localStorage
-async function saveCloudConfig() {
-  const apiKey = document.getElementById('setupApiKey').value.trim();
-  const binId = document.getElementById('setupBinId').value.trim();
-  const adminPw = document.getElementById('setupAdminPw').value;
-  const adminWa = document.getElementById('setupAdminWa').value.trim();
-  
-  if (!apiKey || !binId) {
-    showSetupAlert('❌ API Key and Bin ID required', 'setup-error');
-    return;
-  }
-  if (!adminPw || adminPw.length < 4) {
-    showSetupAlert('❌ Admin password must be at least 4 characters', 'setup-error');
-    return;
-  }
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Creating cloud database...';
-  
+function showSaving(on) {
+  const el = document.getElementById('savingIndicator');
+  if (el) el.style.display = on ? 'flex' : 'none';
+}
+
+// Initialize database (create admin if not exists)
+async function initializeDatabase() {
   try {
-    // Check if bin already has data
-    let existingData;
-    try {
-      existingData = await dbRead(apiKey, binId);
-    } catch(e) {
-      existingData = null;
-    }
+    await dbRead();
     
-    if (existingData && existingData.cloudConfig) {
-      // Cloud config already exists - just save to localStorage
-      saveLocalConfig(apiKey, binId);
-      showSetupAlert('✅ Connected to existing cloud database! Redirecting...', 'setup-success');
-      setTimeout(() => window.location.reload(), 1500);
-    } else {
-      // Create new cloud database with config and admin user
-      const newDatabase = {
-        cloudConfig: {
-          apiKey: apiKey,
-          binId: binId,
-          configured: true,
-          configuredAt: new Date().toISOString()
-        },
-        github: { token: '', username: '', gistId: '' },
-        users: [
-          {
-            username: 'admin',
-            password: adminPw,
-            name: 'Administrator',
-            role: 'admin',
-            status: 'approved',
-            whatsapp: adminWa
-          }
-        ]
-      };
-      
-      await dbWrite(apiKey, binId, newDatabase);
-      saveLocalConfig(apiKey, binId);
-      showSetupAlert('✅ Cloud database created! Redirecting to login...', 'setup-success');
-      setTimeout(() => window.location.reload(), 1500);
-    }
-  } catch(e) {
-    showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
-    btn.disabled = false;
-    btn.textContent = '💾 Save to Cloud →';
-  }
-}
-
-function showSetupAlert(msg, cls) {
-  const el = document.getElementById('setupAlert');
-  el.textContent = msg;
-  el.className = `setup-alert ${cls}`;
-  el.style.display = 'block';
-}
-
-// BOOT SEQUENCE - First checks localStorage, then validates against cloud
-async function boot() {
-  const loading = document.getElementById('loadingScreen');
-  
-  // Check if this device has localStorage config
-  if (!hasLocalConfig()) {
-    // No local config - check if cloud config exists in a known location?
-    // For first device ever, show setup
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('setupScreen').classList.add('show');
-      document.body.classList.add('setup-active');
-    }, 400);
-    return;
-  }
-  
-  // Has local config - try to connect
-  const localConfig = getLocalConfig();
-  
-  try {
-    // Read from cloud using local config
-    DB_CACHE = await dbRead(localConfig.apiKey, localConfig.binId);
+    // Check if users array exists
+    if (!DB_CACHE.users) DB_CACHE.users = [];
     
-    // Verify cloud config exists
-    if (!DB_CACHE.cloudConfig || !DB_CACHE.cloudConfig.configured) {
-      // Cloud config missing - need to run setup again
-      localStorage.removeItem('ff_api_key');
-      localStorage.removeItem('ff_bin_id');
-      loading.classList.add('hide');
-      setTimeout(() => {
-        loading.style.display = 'none';
-        document.getElementById('setupScreen').classList.add('show');
-        document.body.classList.add('setup-active');
-        showSetupAlert('⚠️ Cloud configuration missing. Please re-run setup.', 'setup-error');
-      }, 400);
-      return;
+    // Check if admin exists
+    const adminExists = DB_CACHE.users.some(u => u.username === 'admin');
+    if (!adminExists) {
+      DB_CACHE.users.push({
+        username: 'admin',
+        password: 'admin123',
+        name: 'Administrator',
+        role: 'admin',
+        status: 'approved',
+        whatsapp: ''
+      });
+      await dbWrite(DB_CACHE);
+      console.log('Admin user created with default password: admin123');
     }
     
     // Ensure github object exists
     if (!DB_CACHE.github) DB_CACHE.github = { token: '', username: '', gistId: '' };
     
-    // Check for existing session
-    const sess = localStorage.getItem('ff_sess');
-    if (sess) {
-      const user = (DB_CACHE.users || []).find(u => u.username === sess);
-      if (user && user.status === 'approved') {
-        CU_username = sess;
-        loading.classList.add('hide');
-        setTimeout(() => {
-          loading.style.display = 'none';
-          launchApp();
-        }, 400);
-        return;
-      } else {
-        localStorage.removeItem('ff_sess');
-      }
-    }
-    
-    // No valid session - show login
+    return true;
+  } catch(e) {
+    console.error('Init error:', e);
+    return false;
+  }
+}
+
+// Boot sequence
+async function boot() {
+  const loading = document.getElementById('loadingScreen');
+  
+  const initSuccess = await initializeDatabase();
+  if (!initSuccess) {
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
+      showLF('loginAlert', '❌ Database connection failed. Please check your JSONBin credentials.', 'lf-error');
       document.getElementById('loginPage').classList.add('show');
     }, 400);
-  } catch(e) {
-    console.error('Boot error:', e);
-    // Connection failed - clear localStorage and show setup
-    localStorage.removeItem('ff_api_key');
-    localStorage.removeItem('ff_bin_id');
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('setupScreen').classList.add('show');
-      document.body.classList.add('setup-active');
-      showSetupAlert(`❌ Connection failed: ${e.message}. Please re-enter credentials.`, 'setup-error');
-    }, 400);
+    return;
   }
+  
+  const sess = localStorage.getItem('ff_sess');
+  if (sess) {
+    const user = DB_CACHE.users.find(u => u.username === sess);
+    if (user && user.status === 'approved') {
+      CU_username = sess;
+      loading.classList.add('hide');
+      setTimeout(() => {
+        loading.style.display = 'none';
+        launchApp();
+      }, 400);
+      return;
+    } else {
+      localStorage.removeItem('ff_sess');
+    }
+  }
+  
+  loading.classList.add('hide');
+  setTimeout(() => {
+    loading.style.display = 'none';
+    document.getElementById('loginPage').classList.add('show');
+  }, 400);
 }
 
 function launchApp() {
   document.getElementById('app').style.display = 'block';
   document.getElementById('app').classList.add('show');
   document.getElementById('loginPage').classList.remove('show');
-  document.body.classList.remove('setup-active');
   const cu = currentUser();
   document.getElementById('topbarUser').textContent = cu.name;
   const rb = document.getElementById('topbarRole');
@@ -458,29 +337,7 @@ function launchApp() {
 
 function currentUser() {
   if (!DB_CACHE || !CU_username) return null;
-  return (DB_CACHE.users || []).find(u => u.username === CU_username);
-}
-
-async function getDB() {
-  if (DB_CACHE) return DB_CACHE;
-  const localConfig = getLocalConfig();
-  if (!localConfig.apiKey || !localConfig.binId) throw new Error('Not configured');
-  DB_CACHE = await dbRead(localConfig.apiKey, localConfig.binId);
-  return DB_CACHE;
-}
-
-async function updateDB(newData) {
-  const localConfig = getLocalConfig();
-  if (!localConfig.apiKey || !localConfig.binId) throw new Error('Not configured');
-  showSaving(true);
-  DB_CACHE = await dbWrite(localConfig.apiKey, localConfig.binId, newData);
-  showSaving(false);
-  return DB_CACHE;
-}
-
-function showSaving(on) {
-  const el = document.getElementById('savingIndicator');
-  if (el) el.style.display = on ? 'flex' : 'none';
+  return DB_CACHE.users.find(u => u.username === CU_username);
 }
 
 // AUTHENTICATION
@@ -492,8 +349,7 @@ async function doLogin() {
   btn.textContent = 'Signing in...';
   
   try {
-    const db = await getDB();
-    const user = (db.users || []).find(user => user.username === u);
+    const user = DB_CACHE.users.find(user => user.username === u);
     
     if (!user) {
       showLF('loginAlert', '❌ Username not found', 'lf-error');
@@ -543,13 +399,12 @@ async function doRegister() {
   btn.textContent = 'Submitting...';
   
   try {
-    const db = await getDB();
-    if ((db.users || []).find(u => u.username === username)) {
+    if (DB_CACHE.users.find(u => u.username === username)) {
       showLF('registerAlert', '❌ Username already taken', 'lf-error');
       return;
     }
     
-    db.users.push({
+    DB_CACHE.users.push({
       username,
       password,
       name,
@@ -558,7 +413,7 @@ async function doRegister() {
       whatsapp: wa
     });
     
-    await updateDB(db);
+    await dbWrite(DB_CACHE);
     showLF('registerAlert', '✅ Registration submitted! Wait for admin approval.', 'lf-success');
     setTimeout(() => switchAuthTab('login'), 2000);
   } catch(e) {
@@ -625,14 +480,16 @@ function renderAdmin() {
   
   return `
     <div class="ptabs">
-      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady ? '✅' : '⚠️'}</button>
+      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub Setup</button>
       <button class="ptab ${aTab === 'upload' ? 'active' : ''}" onclick="switchATab('upload')">📁 Upload Stock</button>
       <button class="ptab ${aTab === 'users' ? 'active' : ''}" onclick="switchATab('users')">👥 Users ${pending.length ? `<span class="badge-red">${pending.length}</span>` : ''}</button>
+      <button class="ptab ${aTab === 'settings' ? 'active' : ''}" onclick="switchATab('settings')">⚙️ Settings</button>
       <button class="ptab ${aTab === 'pw' ? 'active' : ''}" onclick="switchATab('pw')">🔑 Password</button>
     </div>
     ${aTab === 'github' ? renderGithubTab(gh) : ''}
     ${aTab === 'upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
     ${aTab === 'users' ? renderUsersTab(others, pending) : ''}
+    ${aTab === 'settings' ? renderSettingsTab() : ''}
     ${aTab === 'pw' ? renderPwTab() : ''}
   `;
 }
@@ -665,6 +522,32 @@ function renderGithubTab(gh) {
       <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escapeHtml(gh.username || '')}" placeholder="your-github-username"></div>
       <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
       <div id="ghAlert" class="alert"></div>
+    </div>
+  `;
+}
+
+function renderSettingsTab() {
+  return `
+    <div class="card">
+      <div class="card-title"><span class="step-num">⚙️</span> JSONBin Database Settings</div>
+      <div class="info-box" style="margin-bottom:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
+        🔐 <strong>Update JSONBin Credentials</strong><br>
+        If you need to change your JSONBin database, update the credentials below.<br>
+        <strong>Current:</strong> Bin ID: ${escapeHtml(BIN_ID.substring(0, 15))}...
+      </div>
+      <div class="fg"><label>New JSONBin API Key</label><input type="password" id="newApiKey" placeholder="$2a$10$... or $2b$10$..."></div>
+      <div class="fg"><label>New JSONBin Bin ID</label><input type="text" id="newBinId" placeholder="64abc123..."></div>
+      <button class="btn btn-warning" onclick="updateJsonBinCredentials()" style="background:#ea580c;color:white">🔄 Update Database Credentials</button>
+      <div id="settingsAlert" class="alert"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="step-num">📋</span> System Info</div>
+      <div class="info-box">
+        <strong>Current Database:</strong> ${escapeHtml(BIN_ID)}<br>
+        <strong>Users Count:</strong> ${(DB_CACHE.users || []).length}<br>
+        <strong>GitHub Configured:</strong> ${DB_CACHE.github?.token ? 'Yes' : 'No'}<br>
+        <strong>Gist Created:</strong> ${DB_CACHE.github?.gistId ? 'Yes' : 'No'}
+      </div>
     </div>
   `;
 }
@@ -717,7 +600,7 @@ function renderUsersTab(others, pending) {
               ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`
               : `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`
           }
-        </table>
+        </td>
       </tr>
     `;
   });
@@ -756,9 +639,8 @@ async function saveGithub() {
   }
   
   try {
-    const db = DB_CACHE;
-    db.github = { ...db.github, token, username };
-    await updateDB(db);
+    DB_CACHE.github = { ...DB_CACHE.github, token, username };
+    await dbWrite(DB_CACHE);
     showAlert('ghAlert', '✅ GitHub credentials saved!', 'a-success');
     renderMain();
   } catch(e) {
@@ -766,13 +648,56 @@ async function saveGithub() {
   }
 }
 
+// Update JSONBin credentials (for future if needed)
+async function updateJsonBinCredentials() {
+  const newApiKey = document.getElementById('newApiKey').value.trim();
+  const newBinId = document.getElementById('newBinId').value.trim();
+  
+  if (!newApiKey || !newBinId) {
+    showAlert('settingsAlert', '❌ Both API Key and Bin ID required', 'a-error');
+    return;
+  }
+  
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳ Testing new credentials...';
+  
+  try {
+    // Test new credentials
+    const testRes = await fetch(`https://api.jsonbin.io/v3/b/${newBinId}/latest`, {
+      headers: { 'X-Master-Key': newApiKey }
+    });
+    
+    if (!testRes.ok) throw new Error('Invalid credentials');
+    
+    // Save to localStorage
+    localStorage.setItem('ff_api_key', newApiKey);
+    localStorage.setItem('ff_bin_id', newBinId);
+    
+    // Update current variables
+    BIN_API_KEY = newApiKey;
+    BIN_ID = newBinId;
+    
+    // Reload data with new credentials
+    await dbRead();
+    
+    showAlert('settingsAlert', '✅ Credentials updated! Database reconnected.', 'a-success');
+    setTimeout(() => renderMain(), 1500);
+    
+  } catch(e) {
+    showAlert('settingsAlert', `❌ ${e.message}`, 'a-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔄 Update Database Credentials';
+  }
+}
+
 async function approveUser(username) {
   try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === username);
+    const u = DB_CACHE.users.find(x => x.username === username);
     if (u) {
       u.status = 'approved';
-      await updateDB(db);
+      await dbWrite(DB_CACHE);
       renderMain();
       showAlert('ghAlert', `✅ ${username} approved`, 'a-success');
     }
@@ -781,11 +706,10 @@ async function approveUser(username) {
 
 async function rejectUser(username) {
   try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === username);
+    const u = DB_CACHE.users.find(x => x.username === username);
     if (u) {
       u.status = 'rejected';
-      await updateDB(db);
+      await dbWrite(DB_CACHE);
       renderMain();
       showAlert('ghAlert', `❌ ${username} rejected`, 'a-success');
     }
@@ -812,10 +736,9 @@ async function changePassword() {
   }
   
   try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === CU_username);
+    const u = DB_CACHE.users.find(x => x.username === CU_username);
     if (u) u.password = nw;
-    await updateDB(db);
+    await dbWrite(DB_CACHE);
     showAlert('pwAlert', '✅ Password updated!', 'a-success');
     document.getElementById('pwCur').value = '';
     document.getElementById('pwNew').value = '';
@@ -922,10 +845,8 @@ async function uploadGist() {
     }
     
     // Save gist ID
-    const db = DB_CACHE;
-    if (!db.github) db.github = {};
-    db.github.gistId = gist.id;
-    await updateDB(db);
+    DB_CACHE.github.gistId = gist.id;
+    await dbWrite(DB_CACHE);
     
     const rawUrl = `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
     
@@ -992,7 +913,7 @@ function showPreview(data) {
   let html = `<div style="font-size:12px;margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
   html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escapeHtml(h)}</th>`).join('')}<tr></thead><tbody>`;
   data.slice(0, 10).forEach(row => {
-    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}<tr>`;
+    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
   });
   html += `</tbody></table></div>`;
   if (el) {
