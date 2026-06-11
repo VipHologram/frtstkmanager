@@ -381,7 +381,7 @@ async function doSetup() {
     }
 
     // If bin is empty or has no users, initialize it
-    if (!db || !db.users) {
+    if (!db || !db.users || db.users.length === 0) {
       db = {
         github: { token: '', username: '', gistId: '' },
         users: [{
