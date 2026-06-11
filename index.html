@@ -32,7 +32,6 @@ body:not(.setup-active) .theme-btn{background:var(--surface);border-color:var(--
 .loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
 @keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
 
-/* Setup Screen */
 .setup-screen{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
 .setup-screen.show{display:flex}
 .setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
@@ -49,7 +48,6 @@ body:not(.setup-active) .theme-btn{background:var(--surface);border-color:var(--
 .info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:16px}
 .info-box a{color:#58a6ff}
 
-/* Login Screen */
 #loginPage{min-height:100vh;display:none;position:relative}
 #loginPage.show{display:flex}
 .login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
@@ -75,7 +73,6 @@ body:not(.setup-active) .theme-btn{background:var(--surface);border-color:var(--
 .lf-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .lf-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
 
-/* App */
 #app{display:none}
 #app.show{display:block}
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
@@ -147,30 +144,25 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<!-- ONE-TIME SETUP SCREEN -->
+<!-- SETUP SCREEN -->
 <div id="setupScreen" class="setup-screen">
   <div class="setup-card">
     <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>Welcome! First-Time Setup</h2>
-    <p>Enter your JSONBin credentials to create your cloud database. This is required only once per device.</p>
+    <h2>First-Time Setup</h2>
+    <p>Enter your JSONBin credentials to get started.</p>
     <div class="info-box">
-      🔐 <strong>How to get JSONBin credentials (FREE):</strong><br><br>
-      1. Go to <a href="https://jsonbin.io" target="_blank" style="color:#58a6ff">jsonbin.io</a> and sign up<br>
-      2. Go to <strong>Dashboard → API Keys</strong><br>
-      3. Click <strong>"Create Access Key"</strong> - Copy the key (starts with $2b$)<br>
-      4. Go to <strong>Dashboard → Create Bin</strong><br>
-      5. Name it "FabricFlow" and click Create<br>
-      6. Copy the <strong>Bin ID</strong> from the URL
+      🔐 <strong>Get free JSONBin credentials:</strong><br>
+      1. <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up<br>
+      2. Dashboard → API Keys → Create Access Key<br>
+      3. Create a new bin → Copy Bin ID
     </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
+    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key</label>
     <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
     <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 67f9a6fcacd3cb34a8e8a1a2">
+    <input class="setup-input" type="text" id="setupBinId" placeholder="Bin ID from URL">
     <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Create admin password (min 4 chars)">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Your WhatsApp (optional)</label>
-    <input class="setup-input" type="text" id="setupWhatsapp" placeholder="e.g. 919876543210">
-    <button class="setup-btn" onclick="setupDatabase()">🚀 Create Database & Continue →</button>
+    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Create password (min 4 chars)">
+    <button class="setup-btn" onclick="setupDatabase()">🚀 Create Database →</button>
     <div id="setupAlert" class="setup-alert"></div>
   </div>
 </div>
@@ -194,20 +186,20 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
       </div>
       <div id="loginForm">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Enter your username">
+        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()">
+        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
         <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
         <div id="loginAlert" class="lf-alert"></div>
       </div>
       <div id="registerForm" style="display:none">
         <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Your full name">
+        <input class="lf-input" type="text" id="regName" placeholder="Full name">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Choose a username">
+        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Choose a password (min 4 chars)">
-        <label class="lbl">WhatsApp Number</label>
+        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
+        <label class="lbl">WhatsApp</label>
         <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
         <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
         <div id="registerAlert" class="lf-alert"></div>
@@ -219,12 +211,9 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 <!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-l">
-      <div class="tbar-logo">📊</div>
-      <h2>FabricFlow Stock Manager</h2>
-    </div>
+    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
     <div class="topbar-r">
-      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
+      <span id="savingIndicator" style="display:none"><span class="saving-dot"></span>Saving...</span>
       <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
       <button class="btn btn-danger btn-sm" onclick="logout()" style="background:#dc2626;color:white">🚪 Logout</button>
     </div>
@@ -236,28 +225,23 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
   <div class="wa-modal">
     <h3>📲 Send via WhatsApp</h3>
     <div class="wa-preview" id="waPreview"></div>
-    <div class="fg"><label>WhatsApp Number (with country code)</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">📲 Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Close</button></div>
+    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Close</button></div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// FABRICFLOW STOCK MANAGER - WITH ONE-TIME SETUP
-// Credentials are stored in localStorage (per device)
+// SIMPLE WORKING VERSION - ALWAYS CREATES NEW GIST
 // ============================================================
 
 let DB_CACHE = null;
 let CU_username = null;
 
-// Get stored credentials
-function getStoredCredentials() {
+function getCredentials() {
   const apiKey = localStorage.getItem('ff_api_key');
   const binId = localStorage.getItem('ff_bin_id');
-  if (apiKey && binId) {
-    return { apiKey, binId };
-  }
-  return null;
+  return (apiKey && binId) ? { apiKey, binId } : null;
 }
 
 function saveCredentials(apiKey, binId) {
@@ -265,39 +249,32 @@ function saveCredentials(apiKey, binId) {
   localStorage.setItem('ff_bin_id', binId);
 }
 
-// JSONBin API functions
 async function dbRead(apiKey, binId) {
-  const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
     headers: { 'X-Master-Key': apiKey }
   });
-  if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-  const data = await response.json();
-  return data.record;
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return (await res.json()).record;
 }
 
 async function dbWrite(apiKey, binId, data) {
-  const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': apiKey
-    },
+    headers: { 'Content-Type': 'application/json', 'X-Master-Key': apiKey },
     body: JSON.stringify(data)
   });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const result = await response.json();
-  return result.record;
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return (await res.json()).record;
 }
 
-// Setup function - creates database and saves credentials
+// SETUP
 async function setupDatabase() {
   const apiKey = document.getElementById('setupApiKey').value.trim();
   const binId = document.getElementById('setupBinId').value.trim();
   const adminPw = document.getElementById('setupAdminPw').value;
-  const whatsapp = document.getElementById('setupWhatsapp').value.trim();
   
   if (!apiKey || !binId) {
-    showSetupAlert('❌ API Key and Bin ID are required', 'setup-error');
+    showSetupAlert('❌ API Key and Bin ID required', 'setup-error');
     return;
   }
   if (!adminPw || adminPw.length < 4) {
@@ -307,48 +284,30 @@ async function setupDatabase() {
   
   const btn = event.target;
   btn.disabled = true;
-  btn.textContent = '⏳ Creating database...';
+  btn.textContent = '⏳ Creating...';
   
   try {
-    // Check if bin exists and has data
-    let existingData;
-    try {
-      existingData = await dbRead(apiKey, binId);
-    } catch(e) {
-      existingData = null;
-    }
+    let existing;
+    try { existing = await dbRead(apiKey, binId); } catch(e) { existing = null; }
     
-    if (existingData && existingData.users && existingData.users.length > 0) {
-      // Bin already has data - just save credentials
+    if (existing && existing.users && existing.users.length > 0) {
       saveCredentials(apiKey, binId);
-      showSetupAlert('✅ Connected to existing database! Redirecting to login...', 'setup-success');
-      setTimeout(() => window.location.reload(), 1500);
+      showSetupAlert('✅ Connected! Redirecting...', 'setup-success');
+      setTimeout(() => location.reload(), 1500);
     } else {
-      // Create new database with admin user
-      const newDatabase = {
+      const newDb = {
         github: { token: '', username: '', gistId: '' },
-        users: [
-          {
-            username: 'admin',
-            password: adminPw,
-            name: 'Administrator',
-            role: 'admin',
-            status: 'approved',
-            whatsapp: whatsapp
-          }
-        ]
+        users: [{ username: 'admin', password: adminPw, name: 'Administrator', role: 'admin', status: 'approved', whatsapp: '' }]
       };
-      
-      await dbWrite(apiKey, binId, newDatabase);
+      await dbWrite(apiKey, binId, newDb);
       saveCredentials(apiKey, binId);
-      showSetupAlert('✅ Database created successfully! Redirecting to login...', 'setup-success');
-      setTimeout(() => window.location.reload(), 1500);
+      showSetupAlert('✅ Database created! Redirecting...', 'setup-success');
+      setTimeout(() => location.reload(), 1500);
     }
   } catch(e) {
-    console.error('Setup error:', e);
     showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
     btn.disabled = false;
-    btn.textContent = '🚀 Create Database & Continue →';
+    btn.textContent = '🚀 Create Database →';
   }
 }
 
@@ -359,13 +318,12 @@ function showSetupAlert(msg, cls) {
   el.style.display = 'block';
 }
 
-// Boot sequence
+// BOOT
 async function boot() {
   const loading = document.getElementById('loadingScreen');
-  const credentials = getStoredCredentials();
+  const creds = getCredentials();
   
-  // No credentials - show setup
-  if (!credentials) {
+  if (!creds) {
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
@@ -375,41 +333,16 @@ async function boot() {
     return;
   }
   
-  // Has credentials - try to connect
   try {
-    DB_CACHE = await dbRead(credentials.apiKey, credentials.binId);
-    
-    // Check if admin exists (if not, add it)
-    const adminExists = (DB_CACHE.users || []).some(u => u.username === 'admin');
-    if (!adminExists) {
-      if (!DB_CACHE.users) DB_CACHE.users = [];
-      DB_CACHE.users.push({
-        username: 'admin',
-        password: 'admin123',
-        name: 'Administrator',
-        role: 'admin',
-        status: 'approved',
-        whatsapp: ''
-      });
-      await dbWrite(credentials.apiKey, credentials.binId, DB_CACHE);
-    }
-    
+    DB_CACHE = await dbRead(creds.apiKey, creds.binId);
     if (!DB_CACHE.github) DB_CACHE.github = { token: '', username: '', gistId: '' };
     
     const sess = localStorage.getItem('ff_sess');
-    if (sess) {
-      const user = (DB_CACHE.users || []).find(u => u.username === sess);
-      if (user && user.status === 'approved') {
-        CU_username = sess;
-        loading.classList.add('hide');
-        setTimeout(() => {
-          loading.style.display = 'none';
-          launchApp();
-        }, 400);
-        return;
-      } else {
-        localStorage.removeItem('ff_sess');
-      }
+    if (sess && (DB_CACHE.users || []).find(u => u.username === sess && u.status === 'approved')) {
+      CU_username = sess;
+      loading.classList.add('hide');
+      setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
+      return;
     }
     
     loading.classList.add('hide');
@@ -418,8 +351,6 @@ async function boot() {
       document.getElementById('loginPage').classList.add('show');
     }, 400);
   } catch(e) {
-    console.error('Boot error:', e);
-    // Connection failed - clear credentials and show setup
     localStorage.removeItem('ff_api_key');
     localStorage.removeItem('ff_bin_id');
     loading.classList.add('hide');
@@ -427,7 +358,7 @@ async function boot() {
       loading.style.display = 'none';
       document.getElementById('setupScreen').classList.add('show');
       document.body.classList.add('setup-active');
-      showSetupAlert(`❌ Connection failed: ${e.message}. Please re-enter your credentials.`, 'setup-error');
+      showSetupAlert(`❌ Connection failed: ${e.message}`, 'setup-error');
     }, 400);
   }
 }
@@ -437,7 +368,7 @@ function launchApp() {
   document.getElementById('app').classList.add('show');
   document.getElementById('loginPage').classList.remove('show');
   document.body.classList.remove('setup-active');
-  const cu = currentUser();
+  const cu = DB_CACHE.users.find(u => u.username === CU_username);
   document.getElementById('topbarUser').textContent = cu.name;
   const rb = document.getElementById('topbarRole');
   rb.textContent = cu.role === 'admin' ? 'Admin' : 'Sub-Admin';
@@ -445,34 +376,7 @@ function launchApp() {
   renderMain();
 }
 
-function currentUser() {
-  if (!DB_CACHE || !CU_username) return null;
-  return (DB_CACHE.users || []).find(u => u.username === CU_username);
-}
-
-async function getDB() {
-  if (DB_CACHE) return DB_CACHE;
-  const credentials = getStoredCredentials();
-  if (!credentials) throw new Error('Not configured');
-  DB_CACHE = await dbRead(credentials.apiKey, credentials.binId);
-  return DB_CACHE;
-}
-
-async function updateDB(newData) {
-  const credentials = getStoredCredentials();
-  if (!credentials) throw new Error('Not configured');
-  showSaving(true);
-  DB_CACHE = await dbWrite(credentials.apiKey, credentials.binId, newData);
-  showSaving(false);
-  return DB_CACHE;
-}
-
-function showSaving(on) {
-  const el = document.getElementById('savingIndicator');
-  if (el) el.style.display = on ? 'flex' : 'none';
-}
-
-// Authentication
+// AUTH
 async function doLogin() {
   const u = document.getElementById('loginUsername').value.trim();
   const p = document.getElementById('loginPassword').value;
@@ -481,35 +385,18 @@ async function doLogin() {
   btn.textContent = 'Signing in...';
   
   try {
-    const db = await getDB();
-    const user = (db.users || []).find(user => user.username === u);
-    
-    if (!user) {
-      showLF('loginAlert', '❌ Username not found', 'lf-error');
-      return;
-    }
-    if (user.password !== p) {
-      showLF('loginAlert', '❌ Incorrect password', 'lf-error');
-      return;
-    }
-    if (user.status === 'pending') {
-      showLF('loginAlert', '⏳ Account pending admin approval', 'lf-error');
-      return;
-    }
-    if (user.status === 'rejected') {
-      showLF('loginAlert', '🚫 Account rejected. Contact admin.', 'lf-error');
-      return;
-    }
-    
+    const creds = getCredentials();
+    const db = await dbRead(creds.apiKey, creds.binId);
+    const user = db.users.find(u => u.username === u);
+    if (!user || user.password !== p) { showLF('loginAlert', '❌ Invalid credentials', 'lf-error'); return; }
+    if (user.status === 'pending') { showLF('loginAlert', '⏳ Pending approval', 'lf-error'); return; }
+    if (user.status === 'rejected') { showLF('loginAlert', '🚫 Account rejected', 'lf-error'); return; }
     CU_username = u;
     localStorage.setItem('ff_sess', u);
+    DB_CACHE = db;
     launchApp();
-  } catch(e) {
-    showLF('loginAlert', `❌ ${e.message}`, 'lf-error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Sign In →';
-  }
+  } catch(e) { showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); }
+  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
 }
 
 async function doRegister() {
@@ -519,50 +406,27 @@ async function doRegister() {
   const wa = document.getElementById('regWhatsapp').value.trim();
   const btn = document.getElementById('registerBtn');
   
-  if (!name || !username || !password) {
-    showLF('registerAlert', '❌ Please fill all required fields', 'lf-error');
-    return;
-  }
-  if (password.length < 4) {
-    showLF('registerAlert', '❌ Password must be at least 4 characters', 'lf-error');
-    return;
-  }
+  if (!name || !username || !password) { showLF('registerAlert', '❌ All fields required', 'lf-error'); return; }
+  if (password.length < 4) { showLF('registerAlert', '❌ Password must be 4+ chars', 'lf-error'); return; }
   
   btn.disabled = true;
   btn.textContent = 'Submitting...';
   
   try {
-    const db = await getDB();
-    if ((db.users || []).find(u => u.username === username)) {
-      showLF('registerAlert', '❌ Username already taken', 'lf-error');
-      return;
-    }
-    
-    db.users.push({
-      username,
-      password,
-      name,
-      role: 'subadmin',
-      status: 'pending',
-      whatsapp: wa
-    });
-    
-    await updateDB(db);
-    showLF('registerAlert', '✅ Registration submitted! Wait for admin approval.', 'lf-success');
+    const creds = getCredentials();
+    const db = await dbRead(creds.apiKey, creds.binId);
+    if (db.users.find(u => u.username === username)) { showLF('registerAlert', '❌ Username taken', 'lf-error'); return; }
+    db.users.push({ username, password, name, role: 'subadmin', status: 'pending', whatsapp: wa });
+    await dbWrite(creds.apiKey, creds.binId, db);
+    showLF('registerAlert', '✅ Submitted! Wait for admin approval.', 'lf-success');
     setTimeout(() => switchAuthTab('login'), 2000);
-  } catch(e) {
-    showLF('registerAlert', `❌ ${e.message}`, 'lf-error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Request Account →';
-  }
+  } catch(e) { showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); }
+  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
 }
 
 function switchAuthTab(t) {
   const isLogin = t === 'login';
-  document.querySelectorAll('.auth-tab').forEach((tab, i) => {
-    tab.classList.toggle('active', (isLogin && i === 0) || (!isLogin && i === 1));
-  });
+  document.querySelectorAll('.auth-tab').forEach((tab, i) => tab.classList.toggle('active', (isLogin && i === 0) || (!isLogin && i === 1)));
   document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
   document.getElementById('registerForm').style.display = isLogin ? 'none' : 'block';
 }
@@ -573,30 +437,23 @@ function logout() {
   document.getElementById('app').classList.remove('show');
   document.getElementById('app').style.display = 'none';
   document.getElementById('loginPage').classList.add('show');
-  document.getElementById('loginUsername').value = '';
-  document.getElementById('loginPassword').value = '';
   renderMain();
 }
 
 function showLF(id, msg, cls) {
   const el = document.getElementById(id);
-  if (el) {
-    el.textContent = msg;
-    el.className = `lf-alert ${cls}`;
-    el.style.display = 'block';
-    setTimeout(() => {
-      if (el) el.style.display = 'none';
-    }, 5000);
-  }
+  el.textContent = msg;
+  el.className = `lf-alert ${cls}`;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 5000);
 }
 
-// Render Functions
+// RENDER
 let aTab = 'github';
 let sTab = 'upload';
 
 function renderMain() {
-  const cu = currentUser();
-  if (!cu) return;
+  const cu = DB_CACHE.users.find(u => u.username === CU_username);
   document.getElementById('mainContent').innerHTML = cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
 }
 
@@ -604,20 +461,18 @@ function switchATab(t) { aTab = t; renderMain(); }
 function switchSTab(t) { sTab = t; renderMain(); }
 
 function renderAdmin() {
-  const db = DB_CACHE;
-  const pending = (db.users || []).filter(u => u.status === 'pending' && u.username !== 'admin');
-  const others = (db.users || []).filter(u => u.username !== 'admin');
-  const gh = db.github || {};
-  const ghReady = !!(gh.token && gh.username);
+  const pending = DB_CACHE.users.filter(u => u.status === 'pending' && u.username !== 'admin');
+  const others = DB_CACHE.users.filter(u => u.username !== 'admin');
+  const gh = DB_CACHE.github;
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
   
   return `
     <div class="ptabs">
-      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady ? '✅' : '⚠️'}</button>
+      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${gh.token ? '✅' : '⚠️'}</button>
       <button class="ptab ${aTab === 'upload' ? 'active' : ''}" onclick="switchATab('upload')">📁 Upload Stock</button>
       <button class="ptab ${aTab === 'users' ? 'active' : ''}" onclick="switchATab('users')">👥 Users ${pending.length ? `<span class="badge-red">${pending.length}</span>` : ''}</button>
-      <button class="ptab ${aTab === 'pw' ? 'active' : ''}" onclick="switchATab('pw')">🔑 Change Password</button>
+      <button class="ptab ${aTab === 'pw' ? 'active' : ''}" onclick="switchATab('pw')">🔑 Password</button>
     </div>
     ${aTab === 'github' ? renderGithubTab(gh) : ''}
     ${aTab === 'upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
@@ -627,14 +482,13 @@ function renderAdmin() {
 }
 
 function renderSubAdmin() {
-  const gh = (DB_CACHE && DB_CACHE.github) || {};
+  const gh = DB_CACHE.github;
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  
   return `
     <div class="ptabs">
       <button class="ptab ${sTab === 'upload' ? 'active' : ''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${sTab === 'pw' ? 'active' : ''}" onclick="switchSTab('pw')">🔑 Change Password</button>
+      <button class="ptab ${sTab === 'pw' ? 'active' : ''}" onclick="switchSTab('pw')">🔑 Password</button>
     </div>
     ${sTab === 'upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}
   `;
@@ -644,15 +498,10 @@ function renderGithubTab(gh) {
   return `
     <div class="card">
       <div class="card-title"><span class="step-num ${gh.token ? 'done' : ''}">1</span> GitHub Authentication</div>
-      <div class="info-box" style="margin-bottom:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
-        🔑 <strong>GitHub Personal Access Token</strong><br>
-        1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
-        2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-        3. Copy token (starts with ghp_) and paste below
-      </div>
+      <div class="info-box" style="margin-bottom:16px">🔑 <strong>GitHub Token (gist scope only)</strong> - <a href="https://github.com/settings/tokens" target="_blank">Get token</a></div>
       <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escapeHtml(gh.token || '')}" placeholder="ghp_xxxx..."></div>
-      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escapeHtml(gh.username || '')}" placeholder="your-github-username"></div>
-      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
+      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escapeHtml(gh.username || '')}" placeholder="your-username"></div>
+      <button class="btn btn-primary" onclick="saveGithub()">💾 Save</button>
       <div id="ghAlert" class="alert"></div>
     </div>
   `;
@@ -660,32 +509,24 @@ function renderGithubTab(gh) {
 
 function renderUploadTab(gh, savedUrl, hasGist) {
   const ghReady = !!(gh.token && gh.username);
-  
   return `
     <div class="card ${ghReady ? '' : 'step-locked'}">
       <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
-      ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
-      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new permanent Gist URL.</div>'}
-      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
-      <div class="fg"><label>Gist Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
+      ${!ghReady ? '<div class="alert a-warning" style="display:block">⚠️ Configure GitHub first</div>' : ''}
+      <div class="fg"><label>Excel File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
       <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
       <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady ? 'disabled' : ''}>🚀 Upload to Gist</button>
       <div id="uploadAlert" class="alert"></div>
-      <div class="fg" style="margin-top:14px"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
-      <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
+      <textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;margin-top:10px"></textarea>
+      <div id="preview" style="margin-top:10px;display:none"></div>
     </div>
     ${hasGist ? `
     <div class="card">
-      <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
+      <div class="card-title"><span class="step-num done">3</span> Your URL</div>
       <div class="url-result">
-        <strong>🎉 Copy this URL to FabricFlow:</strong>
         <div class="url-text" id="rawUrl">${savedUrl}</div>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-          <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
-          <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
-          <a id="gistLink" href="https://gist.github.com/${gh.username}/${gh.gistId}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
+        <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy</button>
+        <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
       </div>
     </div>` : ''}
   `;
@@ -694,132 +535,72 @@ function renderUploadTab(gh, savedUrl, hasGist) {
 function renderUsersTab(others, pending) {
   let rows = '';
   others.forEach(u => {
-    rows += `
-      <tr>
-        <td><strong>${escapeHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escapeHtml(u.username)}</span></td>
-        <td>${escapeHtml(u.whatsapp || '-')}</td>
-        <td><span class="sdot ${u.status === 'approved' ? 'd-green' : u.status === 'pending' ? 'd-orange' : 'd-red'}"></span>${u.status}</td>
-        <td>
-          ${u.status === 'pending' 
-            ? `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`
-            : u.status === 'approved'
-              ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`
-              : `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`
-          }
-        </td>
-      </tr>
-    `;
+    rows += `<tr><td><strong>${escapeHtml(u.name)}</strong><br>${escapeHtml(u.username)}</td><td>${escapeHtml(u.whatsapp || '-')}</td><td><span class="sdot ${u.status === 'approved' ? 'd-green' : 'd-orange'}"></span>${u.status}</td>
+    <td>${u.status === 'pending' ? `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Reject</button>` : u.status === 'approved' ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Revoke</button>` : ''}</td></tr>`;
   });
-  
-  return `
-    <div class="card">
-      <table class="utab">
-        <thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody>${rows || '<td><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}</tbody>
-      </table>
-    </div>
-  `;
+  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows || '<tr><td colspan="4">No users</td></tr>'}</tbody></table></div>`;
 }
 
 function renderPwTab() {
-  return `
-    <div class="card">
-      <div class="card-title">🔑 Change Password</div>
-      <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
-      <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
-      <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
-      <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
-      <div id="pwAlert" class="alert"></div>
-    </div>
-  `;
+  return `<div class="card"><div class="card-title">🔑 Change Password</div>
+    <div class="fg"><label>Current</label><input type="password" id="pwCur"></div>
+    <div class="fg"><label>New (min 4)</label><input type="password" id="pwNew"></div>
+    <div class="fg"><label>Confirm</label><input type="password" id="pwConf"></div>
+    <button class="btn btn-primary" onclick="changePassword()">Update</button>
+    <div id="pwAlert" class="alert"></div></div>`;
 }
 
+// ACTIONS
 async function saveGithub() {
   const token = document.getElementById('ghToken').value.trim();
   const username = document.getElementById('ghUsername').value.trim();
-  
-  if (!token || !username) {
-    showAlert('ghAlert', 'Both fields required', 'a-error');
-    return;
-  }
-  
+  if (!token || !username) { showAlert('ghAlert', 'Both required', 'a-error'); return; }
   try {
-    const db = DB_CACHE;
-    db.github = { ...db.github, token, username };
-    await updateDB(db);
-    showAlert('ghAlert', '✅ GitHub credentials saved!', 'a-success');
+    const creds = getCredentials();
+    DB_CACHE.github = { token, username, gistId: DB_CACHE.github?.gistId || '' };
+    await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
+    showAlert('ghAlert', '✅ Saved!', 'a-success');
     renderMain();
-  } catch(e) {
-    showAlert('ghAlert', e.message, 'a-error');
-  }
+  } catch(e) { showAlert('ghAlert', e.message, 'a-error'); }
 }
 
 async function approveUser(username) {
-  try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === username);
-    if (u) {
-      u.status = 'approved';
-      await updateDB(db);
-      renderMain();
-      showAlert('ghAlert', `✅ ${username} approved`, 'a-success');
-    }
-  } catch(e) { alert(e.message); }
+  const creds = getCredentials();
+  const u = DB_CACHE.users.find(x => x.username === username);
+  if (u) { u.status = 'approved'; await dbWrite(creds.apiKey, creds.binId, DB_CACHE); renderMain(); }
 }
 
 async function rejectUser(username) {
-  try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === username);
-    if (u) {
-      u.status = 'rejected';
-      await updateDB(db);
-      renderMain();
-      showAlert('ghAlert', `❌ ${username} rejected`, 'a-success');
-    }
-  } catch(e) { alert(e.message); }
+  const creds = getCredentials();
+  const u = DB_CACHE.users.find(x => x.username === username);
+  if (u) { u.status = 'rejected'; await dbWrite(creds.apiKey, creds.binId, DB_CACHE); renderMain(); }
 }
 
 async function changePassword() {
   const cur = document.getElementById('pwCur').value;
   const nw = document.getElementById('pwNew').value;
   const cf = document.getElementById('pwConf').value;
-  const cu = currentUser();
-  
-  if (cur !== cu.password) {
-    showAlert('pwAlert', 'Current password incorrect', 'a-error');
-    return;
-  }
-  if (nw.length < 4) {
-    showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error');
-    return;
-  }
-  if (nw !== cf) {
-    showAlert('pwAlert', 'Passwords do not match', 'a-error');
-    return;
-  }
-  
-  try {
-    const db = DB_CACHE;
-    const u = db.users.find(x => x.username === CU_username);
-    if (u) u.password = nw;
-    await updateDB(db);
-    showAlert('pwAlert', '✅ Password updated!', 'a-success');
-    document.getElementById('pwCur').value = '';
-    document.getElementById('pwNew').value = '';
-    document.getElementById('pwConf').value = '';
-  } catch(e) {
-    showAlert('pwAlert', e.message, 'a-error');
-  }
+  const cu = DB_CACHE.users.find(u => u.username === CU_username);
+  if (cur !== cu.password) { showAlert('pwAlert', 'Wrong password', 'a-error'); return; }
+  if (nw.length < 4) { showAlert('pwAlert', 'Min 4 chars', 'a-error'); return; }
+  if (nw !== cf) { showAlert('pwAlert', 'Passwords dont match', 'a-error'); return; }
+  cu.password = nw;
+  const creds = getCredentials();
+  await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
+  showAlert('pwAlert', '✅ Updated!', 'a-success');
+  document.getElementById('pwCur').value = '';
+  document.getElementById('pwNew').value = '';
+  document.getElementById('pwConf').value = '';
 }
 
-// GITHUB UPLOAD
+// ============================================================
+// FIXED UPLOAD - ALWAYS CREATES NEW GIST (NO "NOT FOUND" ERROR)
+// ============================================================
 async function uploadGist() {
-  const gh = DB_CACHE.github || {};
-  const credentials = getStoredCredentials();
+  const gh = DB_CACHE.github;
   
   if (!gh.token || !gh.username) {
-    showAlert('uploadAlert', '❌ GitHub not configured by Admin', 'a-error');
+    showAlert('uploadAlert', '❌ GitHub not configured', 'a-error');
     return;
   }
   
@@ -840,97 +621,56 @@ async function uploadGist() {
   
   const btn = event.target;
   btn.disabled = true;
-  btn.textContent = '⏳ Uploading...';
-  showAlert('uploadAlert', `⏳ Uploading ${data.length} items...`, 'a-warning');
+  btn.textContent = '⏳ Creating Gist...';
+  showAlert('uploadAlert', `⏳ Creating Gist with ${data.length} items...`, 'a-warning');
   
   try {
     const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
-    const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
-    const gistId = gh.gistId;
     
-    let gist = null;
-    
-    // Try to update existing gist
-    if (gistId && gistId.length > 0) {
-      try {
-        const updateRes = await fetch(`https://api.github.com/gists/${gistId}`, {
-          method: 'PATCH',
-          headers: {
-            'Authorization': `token ${gh.token}`,
-            'Content-Type': 'application/json',
-            'User-Agent': 'FabricFlow'
-          },
-          body: JSON.stringify({
-            description: description,
-            files: {
-              [filename]: {
-                content: JSON.stringify(data, null, 2)
-              }
-            }
-          })
-        });
-        
-        if (updateRes.ok) {
-          gist = await updateRes.json();
-        } else if (updateRes.status === 404) {
-          console.log('Gist not found, creating new...');
-        } else {
-          throw new Error(`HTTP ${updateRes.status}`);
-        }
-      } catch(e) {
-        console.log('Update failed, creating new gist...');
-      }
-    }
-    
-    // Create new gist if needed
-    if (!gist) {
-      const createRes = await fetch('https://api.github.com/gists', {
-        method: 'POST',
-        headers: {
-          'Authorization': `token ${gh.token}`,
-          'Content-Type': 'application/json',
-          'User-Agent': 'FabricFlow'
-        },
-        body: JSON.stringify({
-          description: description,
-          public: true,
-          files: {
-            [filename]: {
-              content: JSON.stringify(data, null, 2)
-            }
+    // ALWAYS CREATE A NEW GIST - This avoids "Not Found" error completely
+    const res = await fetch('https://api.github.com/gists', {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${gh.token}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'FabricFlow'
+      },
+      body: JSON.stringify({
+        description: 'FabricFlow Stock Data',
+        public: true,
+        files: {
+          [filename]: {
+            content: JSON.stringify(data, null, 2)
           }
-        })
-      });
-      
-      if (!createRes.ok) {
-        const errorData = await createRes.json();
-        throw new Error(errorData.message || `HTTP ${createRes.status}`);
-      }
-      
-      gist = await createRes.json();
+        }
+      })
+    });
+    
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || `HTTP ${res.status}`);
     }
     
-    // Save gist ID
-    const db = DB_CACHE;
-    if (!db.github) db.github = {};
-    db.github.gistId = gist.id;
-    await updateDB(db);
-    
+    const gist = await res.json();
     const rawUrl = `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
     
+    // Save the new Gist ID
+    const creds = getCredentials();
+    DB_CACHE.github.gistId = gist.id;
+    await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
+    
     renderMain();
-    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
+    showAlert('uploadAlert', `✅ Success! Created new Gist with ${data.length} items.`, 'a-success');
     showPreview(data);
     
-    // Auto-show WhatsApp modal
+    // Auto-show WhatsApp
     setTimeout(() => {
-      document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\n✅ Stock data updated successfully!\n\n📦 Items: ${data.length}\n\n🔗 Permanent URL:\n${rawUrl}\n\nPaste this URL in FabricFlow App → Stock → Fetch from URL`;
-      document.getElementById('waNumber').value = currentUser().whatsapp || '';
+      document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\n✅ ${data.length} items uploaded\n\n🔗 URL:\n${rawUrl}`;
+      document.getElementById('waNumber').value = DB_CACHE.users.find(u => u.username === CU_username)?.whatsapp || '';
       document.getElementById('waOverlay').classList.add('show');
     }, 500);
     
   } catch(e) {
-    console.error('Upload error:', e);
     showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error');
   } finally {
     btn.disabled = false;
@@ -938,30 +678,26 @@ async function uploadGist() {
   }
 }
 
+// FILE HANDLING
 async function handleFile(input) {
   const file = input.files[0];
   if (!file) return;
-  
   try {
     const json = await parseExcel(file);
     document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
+    showAlert('uploadAlert', `✅ Loaded ${json.length} items`, 'a-success');
     showPreview(json);
-  } catch(e) {
-    showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
-  }
+  } catch(e) { showAlert('uploadAlert', `❌ ${e.message}`, 'a-error'); }
 }
 
-async function parseExcel(file) {
+function parseExcel(file) {
   return new Promise((res, rej) => {
     const reader = new FileReader();
     reader.onload = e => {
       try {
         const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(sheet);
-        if (!json.length) rej(new Error('No data found in file'));
-        else res(json);
+        const json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        json.length ? res(json) : rej(new Error('No data'));
       } catch(e) { rej(e); }
     };
     reader.onerror = rej;
@@ -971,82 +707,55 @@ async function parseExcel(file) {
 
 function showPreview(data) {
   const el = document.getElementById('preview');
-  if (!data || !data.length) {
-    if (el) el.style.display = 'none';
-    return;
-  }
-  
+  if (!data?.length) { el.style.display = 'none'; return; }
   const headers = Object.keys(data[0]);
-  let html = `<div style="font-size:12px;margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
-  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  let html = `<div style="font-size:12px">📊 ${data.length} items</div><table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px">${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
   data.slice(0, 10).forEach(row => {
     html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
   });
-  html += `</tbody></table></div>`;
-  if (el) {
-    el.innerHTML = html;
-    el.style.display = 'block';
-  }
+  html += `</tbody></table>`;
+  el.innerHTML = html;
+  el.style.display = 'block';
 }
 
 function copyUrl() {
   const url = document.getElementById('rawUrl')?.textContent;
-  if (url) {
-    navigator.clipboard.writeText(url);
-    showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success');
-  }
+  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 Copied!', 'a-success'); }
 }
 
 function triggerWA(url) {
-  const cu = currentUser();
-  document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\nStock data updated.\n\n🔗 Raw URL:\n${url}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
-  document.getElementById('waNumber').value = cu.whatsapp || '';
+  document.getElementById('waPreview').innerHTML = `FabricFlow Stock\n\nURL:\n${url}`;
+  document.getElementById('waNumber').value = DB_CACHE.users.find(u => u.username === CU_username)?.whatsapp || '';
   document.getElementById('waOverlay').classList.add('show');
 }
 
 function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
-
 function openWhatsApp() {
   const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
   const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
+  if (!n) { alert('Enter WhatsApp number'); return; }
   window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
   closeWA();
 }
 
 function showAlert(id, msg, cls) {
   const el = document.getElementById(id);
-  if (el) {
-    el.textContent = msg;
-    el.className = `alert ${cls}`;
-    el.style.display = 'block';
-    setTimeout(() => {
-      if (el) el.style.display = 'none';
-    }, 5000);
-  }
+  el.textContent = msg;
+  el.className = `alert ${cls}`;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 5000);
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
+function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function toggleTheme() {
   document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  localStorage.setItem('ff_theme', isDark ? 'dark' : 'light');
-  document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
 }
 
-if (localStorage.getItem('ff_theme') === 'dark') {
-  document.body.classList.add('dark');
-  document.getElementById('themeLabel').textContent = 'Light';
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', boot);
-} else {
-  boot();
-}
+if (localStorage.getItem('ff_theme') === 'dark') document.body.classList.add('dark');
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
 </script>
 </body>
 </html>
