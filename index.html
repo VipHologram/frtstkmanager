@@ -22,328 +22,209 @@ body.dark{
   --shadow:0 1px 4px rgba(0,0,0,.4);--shadow-lg:0 8px 32px rgba(0,0,0,.5);
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s,color .3s}
-
-/* THEME */
-.theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff;transition:all .2s}
+.theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff}
 body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
-
-/* LOADING SCREEN */
 #loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2e40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .4s}
 #loadingScreen.hide{opacity:0;pointer-events:none}
-.loader-logo{width:60px;height:60px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;box-shadow:0 4px 20px rgba(58,123,213,.3)}
+.loader-logo{width:60px;height:60px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
 .loader-text{color:#fff;font-size:16px;font-weight:600;margin-bottom:8px}
 .loader-sub{color:rgba(255,255,255,.4);font-size:13px;margin-bottom:24px}
 .loader-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
 @keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
-
-/* SETUP WIZARD */
-#setupWizard{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
-#setupWizard.show{display:flex}
-.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%;box-shadow:var(--shadow-lg)}
+.setup-container{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
+.setup-container.show{display:flex}
+.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
 .setup-card h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
-.setup-card .setup-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.6}
-.setup-steps{display:flex;gap:8px;margin-bottom:24px}
-.setup-step-dot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.15)}
-.setup-step-dot.active{background:linear-gradient(90deg,#2c5364,#3a7bd5)}
-.setup-step-dot.done{background:#16a34a}
-.sw-label{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
-.sw-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r-sm);font-size:14px;font-family:'Inter',sans-serif;background:rgba(255,255,255,.07);color:#fff;transition:border-color .2s;margin-bottom:14px}
-.sw-input::placeholder{color:rgba(255,255,255,.25)}
-.sw-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.sw-info{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px}
-.sw-info a{color:#58a6ff}
-.sw-btn{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff;transition:all .2s;margin-top:4px}
-.sw-btn:hover{opacity:.9;transform:translateY(-1px)}
-.sw-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.sw-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.sw-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.sw-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.sw-warning{background:rgba(234,88,12,.15);color:#fb923c;border:1px solid rgba(234,88,12,.3)}
-
-/* ═══ LOGIN ═══ */
-#loginPage{min-height:100vh;display:none;position:relative;overflow:hidden}
+.setup-card .setup-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
+.setup-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
+.setup-input::placeholder{color:rgba(255,255,255,.25)}
+.setup-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
+.setup-btn{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
+.setup-btn:hover{opacity:.9}
+.setup-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
+.setup-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
+.setup-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
+.info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px}
+.info-box a{color:#58a6ff}
+#loginPage{min-height:100vh;display:none;position:relative}
 #loginPage.show{display:flex}
 .login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
-.login-bg-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(44,83,100,.35) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(26,35,50,.5) 0%,transparent 40%),radial-gradient(circle at 60% 80%,rgba(13,33,55,.4) 0%,transparent 45%)}
 .login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px;position:relative;z-index:2}
 .login-brand{margin-bottom:48px}
-.logo-mark{width:52px;height:52px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(58,123,213,.3)}
-.login-brand h1{font-size:32px;font-weight:700;color:#fff;letter-spacing:-.5px;line-height:1.2}
-.login-brand p{font-size:15px;color:rgba(255,255,255,.55);margin-top:8px;line-height:1.6}
-.login-features{display:flex;flex-direction:column;gap:16px}
-.feat-item{display:flex;align-items:center;gap:14px}
-.feat-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.feat-text strong{display:block;font-size:13px;font-weight:600;color:#fff}
-.feat-text span{font-size:12px;color:rgba(255,255,255,.45)}
-.login-right{width:460px;display:flex;align-items:center;justify-content:center;padding:40px 48px;position:relative;z-index:2;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.07)}
+.logo-mark{width:52px;height:52px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.login-brand h1{font-size:32px;font-weight:700;color:#fff}
+.login-brand p{font-size:15px;color:rgba(255,255,255,.55);margin-top:8px}
+.login-right{width:460px;display:flex;align-items:center;justify-content:center;padding:40px 48px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.07)}
 .login-panel{width:100%}
 .panel-head{margin-bottom:28px}
-.panel-head h2{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.3px}
-.panel-head p{font-size:13px;color:rgba(255,255,255,.45);margin-top:5px}
+.panel-head h2{font-size:22px;font-weight:700;color:#fff}
+.panel-head p{font-size:13px;color:rgba(255,255,255,.45)}
 .auth-tabs{display:flex;background:rgba(255,255,255,.07);border-radius:10px;padding:4px;margin-bottom:24px;gap:4px}
-.auth-tab{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.auth-tab.active{background:rgba(255,255,255,.12);color:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
-.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
-.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-sm);font-size:14px;font-family:'Inter',sans-serif;background:rgba(255,255,255,.07);color:#fff;transition:border-color .2s;margin-bottom:14px}
-.lf-input::placeholder{color:rgba(255,255,255,.25)}
-.lf-input:focus{outline:none;border-color:rgba(58,123,213,.7);background:rgba(255,255,255,.1)}
-.btn-login{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff;transition:all .2s;letter-spacing:.2px}
-.btn-login:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(58,123,213,.35)}
-.btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.auth-tab{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.5)}
+.auth-tab.active{background:rgba(255,255,255,.12);color:#fff}
+.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
+.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
+.lf-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
+.btn-login{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
+.btn-login:hover{opacity:.9}
 .lf-alert{padding:10px 14px;border-radius:var(--r-sm);font-size:12.5px;margin-top:12px;display:none}
 .lf-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .lf-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.lf-warning{background:rgba(234,88,12,.15);color:#fb923c;border:1px solid rgba(234,88,12,.3)}
-.pending-pill{background:rgba(234,88,12,.12);color:#fb923c;border:1px solid rgba(234,88,12,.25);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;text-align:center;margin-top:14px;display:none}
-
-/* ═══ APP ═══ */
 #app{display:none}
 #app.show{display:block}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topbar-l{display:flex;align-items:center;gap:10px}
 .tbar-logo{background:linear-gradient(135deg,#24292e,#2c5364);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
 .topbar-l h2{font-size:16px;font-weight:700}
 .topbar-r{display:flex;align-items:center;gap:8px}
-.user-chip{background:var(--surface2);border:1px solid var(--border);border-radius:50px;padding:5px 13px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px}
-.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;text-transform:uppercase}
+.user-chip{background:var(--surface2);border:1px solid var(--border);border-radius:50px;padding:5px 13px;font-size:13px;display:flex;align-items:center;gap:7px}
+.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px}
 .rt-admin{background:#dcfce7;color:#166534}
 .rt-sub{background:#dbeafe;color:#1e40af}
 body.dark .rt-admin{background:#0b2e1a;color:#4ade80}
 body.dark .rt-sub{background:#1e3a5f;color:#93c5fd}
 .main{max-width:820px;margin:0 auto;padding:28px 20px}
-
-/* TABS */
 .ptabs{display:flex;gap:2px;margin-bottom:22px;border-bottom:2px solid var(--border)}
-.ptab{padding:9px 18px;border:none;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.ptab{padding:9px 18px;border:none;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px}
 .ptab.active{color:var(--accent2);border-bottom-color:var(--accent2)}
 body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
-.badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px;font-weight:700}
-
-/* CARDS */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
 .card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .step-num.done{background:#16a34a}
-.step-num.locked{background:var(--muted)}
-
-/* FORM */
+.step-locked{opacity:0.5;pointer-events:none}
 .fg{margin-bottom:14px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
-.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-family:'Inter',sans-serif;background:var(--surface2);color:var(--text);transition:border-color .2s}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;background:var(--surface2);color:var(--text)}
 .fg input:focus,.fg textarea:focus{outline:none;border-color:#2c5364}
-
-/* BUTTONS */
-.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .btn-primary{background:linear-gradient(135deg,#24292e,#2c5364);color:#fff}
-.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .btn-success{background:#16a34a;color:#fff}
-.btn-success:hover{background:#15803d}
 .btn-danger{background:#dc2626;color:#fff}
-.btn-danger:hover{background:#b91c1c}
 .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:#2c5364}
 .btn-wa{background:#25d366;color:#fff}
-.btn-wa:hover{background:#1ebe57}
 .btn-sm{padding:7px 13px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
-
-/* ALERTS */
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .alert{padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-top:12px;display:none}
 .a-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
 .a-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
 .a-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
 .a-info{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
-body.dark .a-success{background:#0b2e1a;color:#4ade80;border-color:#166534}
-body.dark .a-error{background:#3d1a1a;color:#f87171;border-color:#dc2626}
-body.dark .a-warning{background:#3d2e1a;color:#fbbf24;border-color:#92400e}
-body.dark .a-info{background:#1e3a5f;color:#93c5fd;border-color:#1e40af}
-
-/* USERS TABLE */
+body.dark .a-success{background:#0b2e1a;color:#4ade80}
+body.dark .a-error{background:#3d1a1a;color:#f87171}
+body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 .utab{width:100%;border-collapse:collapse;font-size:13px}
 .utab th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
 .utab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
-.utab tr:last-child td{border-bottom:none}
 .sdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
 .d-green{background:#16a34a}.d-orange{background:#ea580c}.d-red{background:#dc2626}
-
-.pending-banner{background:#fef3c7;border:1px solid #fde68a;border-radius:var(--r-sm);padding:10px 16px;font-size:13px;color:#92400e;display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer}
-body.dark .pending-banner{background:#3d2e1a;border-color:#92400e;color:#fbbf24}
-
-.step-locked{opacity:.45;pointer-events:none}
-.url-result{background:var(--surface2);border:2px dashed #16a34a;border-radius:var(--r-sm);padding:18px;text-align:center;margin-top:14px}
-.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;color:var(--text);border:1px solid var(--border)}
-.prev-wrap{overflow-x:auto;margin-top:12px;font-size:12px}
-.prev-wrap table{width:100%;border-collapse:collapse}
-.prev-wrap th,.prev-wrap td{border:1px solid var(--border);padding:6px 10px;text-align:left}
-.prev-wrap th{background:var(--surface2);font-weight:600}
-.gh-status-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-bottom:16px;border:1px solid}
-.gh-ok{background:#dcfce7;border-color:#bbf7d0;color:#166534}
-.gh-missing{background:#fef3c7;border-color:#fde68a;color:#92400e}
-body.dark .gh-ok{background:#0b2e1a;border-color:#166534;color:#4ade80}
-body.dark .gh-missing{background:#3d2e1a;border-color:#92400e;color:#fbbf24}
-.info-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;font-size:13px;line-height:1.7;margin-bottom:16px}
-.info-box a{color:#2c5364}
-body.dark .info-box a{color:#58a6ff}
-
-/* WA MODAL */
+.url-result{background:var(--surface2);border:2px dashed #16a34a;border-radius:var(--r-sm);padding:18px;text-align:center}
+.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;border:1px solid var(--border)}
 .wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;padding:20px}
 .wa-backdrop.show{display:flex}
-.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%;box-shadow:var(--shadow-lg)}
-.wa-modal h3{font-size:18px;font-weight:700;margin-bottom:5px}
-.wa-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-.wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap;line-height:1.6}
-body.dark .wa-preview{background:#0b2e1a}
-.wa-btns{display:flex;gap:8px}
-
-/* SAVING INDICATOR */
+.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%}
+.wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap}
 .saving-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c;margin-right:6px;animation:pulse .8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
 @media(max-width:700px){
   .login-left{display:none}
-  .login-right{width:100%;padding:40px 28px;border-left:none;background:rgba(255,255,255,.05)}
-  .topbar{padding:12px 16px}
+  .login-right{width:100%;padding:40px 28px}
   .main{padding:16px 12px}
   .ptab{padding:8px 10px;font-size:12px}
 }
 </style>
 </head>
-<body class="login-active">
+<body>
 
 <button class="theme-btn" onclick="toggleTheme()">🌓 <span id="themeLabel">Dark</span></button>
 
-<!-- LOADING -->
 <div id="loadingScreen">
   <div class="loader-logo">📊</div>
   <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Connecting to database...</div>
+  <div class="loader-sub">Loading...</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<!-- FIRST-TIME SETUP WIZARD -->
-<div id="setupWizard">
+<!-- SETUP WIZARD -->
+<div id="setupContainer" class="setup-container">
   <div class="setup-card">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
-      <div class="logo-mark" style="width:40px;height:40px;font-size:20px;margin-bottom:0">📊</div>
-      <h2 style="margin-bottom:0">First-Time Setup</h2>
+    <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
+    <h2>One-Time Setup</h2>
+    <p class="setup-sub">Enter your JSONBin credentials and create admin account. This setup runs only once.</p>
+    <div class="info-box">
+      🔐 <strong>Get JSONBin credentials:</strong><br>
+      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
+      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
+      3. Create a new bin and copy its ID<br>
+      <br>
+      ⚠️ <strong>GitHub Required:</strong> Your repo must be connected to Netlify.
     </div>
-    <p class="setup-sub">This runs once. Your data will be stored in the cloud (JSONBin) so all users share the same data from any device or browser.</p>
-
-    <div class="setup-steps">
-      <div class="setup-step-dot active" id="swDot1"></div>
-      <div class="setup-step-dot" id="swDot2"></div>
-      <div class="setup-step-dot" id="swDot3"></div>
-    </div>
-
-    <!-- Step 1: JSONBin API Key -->
-    <div id="swStep1">
-      <div class="sw-info">
-        📦 <strong>JSONBin.io</strong> is a free cloud JSON storage. It stores all your app data (users, GitHub config, approvals) so everything works across devices and Netlify.<br><br>
-        1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
-        2. Dashboard → API Keys → Create Access Key<br>
-        3. Copy the key (starts with <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px">$2b$...</code>)
-      </div>
-      <label class="sw-label">JSONBin API Key (Master Key)</label>
-      <input class="sw-input" type="password" id="swBinKey" placeholder="$2b$10$...">
-      <button class="sw-btn" onclick="swStep1Next()">Next →</button>
-      <div id="swAlert1" class="sw-alert"></div>
-    </div>
-
-    <!-- Step 2: Create bin or use existing -->
-    <div id="swStep2" style="display:none">
-      <div class="sw-info">
-        Creating your private data bin... This stores all app data in your JSONBin account. Only your API key can access it.
-      </div>
-      <label class="sw-label">Admin Password</label>
-      <input class="sw-input" type="password" id="swAdminPw" placeholder="Set your admin password (min 4 chars)">
-      <label class="sw-label">Confirm Admin Password</label>
-      <input class="sw-input" type="password" id="swAdminPw2" placeholder="Confirm password">
-      <label class="sw-label">Admin WhatsApp (optional)</label>
-      <input class="sw-input" type="text" id="swAdminWA" placeholder="e.g. 919876543210">
-      <button class="sw-btn" onclick="swStep2Create()" id="swBtn2">🚀 Create Database & Finish</button>
-      <div id="swAlert2" class="sw-alert"></div>
-    </div>
-
-    <!-- Step 3: Done / Existing Bin -->
-    <div id="swStep3" style="display:none">
-      <div style="text-align:center;padding:20px 0">
-        <div style="font-size:48px;margin-bottom:12px">✅</div>
-        <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:8px">Setup Complete!</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5)">Your cloud database is ready. Signing you in as admin...</div>
-      </div>
-    </div>
-
-    <!-- OR: Use existing Bin ID -->
-    <div id="swExisting" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)">
-      <div style="font-size:12px;color:rgba(255,255,255,.35);margin-bottom:8px">Already set up? Enter your existing Bin ID:</div>
-      <div style="display:flex;gap:8px">
-        <input class="sw-input" style="margin-bottom:0;flex:1" type="text" id="swExistingBin" placeholder="Bin ID (e.g. 64abc...)">
-        <button class="sw-btn" style="width:auto;padding:11px 16px;margin-top:0;font-size:13px" onclick="swUseExisting()">Connect</button>
-      </div>
-      <div id="swAlertEx" class="sw-alert"></div>
-    </div>
+    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
+    <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
+    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 64abc123...">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
+    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Min 4 characters">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
+    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Token (for auto-update)</label>
+    <input class="setup-input" type="password" id="setupGhToken" placeholder="ghp_xxxx... (repo scope)">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Repo (username/repo)</label>
+    <input class="setup-input" type="text" id="setupRepo" placeholder="yourusername/frtstockmanager">
+    <button class="setup-btn" onclick="saveCredentialsPermanently()">💾 Save & Create Admin →</button>
+    <div id="setupAlert" class="setup-alert"></div>
   </div>
 </div>
 
-<!-- LOGIN -->
+<!-- LOGIN PAGE -->
 <div id="loginPage">
   <div class="login-bg"></div>
-  <div class="login-bg-pattern"></div>
   <div class="login-left">
     <div class="login-brand">
       <div class="logo-mark">📊</div>
       <h1>FabricFlow<br>Stock Manager</h1>
-      <p>Excel to GitHub Gist — one upload,<br>permanent URL, instant sync.</p>
-    </div>
-    <div class="login-features">
-      <div class="feat-item"><div class="feat-icon">🔐</div><div class="feat-text"><strong>Secure GitHub Integration</strong><span>Personal access tokens, gist scope only</span></div></div>
-      <div class="feat-item"><div class="feat-icon">📁</div><div class="feat-text"><strong>Excel to JSON in seconds</strong><span>Upload stock.xlsx and convert automatically</span></div></div>
-      <div class="feat-item"><div class="feat-icon">🔗</div><div class="feat-text"><strong>Permanent Raw URL</strong><span>Same URL, updated stock every time</span></div></div>
-      <div class="feat-item"><div class="feat-icon">📲</div><div class="feat-text"><strong>WhatsApp Notifications</strong><span>Share your URL directly via WhatsApp</span></div></div>
+      <p>Excel to GitHub Gist — one upload, permanent URL, instant sync.</p>
     </div>
   </div>
   <div class="login-right">
     <div class="login-panel">
-      <div class="panel-head"><h2>Welcome back</h2><p>Sign in to manage your stock data</p></div>
+      <div class="panel-head"><h2>Welcome</h2><p>Sign in to manage your stock</p></div>
       <div class="auth-tabs">
         <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
         <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
       </div>
       <div id="loginForm">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Enter your username">
+        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()">
+        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
         <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
         <div id="loginAlert" class="lf-alert"></div>
       </div>
       <div id="registerForm" style="display:none">
         <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Your full name">
+        <input class="lf-input" type="text" id="regName" placeholder="Full name">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Choose a username">
+        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Choose a password">
+        <input class="lf-input" type="password" id="regPassword" placeholder="Password">
         <label class="lbl">WhatsApp Number</label>
         <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
         <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
         <div id="registerAlert" class="lf-alert"></div>
-        <div id="pendingNote" class="pending-pill">⏳ Account pending admin approval. Please wait.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- APP -->
+<!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-l">
-      <div class="tbar-logo">📊</div>
-      <h2>FabricFlow Stock Manager</h2>
-    </div>
+    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
     <div class="topbar-r">
-      <span id="savingIndicator" style="font-size:12px;color:var(--muted);display:none"><span class="saving-dot"></span>Saving...</span>
+      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
       <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
       <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
     </div>
@@ -351,48 +232,32 @@ body.dark .wa-preview{background:#0b2e1a}
   <div class="main" id="mainContent"></div>
 </div>
 
-<!-- WHATSAPP MODAL -->
 <div class="wa-backdrop" id="waOverlay">
   <div class="wa-modal">
     <h3>📲 Send via WhatsApp</h3>
-    <p class="wa-sub">Your Permanent Raw URL is ready — share it now.</p>
     <div class="wa-preview" id="waPreview"></div>
-    <div class="fg">
-      <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px">WhatsApp Number (with country code)</label>
-      <input type="text" id="waNumber" placeholder="e.g. 919876543210" style="width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;background:var(--surface2);color:var(--text)">
-    </div>
-    <div class="wa-btns">
-      <button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">📲 Open WhatsApp</button>
-      <button class="btn btn-ghost" onclick="closeWA()">Later</button>
-    </div>
+    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Later</button></div>
   </div>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════
-//  JSONBIN — CLOUD DATABASE
-//  All app state lives in ONE bin in jsonbin.io
-//  Structure: { github:{token,username,gistId}, users:[...] }
-//  API key + Bin ID stored in localStorage ONLY as pointers
-//  The actual data always comes from the cloud
-// ═══════════════════════════════════════════════════════════
+let HARDCODED_BIN_KEY = '%%BIN_KEY%%';
+let HARDCODED_BIN_ID = '%%BIN_ID%%';
+const HAS_CREDENTIALS = (HARDCODED_BIN_KEY !== '%%BIN_KEY%%' && HARDCODED_BIN_KEY !== '');
 
-const JSONBIN_BASE = 'https://api.jsonbin.io/v3';
-let BIN_API_KEY = localStorage.getItem('ff_bin_key') || '';
-let BIN_ID      = localStorage.getItem('ff_bin_id')  || '';
-
-// In-memory cache — refreshed on every cloud read
+let BIN_API_KEY = HAS_CREDENTIALS ? HARDCODED_BIN_KEY : '';
+let BIN_ID = HAS_CREDENTIALS ? HARDCODED_BIN_ID : '';
 let DB_CACHE = null;
+let CU_username = null;
 
 async function dbRead() {
   if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  const r = await fetch(`${JSONBIN_BASE}/b/${BIN_ID}/latest`, {
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
     headers: { 'X-Master-Key': BIN_API_KEY }
   });
-  if (!r.ok) {
-    const e = await r.json().catch(()=>({}));
-    throw new Error(e.message || `Read failed (${r.status})`);
-  }
+  if (!r.ok) throw new Error(`Read failed (${r.status})`);
   const data = await r.json();
   DB_CACHE = data.record;
   return DB_CACHE;
@@ -401,290 +266,159 @@ async function dbRead() {
 async function dbWrite(newData) {
   if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
   showSaving(true);
-  const r = await fetch(`${JSONBIN_BASE}/b/${BIN_ID}`, {
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': BIN_API_KEY
-    },
+    headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_API_KEY },
     body: JSON.stringify(newData)
   });
   showSaving(false);
-  if (!r.ok) {
-    const e = await r.json().catch(()=>({}));
-    throw new Error(e.message || `Write failed (${r.status})`);
-  }
+  if (!r.ok) throw new Error(`Write failed (${r.status})`);
   const data = await r.json();
   DB_CACHE = data.record;
   return DB_CACHE;
 }
 
-async function createBin(apiKey, initialData) {
-  const r = await fetch(`${JSONBIN_BASE}/b`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': apiKey,
-      'X-Bin-Name': 'FabricFlow-DB',
-      'X-Bin-Private': 'true'
-    },
-    body: JSON.stringify(initialData)
-  });
-  if (!r.ok) {
-    const e = await r.json().catch(()=>({}));
-    throw new Error(e.message || `Create failed (${r.status})`);
-  }
-  const data = await r.json();
-  return data.metadata.id;
-}
+function showSaving(on) { const el = document.getElementById('savingIndicator'); if(el) el.style.display = on ? 'flex' : 'none'; }
+function findUser(db, username) { return (db.users || []).find(u => u.username === username); }
 
-function showSaving(on) {
-  const el = document.getElementById('savingIndicator');
-  if (el) el.style.display = on ? 'flex' : 'none';
-}
-
-// ═══════════════════════════════════════════════════════════
-//  SETUP WIZARD
-// ═══════════════════════════════════════════════════════════
-let swApiKey = '';
-
-async function swStep1Next() {
-  const key = document.getElementById('swBinKey').value.trim();
-  if (!key || key.length < 10) { showSWAlert('swAlert1','❌ Please enter a valid API key.','sw-error'); return; }
-  swApiKey = key;
-  // Move to step 2
-  document.getElementById('swStep1').style.display = 'none';
-  document.getElementById('swStep2').style.display = 'block';
-  document.getElementById('swDot1').classList.add('done');
-  document.getElementById('swDot2').classList.add('active');
-  document.getElementById('swExisting').style.display = 'none';
-}
-
-async function swStep2Create() {
-  const pw = document.getElementById('swAdminPw').value;
-  const pw2 = document.getElementById('swAdminPw2').value;
-  const wa = document.getElementById('swAdminWA').value.trim();
-  if (!pw || pw.length < 4) { showSWAlert('swAlert2','❌ Password must be at least 4 characters.','sw-error'); return; }
-  if (pw !== pw2) { showSWAlert('swAlert2','❌ Passwords do not match.','sw-error'); return; }
-
-  const btn = document.getElementById('swBtn2');
-  btn.disabled = true; btn.textContent = '⏳ Creating database...';
-
-  const initialData = {
-    github: { token:'', username:'', gistId:'' },
-    users: [{
-      username:'admin', password:pw, name:'Administrator',
-      role:'admin', status:'approved', whatsapp:wa
-    }]
-  };
-
+async function saveCredentialsPermanently() {
+  const apiKey = document.getElementById('setupApiKey').value.trim();
+  const binId = document.getElementById('setupBinId').value.trim();
+  const adminPw = document.getElementById('setupAdminPw').value;
+  const adminWa = document.getElementById('setupAdminWa').value.trim();
+  const ghToken = document.getElementById('setupGhToken').value.trim();
+  const repo = document.getElementById('setupRepo').value.trim();
+  
+  if (!apiKey || !binId) { showSetupAlert('❌ API Key and Bin ID required', 'setup-error'); return; }
+  if (!adminPw || adminPw.length < 4) { showSetupAlert('❌ Admin password must be at least 4 characters', 'setup-error'); return; }
+  if (!ghToken || !repo) { showSetupAlert('❌ GitHub token and repo required', 'setup-error'); return; }
+  if (!repo.includes('/')) { showSetupAlert('❌ Repo format: username/repo-name', 'setup-error'); return; }
+  
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳ Creating database...';
+  
   try {
-    const binId = await createBin(swApiKey, initialData);
-    BIN_API_KEY = swApiKey;
-    BIN_ID = binId;
-    localStorage.setItem('ff_bin_key', BIN_API_KEY);
-    localStorage.setItem('ff_bin_id', BIN_ID);
-    DB_CACHE = initialData;
-
-    // Show success
-    document.getElementById('swStep2').style.display = 'none';
-    document.getElementById('swStep3').style.display = 'block';
-    document.getElementById('swDot2').classList.add('done');
-    document.getElementById('swDot3').classList.add('active','done');
-
-    setTimeout(() => {
-      // Auto-login as admin
-      CU_username = 'admin';
-      localStorage.setItem('ff_sess', 'admin');
-      document.getElementById('setupWizard').classList.remove('show');
-      launchApp();
-    }, 2000);
-
-  } catch(e) {
-    btn.disabled = false; btn.textContent = '🚀 Create Database & Finish';
-    showSWAlert('swAlert2', `❌ ${e.message}`, 'sw-error');
-  }
-}
-
-async function swUseExisting() {
-  const binId = document.getElementById('swExistingBin').value.trim();
-  const key = document.getElementById('swBinKey').value.trim() || swApiKey;
-  if (!binId) { showSWAlert('swAlertEx','❌ Enter a Bin ID.','sw-error'); return; }
-  if (!key)   { showSWAlert('swAlertEx','❌ Enter your API key first (above).','sw-error'); return; }
-
-  showSWAlert('swAlertEx','⏳ Connecting...','sw-warning');
-  try {
-    BIN_API_KEY = key; BIN_ID = binId;
-    const data = await dbRead();
-    localStorage.setItem('ff_bin_key', BIN_API_KEY);
-    localStorage.setItem('ff_bin_id', BIN_ID);
-    document.getElementById('setupWizard').classList.remove('show');
-    showLogin();
-  } catch(e) {
-    BIN_API_KEY=''; BIN_ID='';
-    showSWAlert('swAlertEx', `❌ ${e.message}`, 'sw-error');
-  }
-}
-
-function showSWAlert(id, msg, cls) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.className = `sw-alert ${cls}`; el.style.display = 'block';
-}
-
-// ═══════════════════════════════════════════════════════════
-//  BOOT SEQUENCE
-// ═══════════════════════════════════════════════════════════
-async function boot() {
-  try {
-    if (BIN_ID && BIN_API_KEY) {
-      // Try to read database
-      try {
-        await dbRead();
-        // Check for saved session
-        const sess = localStorage.getItem('ff_sess');
-        if (sess) {
-          const user = findUser(DB_CACHE, sess);
-          if (user && user.status === 'approved') {
-            CU_username = sess;
-            hideLoader();
-            launchApp();
-            return;
-          } else {
-            localStorage.removeItem('ff_sess');
-          }
-        }
-        hideLoader();
-        showLogin();
-      } catch(e) {
-        // Key/bin might be invalid
-        hideLoader();
-        showSetup();
+    const createRes = await fetch('https://api.jsonbin.io/v3/b', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': apiKey,
+        'X-Bin-Name': 'FabricFlow-DB',
+        'X-Bin-Private': 'true'
+      },
+      body: JSON.stringify({
+        github: { token: '', username: '', gistId: '' },
+        users: [{
+          username: 'admin',
+          password: adminPw,
+          name: 'Administrator',
+          role: 'admin',
+          status: 'approved',
+          whatsapp: adminWa
+        }]
+      })
+    });
+    
+    if (!createRes.ok) throw new Error('Failed to create JSONBin');
+    const createData = await createRes.json();
+    const newBinId = createData.metadata.id;
+    
+    const [owner, repoName] = repo.split('/');
+    const fileUrl = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
+    
+    let currentSha = '';
+    try {
+      const getRes = await fetch(fileUrl, {
+        headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (getRes.ok) {
+        const data = await getRes.json();
+        currentSha = data.sha;
       }
-    } else {
-      // First time
-      hideLoader();
-      showSetup();
+    } catch(e) {}
+    
+    const response = await fetch(window.location.href);
+    let html = await response.text();
+    html = html
+      .replace(/let HARDCODED_BIN_KEY = '%%BIN_KEY%%';/, `let HARDCODED_BIN_KEY = '${apiKey}';`)
+      .replace(/let HARDCODED_BIN_ID = '%%BIN_ID%%';/, `let HARDCODED_BIN_ID = '${newBinId}';`);
+    
+    const putRes = await fetch(fileUrl, {
+      method: 'PUT',
+      headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Setup complete - credentials saved',
+        content: btoa(unescape(encodeURIComponent(html))),
+        sha: currentSha || undefined
+      })
+    });
+    
+    if (!putRes.ok) throw new Error('GitHub update failed');
+    
+    showSetupAlert('✅ Setup complete! Netlify will redeploy in 1-2 minutes. Page will refresh...', 'setup-success');
+    setTimeout(() => window.location.reload(), 5000);
+    
+  } catch(e) {
+    showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
+    btn.disabled = false;
+    btn.textContent = '💾 Save & Create Admin →';
+  }
+}
+
+function showSetupAlert(msg, cls) {
+  const el = document.getElementById('setupAlert');
+  el.textContent = msg;
+  el.className = `setup-alert ${cls}`;
+  el.style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════════════════
+let aTab = 'github';
+let sTab = 'upload';
+
+async function boot() {
+  const loading = document.getElementById('loadingScreen');
+  
+  if (!HAS_CREDENTIALS) {
+    loading.classList.add('hide');
+    setTimeout(() => { loading.style.display = 'none'; }, 400);
+    document.getElementById('setupContainer').classList.add('show');
+    return;
+  }
+  
+  try {
+    await dbRead();
+    const sess = localStorage.getItem('ff_sess');
+    if (sess) {
+      const user = findUser(DB_CACHE, sess);
+      if (user && user.status === 'approved') {
+        CU_username = sess;
+        loading.classList.add('hide');
+        setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
+        return;
+      }
     }
+    loading.classList.add('hide');
+    setTimeout(() => {
+      loading.style.display = 'none';
+      document.getElementById('loginPage').classList.add('show');
+      document.body.classList.add('login-active');
+    }, 400);
   } catch(e) {
-    hideLoader();
-    showSetup();
+    loading.classList.add('hide');
+    setTimeout(() => {
+      loading.style.display = 'none';
+      document.getElementById('setupContainer').classList.add('show');
+    }, 400);
   }
 }
 
-function hideLoader() {
-  const el = document.getElementById('loadingScreen');
-  el.classList.add('hide');
-  setTimeout(() => { el.style.display = 'none'; }, 400);
-}
-
-function showLogin() {
-  document.body.classList.add('login-active');
-  document.getElementById('loginPage').classList.add('show');
-}
-
-function showSetup() {
-  document.getElementById('setupWizard').classList.add('show');
-}
-
-// Start boot on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', boot);
-} else {
-  boot();
-}
-
-// ═══════════════════════════════════════════════════════════
-//  DB HELPERS — operate on DB_CACHE + sync to cloud
-// ═══════════════════════════════════════════════════════════
-function findUser(db, username) {
-  return (db.users || []).find(u => u.username === username) || null;
-}
-
-async function getDB() {
-  if (DB_CACHE) return DB_CACHE;
-  return await dbRead();
-}
-
-// ═══════════════════════════════════════════════════════════
-//  AUTH
-// ═══════════════════════════════════════════════════════════
-let CU_username = null;
-
-function currentUser() {
-  return DB_CACHE ? findUser(DB_CACHE, CU_username) : null;
-}
-
-function switchAuthTab(t) {
-  document.querySelectorAll('.auth-tab').forEach((b,i) =>
-    b.classList.toggle('active', (t==='login'&&i===0)||(t==='register'&&i===1)));
-  document.getElementById('loginForm').style.display = t==='login' ? 'block' : 'none';
-  document.getElementById('registerForm').style.display = t==='register' ? 'block' : 'none';
-}
-
-async function doLogin() {
-  const u = document.getElementById('loginUsername').value.trim();
-  const p = document.getElementById('loginPassword').value;
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = true; btn.textContent = 'Signing in...';
-
-  try {
-    // Always read fresh from cloud on login
-    const db = await dbRead();
-    const user = findUser(db, u);
-    if (!user || user.password !== p) { showLF('loginAlert','❌ Invalid username or password.','lf-error'); return; }
-    if (user.status === 'pending') { showLF('loginAlert','⏳ Your account is pending admin approval.','lf-warning'); return; }
-    if (user.status === 'rejected') { showLF('loginAlert','🚫 Account rejected. Contact admin.','lf-error'); return; }
-    CU_username = u;
-    localStorage.setItem('ff_sess', u);
-    document.getElementById('loginPage').classList.remove('show');
-    document.body.classList.remove('login-active');
-    launchApp();
-  } catch(e) {
-    showLF('loginAlert', `❌ Connection error: ${e.message}`, 'lf-error');
-  } finally {
-    btn.disabled = false; btn.textContent = 'Sign In →';
-  }
-}
-
-async function doRegister() {
-  const name = document.getElementById('regName').value.trim();
-  const username = document.getElementById('regUsername').value.trim();
-  const password = document.getElementById('regPassword').value;
-  const wa = document.getElementById('regWhatsapp').value.trim();
-  const btn = document.getElementById('registerBtn');
-
-  if (!name||!username||!password) { showLF('registerAlert','❌ Please fill all required fields.','lf-error'); return; }
-
-  btn.disabled = true; btn.textContent = 'Submitting...';
-  try {
-    const db = await dbRead();
-    if (findUser(db, username)) { showLF('registerAlert','❌ Username already taken.','lf-error'); return; }
-    db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
-    await dbWrite(db);
-    showLF('registerAlert','✅ Request submitted! Admin will approve your account.','lf-success');
-    document.getElementById('pendingNote').style.display = 'block';
-  } catch(e) {
-    showLF('registerAlert', `❌ ${e.message}`, 'lf-error');
-  } finally {
-    btn.disabled = false; btn.textContent = 'Request Account →';
-  }
-}
-
-function logout() {
-  CU_username = null;
-  localStorage.removeItem('ff_sess');
-  document.getElementById('app').classList.remove('show');
-  document.getElementById('app').style.display = 'none';
-  showLogin();
-  renderMain(); // reset
-}
-
-// ═══════════════════════════════════════════════════════════
-//  APP
-// ═══════════════════════════════════════════════════════════
 function launchApp() {
   document.getElementById('app').style.display = 'block';
   document.getElementById('app').classList.add('show');
+  document.getElementById('loginPage').classList.remove('show');
+  document.body.classList.remove('login-active');
   const cu = currentUser();
   document.getElementById('topbarUser').textContent = cu.name;
   const rb = document.getElementById('topbarRole');
@@ -693,526 +427,440 @@ function launchApp() {
   renderMain();
 }
 
+function currentUser() { return DB_CACHE ? findUser(DB_CACHE, CU_username) : null; }
+
+async function doLogin() {
+  const u = document.getElementById('loginUsername').value.trim();
+  const p = document.getElementById('loginPassword').value;
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'Signing in...';
+  try {
+    const db = await dbRead();
+    const user = findUser(db, u);
+    if (!user || user.password !== p) { showLF('loginAlert','❌ Invalid credentials','lf-error'); return; }
+    if (user.status === 'pending') { showLF('loginAlert','⏳ Pending approval','lf-error'); return; }
+    if (user.status === 'rejected') { showLF('loginAlert','🚫 Account rejected','lf-error'); return; }
+    CU_username = u;
+    localStorage.setItem('ff_sess', u);
+    launchApp();
+  } catch(e) { showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); }
+  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
+}
+
+async function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const username = document.getElementById('regUsername').value.trim();
+  const password = document.getElementById('regPassword').value;
+  const wa = document.getElementById('regWhatsapp').value.trim();
+  if (!name||!username||!password) { showLF('registerAlert','❌ All fields required','lf-error'); return; }
+  const btn = document.getElementById('registerBtn');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  try {
+    const db = await dbRead();
+    if (findUser(db, username)) { showLF('registerAlert','❌ Username taken','lf-error'); return; }
+    db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
+    await dbWrite(db);
+    showLF('registerAlert','✅ Request submitted! Wait for admin approval.','lf-success');
+    setTimeout(() => switchAuthTab('login'), 2000);
+  } catch(e) { showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); }
+  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
+}
+
+function switchAuthTab(t) {
+  document.querySelectorAll('.auth-tab').forEach((b,i) => b.classList.toggle('active', (t==='login'&&i===0)||(t==='register'&&i===1)));
+  document.getElementById('loginForm').style.display = t==='login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = t==='register' ? 'block' : 'none';
+}
+
+function logout() {
+  CU_username = null;
+  localStorage.removeItem('ff_sess');
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginPage').classList.add('show');
+  document.body.classList.add('login-active');
+}
+
+function showLF(id, msg, cls) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.className = `lf-alert ${cls}`; el.style.display = 'block';
+  setTimeout(() => { if(el) el.style.display = 'none'; }, 4000);
+}
+
 function renderMain() {
   const cu = currentUser();
   if (!cu) return;
-  document.getElementById('mainContent').innerHTML =
-    cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
+  document.getElementById('mainContent').innerHTML = cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
 }
 
-// ═══════════════════════════════════════════════════════════
-//  ADMIN PANEL
-// ═══════════════════════════════════════════════════════════
-let aTab = 'github';
 function switchATab(t) { aTab = t; renderMain(); }
+function switchSTab(t) { sTab = t; renderMain(); }
 
 function renderAdmin() {
   const db = DB_CACHE;
-  const pending = (db.users||[]).filter(u => u.status==='pending');
-  const others  = (db.users||[]).filter(u => u.username!=='admin');
+  const pending = (db.users||[]).filter(u => u.status==='pending' && u.username !== 'admin');
+  const others = (db.users||[]).filter(u => u.username !== 'admin');
   const gh = db.github || {};
   const ghReady = !!(gh.token && gh.username);
-
-  const banner = pending.length ? `
-    <div class="pending-banner" onclick="switchATab('users')">
-      🔔 <strong>${pending.length} new account request${pending.length>1?'s':''}</strong> waiting for approval — click to review
-    </div>` : '';
-
+  const hasGist = !!gh.gistId;
+  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
+  
   return `
-  ${banner}
-  <div class="ptabs">
-    <button class="ptab ${aTab==='github'?'active':''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady?'✅':'⚠️'}</button>
-    <button class="ptab ${aTab==='upload'?'active':''}" onclick="switchATab('upload')">📁 Upload Stock</button>
-    <button class="ptab ${aTab==='users'?'active':''}" onclick="switchATab('users')">
-      👥 Users ${pending.length?`<span class="badge-red">${pending.length}</span>`:''}
-    </button>
-    <button class="ptab ${aTab==='pw'?'active':''}" onclick="switchATab('pw')">🔑 Password</button>
-  </div>
-  ${aTab==='github' ? renderStep1(gh) : ''}
-  ${aTab==='upload' ? renderStep2and3(gh) : ''}
-  ${aTab==='users'  ? renderUsers(others, pending) : ''}
-  ${aTab==='pw'     ? renderPW() : ''}`;
+    <div class="ptabs">
+      <button class="ptab ${aTab==='github'?'active':''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady?'✅':'⚠️'}</button>
+      <button class="ptab ${aTab==='upload'?'active':''}" onclick="switchATab('upload')">📁 Upload Stock</button>
+      <button class="ptab ${aTab==='users'?'active':''}" onclick="switchATab('users')">👥 Users ${pending.length?`<span class="badge-red">${pending.length}</span>`:''}</button>
+      <button class="ptab ${aTab==='pw'?'active':''}" onclick="switchATab('pw')">🔑 Password</button>
+    </div>
+    ${aTab==='github' ? renderGithubTab(gh) : ''}
+    ${aTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
+    ${aTab==='users' ? renderUsersTab(others, pending) : ''}
+    ${aTab==='pw' ? renderPwTab() : ''}`;
 }
 
-function renderStep1(gh) {
-  const ready = !!(gh.token && gh.username);
-  return `
-  <div class="card">
-    <div class="card-title">
-      <span class="step-num ${ready?'done':''}">1</span> GitHub Authentication
-      <span style="font-size:12px;font-weight:600;color:${ready?'#16a34a':'#ea580c'}">${ready?'● Configured':'● Not set'}</span>
-    </div>
-    <div class="${ready?'gh-status-bar gh-ok':'gh-status-bar gh-missing'}">
-      ${ready
-        ? `✅ Saved in cloud as <strong>${escHtml(gh.username)}</strong> — persists for all users on all devices until you change it.`
-        : `⚠️ Not configured. Sub-admins cannot upload until you save GitHub credentials.`}
-    </div>
-    <div class="info-box">
-      🔑 <a href="https://github.com/settings/tokens" target="_blank">GitHub → Settings → Developer settings → Personal access tokens (classic)</a><br>
-      "Generate new token (classic)" → name it → select only the <strong>gist</strong> scope → copy (starts with ghp_)
-    </div>
-    <div class="fg">
-      <label>GitHub Personal Access Token</label>
-      <input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx...">
-    </div>
-    <div class="fg">
-      <label>GitHub Username</label>
-      <input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username">
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-ghost" id="saveGHBtn" onclick="saveGH()">💾 Save to Cloud</button>
-      <button class="btn btn-primary" onclick="testGH()">🔌 Test Connection</button>
-      ${ready?`<button class="btn btn-danger btn-sm" onclick="clearGH()" style="margin-left:auto">🗑 Clear</button>`:''}
-    </div>
-    <div id="ghAlert" class="alert"></div>
-  </div>`;
-}
-
-function renderStep2and3(gh) {
-  const ready = !!(gh.token && gh.username);
+function renderSubAdmin() {
+  const gh = (DB_CACHE && DB_CACHE.github) || {};
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
   return `
-  ${!ready?`<div class="alert a-warning" style="display:block;margin-bottom:14px">⚠️ Complete Step 1 (GitHub Setup) before uploading.</div>`:''}
-  <div class="card ${ready?'':'step-locked'}">
-    <div class="card-title"><span class="step-num">2</span> Upload Excel File <span style="font-size:12px;color:var(--muted);font-weight:400">(stock.xlsx)</span></div>
-    ${hasGist?`<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>`:''}
-    <div class="fg"><label>Select Excel / CSV File</label>
-      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)">
-      <div id="fileInfo" style="font-size:12px;color:var(--muted);margin-top:6px;display:none"></div>
+    <div class="ptabs">
+      <button class="ptab ${sTab==='upload'?'active':''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
+      <button class="ptab ${sTab==='pw'?'active':''}" onclick="switchSTab('pw')">🔑 Password</button>
     </div>
-    <div class="fg"><label>Gist Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
-    <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-primary" id="uploadBtn" onclick="uploadGist()">🚀 Upload to GitHub Gist</button>
-      <button class="btn btn-ghost" onclick="loadSample()">📋 Sample Data</button>
-    </div>
-    <div id="uploadAlert" class="alert"></div>
-    <div class="fg" style="margin-top:14px"><label>JSON Preview (Editable)</label>
-      <textarea id="jsonData" rows="9" style="width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:12px;font-family:monospace;background:var(--surface2);color:var(--text);resize:vertical" placeholder="JSON will appear here after upload..."></textarea>
-    </div>
-    <div id="preview" class="prev-wrap" style="display:none"></div>
-  </div>
-  <div class="card" id="resultCard" ${savedUrl?'':'style="display:none"'}>
-    <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
-    <div class="url-result">
-      <strong>🎉 Copy this URL to FabricFlow:</strong>
-      <div class="url-text" id="rawUrl">${escHtml(savedUrl)}</div>
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-        <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
-        <button class="btn btn-wa btn-sm" onclick="triggerWA()">📲 WhatsApp</button>
-        <a id="gistLink" href="${hasGist?`https://gist.github.com/${gh.username}/${gh.gistId}`:'#'}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
-      </div>
-      <div style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.8">
-        ✅ <strong>Permanent URL saved in cloud</strong> — same link every time, all users see it<br>
-        📌 Paste once in FabricFlow → Stock → Fetch from URL
-      </div>
-    </div>
-  </div>`;
+    ${sTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}`;
 }
 
-function renderUsers(others, pending) {
-  const pendingCount = pending.length;
-  let rows = '';
-  if (!others.length) {
-    rows = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:24px">No sub-admins registered yet.</td></tr>`;
-  } else {
-    others.forEach(u => {
-      const dc = u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red';
-      const sl = u.status.charAt(0).toUpperCase()+u.status.slice(1);
-      rows += `<tr>
-        <td><strong>${escHtml(u.name)}</strong><br><span style="color:var(--muted);font-size:11px">${escHtml(u.username)}</span></td>
-        <td>${escHtml(u.whatsapp||'—')}</td>
-        <td><span class="sdot ${dc}"></span>${sl}</td>
-        <td style="display:flex;gap:5px;flex-wrap:wrap">
-          ${u.status==='pending'
-            ?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>
-              <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">✗ Reject</button>`:''
-          }
-          ${u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Revoke</button>`:''}
-          ${u.status==='rejected'?`<button class="btn btn-ghost btn-sm" onclick="approveUser('${u.username}')">Re-approve</button>`:''}
-        </td>
-      </tr>`;
-    });
-  }
+function renderGithubTab(gh) {
   return `
-  ${pendingCount?`
-  <div class="card" style="border-left:4px solid #ea580c">
-    <div class="card-title" style="color:#ea580c;margin-bottom:8px">🔔 ${pendingCount} Pending Approval${pendingCount>1?'s':''}</div>
-    <p style="font-size:13px;color:var(--muted)">${pending.map(u=>`<strong>${escHtml(u.name)}</strong> (@${escHtml(u.username)})`).join(', ')} waiting for access.</p>
-  </div>`:''}
-  <div class="card">
-    <div class="card-title">👥 Sub-Admin Management</div>
-    <table class="utab">
-      <thead><tr><th>Name / Username</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
+    <div class="card">
+      <div class="card-title"><span class="step-num ${gh.token?'done':''}">1</span> GitHub Authentication</div>
+      <div class="info-box" style="margin-bottom:16px">
+        🔑 <strong>GitHub Personal Access Token</strong><br>
+        1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
+        2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
+        3. Copy token (starts with ghp_)
+      </div>
+      <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx..."></div>
+      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username"></div>
+      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub</button>
+      <div id="ghAlert" class="alert"></div>
+    </div>`;
 }
 
-function renderPW() {
+function renderUploadTab(gh, savedUrl, hasGist) {
+  const ghReady = !!(gh.token && gh.username);
+  return `
+    <div class="card ${ghReady?'':'step-locked'}">
+      <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
+      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : ''}
+      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
+      <div class="fg"><label>Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
+      <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
+      <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady?'disabled':''}>🚀 Upload to Gist</button>
+      <div id="uploadAlert" class="alert"></div>
+      <div class="fg"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
+      <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
+    </div>
+    ${hasGist ? `
+    <div class="card">
+      <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
+      <div class="url-result">
+        <strong>🎉 Copy this URL to FabricFlow:</strong>
+        <div class="url-text" id="rawUrl">${savedUrl}</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
+          <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
+          <a id="gistLink" href="https://gist.github.com/${gh.username}/${gh.gistId}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
+      </div>
+    </div>` : ''}`;
+}
+
+function renderUsersTab(others, pending) {
+  let rows = '';
+  others.forEach(u => {
+    rows += `<tr>
+      <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
+      <td>${escHtml(u.whatsapp||'-')}</td>
+      <td><span class="sdot ${u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red'}"></span>${u.status}</td>
+      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button>`}</td>
+    </tr>`;
+  });
+  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered</td></tr>'}</tbody></table></div>`;
+}
+
+function renderPwTab() {
   return `<div class="card">
     <div class="card-title">🔑 Change Password</div>
-    <div class="fg"><label>Current Password</label><input type="password" id="pwCur" placeholder="Current password"></div>
-    <div class="fg"><label>New Password</label><input type="password" id="pwNew" placeholder="New password (min 4 chars)"></div>
-    <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf" placeholder="Confirm new password"></div>
-    <button class="btn btn-primary" style="width:auto" id="pwBtn" onclick="changePW()">🔐 Update Password</button>
+    <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
+    <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
+    <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
+    <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
     <div id="pwAlert" class="alert"></div>
   </div>`;
 }
 
-// ═══════════════════════════════════════════════════════════
-//  SUB-ADMIN PANEL
-// ═══════════════════════════════════════════════════════════
-let sTab = 'upload';
-function switchSTab(t) { sTab = t; renderMain(); }
-
-function renderSubAdmin() {
-  return `
-  <div class="ptabs">
-    <button class="ptab ${sTab==='upload'?'active':''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
-    <button class="ptab ${sTab==='pw'?'active':''}" onclick="switchSTab('pw')">🔑 Password</button>
-  </div>
-  ${sTab==='upload' ? renderSubUpload() : renderPW()}`;
+async function saveGithub() {
+  const token = document.getElementById('ghToken').value.trim();
+  const username = document.getElementById('ghUsername').value.trim();
+  if (!token || !username) { showAlert('ghAlert', 'Both fields required', 'a-error'); return; }
+  try {
+    const db = await dbRead();
+    db.github = { ...db.github, token, username };
+    await dbWrite(db);
+    showAlert('ghAlert', '✅ GitHub credentials saved!', 'a-success');
+    renderMain();
+  } catch(e) { showAlert('ghAlert', e.message, 'a-error'); }
 }
 
-function renderSubUpload() {
-  const gh = (DB_CACHE && DB_CACHE.github) || {};
-  const ready = !!(gh.token && gh.username);
-  const hasGist = !!gh.gistId;
-  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  return `
-  <div class="card" style="opacity:.65;pointer-events:none">
-    <div class="card-title"><span class="step-num locked">1</span> GitHub Authentication <span style="font-size:12px;color:var(--muted);font-weight:400">(Admin only)</span></div>
-    <p style="font-size:13px;color:var(--muted)">
-      ${ready
-        ?`✅ Admin has configured GitHub (<strong>${escHtml(gh.username)}</strong>). You are ready to upload.`
-        :`⏳ Waiting for admin to configure GitHub credentials.`}
-    </p>
-  </div>
-  ${!ready?`<div class="alert a-warning" style="display:block;margin-bottom:14px">⚠️ Admin hasn't set up GitHub yet. You cannot upload. Please contact your admin.</div>`:''}
-  <div class="card ${ready?'':'step-locked'}">
-    <div class="card-title"><span class="step-num">2</span> Upload Excel File <span style="font-size:12px;color:var(--muted);font-weight:400">(stock.xlsx)</span></div>
-    ${hasGist?`<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>`:''}
-    <div class="fg"><label>Select Excel / CSV File</label>
-      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)">
-      <div id="fileInfo" style="font-size:12px;color:var(--muted);margin-top:6px;display:none"></div>
-    </div>
-    <div class="fg"><label>Gist Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
-    <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-primary" id="uploadBtn" onclick="uploadGist()">🚀 Upload to GitHub Gist</button>
-      <button class="btn btn-ghost" onclick="loadSample()">📋 Sample Data</button>
-    </div>
-    <div id="uploadAlert" class="alert"></div>
-    <div class="fg" style="margin-top:14px"><label>JSON Preview (Editable)</label>
-      <textarea id="jsonData" rows="9" style="width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:12px;font-family:monospace;background:var(--surface2);color:var(--text);resize:vertical" placeholder="JSON will appear here after upload..."></textarea>
-    </div>
-    <div id="preview" class="prev-wrap" style="display:none"></div>
-  </div>
-  <div class="card" id="resultCard" ${savedUrl?'':'style="display:none"'}>
-    <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
-    <div class="url-result">
-      <strong>🎉 Copy this URL to FabricFlow:</strong>
-      <div class="url-text" id="rawUrl">${escHtml(savedUrl)}</div>
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-        <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
-        <button class="btn btn-wa btn-sm" onclick="triggerWA()">📲 WhatsApp</button>
-        <a id="gistLink" href="${hasGist?`https://gist.github.com/${gh.username}/${gh.gistId}`:'#'}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
-      </div>
-      <div style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.8">
-        ✅ <strong>Permanent URL</strong> — same link every time<br>
-        📌 Paste once in FabricFlow → Stock → Fetch from URL
-      </div>
-    </div>
-  </div>`;
-}
-
-// ═══════════════════════════════════════════════════════════
-//  ADMIN ACTIONS — all write to cloud
-// ═══════════════════════════════════════════════════════════
 async function approveUser(username) {
   try {
     const db = await dbRead();
-    const u = db.users.find(x => x.username===username);
-    if (u) { u.status='approved'; await dbWrite(db); renderMain(); }
-  } catch(e) { alert('Error: '+e.message); }
+    const u = db.users.find(x => x.username === username);
+    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); }
+  } catch(e) { alert(e.message); }
 }
 
 async function rejectUser(username) {
   try {
     const db = await dbRead();
-    const u = db.users.find(x => x.username===username);
-    if (u) { u.status='rejected'; await dbWrite(db); renderMain(); }
-  } catch(e) { alert('Error: '+e.message); }
+    const u = db.users.find(x => x.username === username);
+    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); }
+  } catch(e) { alert(e.message); }
 }
 
-async function saveGH() {
-  const token = document.getElementById('ghToken').value.trim();
-  const username = document.getElementById('ghUsername').value.trim();
-  if (!token||!username) { showAlert('ghAlert','❌ Both fields required.','a-error'); return; }
-  const btn = document.getElementById('saveGHBtn');
-  btn.disabled=true; btn.textContent='⏳ Saving...';
-  try {
-    const db = await dbRead();
-    if (!db.github) db.github = {};
-    db.github.token = token;
-    db.github.username = username;
-    // Keep existing gistId
-    await dbWrite(db);
-    showAlert('ghAlert','✅ GitHub credentials saved to cloud! All users will now see this.','a-success');
-    setTimeout(()=>renderMain(), 1200);
-  } catch(e) {
-    showAlert('ghAlert',`❌ ${e.message}`,'a-error');
-  } finally {
-    btn.disabled=false; btn.textContent='💾 Save to Cloud';
-  }
-}
-
-async function clearGH() {
-  if (!confirm('Clear GitHub credentials? Sub-admins will lose upload access.')) return;
-  try {
-    const db = await dbRead();
-    db.github = { token:'', username:'', gistId:'' };
-    await dbWrite(db);
-    renderMain();
-  } catch(e) { alert('Error: '+e.message); }
-}
-
-async function testGH() {
-  const token = document.getElementById('ghToken').value.trim();
-  const username = document.getElementById('ghUsername').value.trim();
-  if (!token||!username) { showAlert('ghAlert','❌ Fill both fields first.','a-error'); return; }
-  showAlert('ghAlert','⏳ Testing connection...','a-warning');
-  try {
-    const r = await fetch('https://api.github.com/user', {
-      headers: { 'Authorization':`token ${token}`, 'User-Agent':'FabricFlow' }
-    });
-    const d = await r.json();
-    if (r.ok) showAlert('ghAlert',`✅ Connected as ${d.login}! Now click "Save to Cloud".`,'a-success');
-    else showAlert('ghAlert',`❌ ${d.message||'Auth failed'}`,'a-error');
-  } catch(e) { showAlert('ghAlert',`❌ ${e.message}`,'a-error'); }
-}
-
-async function changePW() {
+async function changePassword() {
   const cur = document.getElementById('pwCur').value;
   const nw = document.getElementById('pwNew').value;
   const cf = document.getElementById('pwConf').value;
   const cu = currentUser();
-  if (cur!==cu.password) { showAlert('pwAlert','❌ Current password incorrect.','a-error'); return; }
-  if (!nw||nw.length<4) { showAlert('pwAlert','❌ New password must be at least 4 characters.','a-error'); return; }
-  if (nw!==cf) { showAlert('pwAlert','❌ Passwords do not match.','a-error'); return; }
-  const btn = document.getElementById('pwBtn');
-  btn.disabled=true; btn.textContent='⏳ Saving...';
+  if (cur !== cu.password) { showAlert('pwAlert', 'Current password incorrect', 'a-error'); return; }
+  if (nw.length < 4) { showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error'); return; }
+  if (nw !== cf) { showAlert('pwAlert', 'Passwords do not match', 'a-error'); return; }
   try {
     const db = await dbRead();
-    const u = db.users.find(x=>x.username===CU_username);
-    if (u) { u.password=nw; await dbWrite(db); }
-    showAlert('pwAlert','✅ Password updated successfully!','a-success');
-    ['pwCur','pwNew','pwConf'].forEach(id=>document.getElementById(id).value='');
-  } catch(e) {
-    showAlert('pwAlert',`❌ ${e.message}`,'a-error');
-  } finally {
-    btn.disabled=false; btn.textContent='🔐 Update Password';
-  }
+    const u = db.users.find(x => x.username === CU_username);
+    if (u) u.password = nw;
+    await dbWrite(db);
+    showAlert('pwAlert', '✅ Password updated!', 'a-success');
+    document.getElementById('pwCur').value = '';
+    document.getElementById('pwNew').value = '';
+    document.getElementById('pwConf').value = '';
+  } catch(e) { showAlert('pwAlert', e.message, 'a-error'); }
 }
 
-// ═══════════════════════════════════════════════════════════
-//  FILE UPLOAD
-// ═══════════════════════════════════════════════════════════
-async function handleFile(inp) {
-  const file=inp.files[0]; if(!file) return;
-  const fi=document.getElementById('fileInfo');
-  fi.style.display='block'; fi.textContent=`📄 ${file.name} (${(file.size/1024).toFixed(1)} KB) — Processing...`;
-  try {
-    const json=await parseExcel(file);
-    document.getElementById('jsonData').value=JSON.stringify(json,null,2);
-    fi.textContent=`✅ ${file.name} — ${json.length} entries loaded`;
-    showPreview(json);
-    showAlert('uploadAlert',`✅ ${json.length} items ready.`,'a-success');
-  } catch(e) {
-    fi.textContent=`❌ ${e.message}`;
-    showAlert('uploadAlert',e.message,'a-error');
-  }
-}
-
-function loadSample() {
-  const s=[
-    {fabric:"BARBIE",design:"1",qty:230,unit:"Rolls",comment:"K"},
-    {fabric:"BARBIE",design:"3",qty:29,unit:"Rolls",comment:"K"},
-    {fabric:"AIR DROP",design:"12",qty:29,unit:"Rolls",comment:""},
-    {fabric:"KOREAN",design:"1",qty:284,unit:"Rolls",comment:""},
-    {fabric:"FOURWAY",design:"1",qty:103,unit:"Rolls",comment:""}
-  ];
-  document.getElementById('jsonData').value=JSON.stringify(s,null,2);
-  showPreview(s);
-  showAlert('uploadAlert','📋 Sample data loaded.','a-info');
-}
-
+// FIXED UPLOAD GIST FUNCTION - Creates new gist if none exists, updates if exists
 async function uploadGist() {
   const gh = DB_CACHE.github || {};
-  if (!gh.token||!gh.username) {
-    showAlert('uploadAlert','❌ GitHub credentials not set. Admin must complete Step 1.','a-error'); return;
+  if (!gh.token || !gh.username) { 
+    showAlert('uploadAlert', '❌ GitHub not configured by Admin', 'a-error'); 
+    return; 
   }
-  const jsonStr=document.getElementById('jsonData').value.trim();
-  const desc=document.getElementById('gistDesc').value.trim()||'FabricFlow Stock Data';
-  const filename=document.getElementById('gistFilename').value.trim()||'stock.json';
-  if (!jsonStr) { showAlert('uploadAlert','❌ No data. Load a file first.','a-error'); return; }
-  let parsed;
-  try { parsed=JSON.parse(jsonStr); if(!Array.isArray(parsed)) throw new Error('Must be JSON array'); }
-  catch(e) { showAlert('uploadAlert',`❌ Invalid JSON: ${e.message}`,'a-error'); return; }
-
-  const btn=document.getElementById('uploadBtn');
-  btn.disabled=true; btn.textContent='⏳ Uploading...';
-  showAlert('uploadAlert',`⏳ Uploading ${parsed.length} entries to GitHub...`,'a-warning');
-
+  
+  const jsonStr = document.getElementById('jsonData').value.trim();
+  if (!jsonStr) { 
+    showAlert('uploadAlert', '❌ No data. Load an Excel file first', 'a-error'); 
+    return; 
+  }
+  
+  let data;
+  try { 
+    data = JSON.parse(jsonStr); 
+    if (!Array.isArray(data)) throw new Error('Data must be an array');
+  } catch(e) { 
+    showAlert('uploadAlert', '❌ Invalid JSON: ' + e.message, 'a-error'); 
+    return; 
+  }
+  
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳ Uploading...';
+  showAlert('uploadAlert', `⏳ Uploading ${data.length} items to GitHub...`, 'a-warning');
+  
   try {
-    const method=gh.gistId?'PATCH':'POST';
-    const url=gh.gistId?`https://api.github.com/gists/${gh.gistId}`:'https://api.github.com/gists';
-    const body={description:desc,files:{[filename]:{content:JSON.stringify(parsed,null,2)}}};
-    if(!gh.gistId) body.public=true;
-
-    const r=await fetch(url,{
-      method,
-      headers:{'Authorization':`token ${gh.token}`,'Content-Type':'application/json','User-Agent':'FabricFlow'},
-      body:JSON.stringify(body)
-    });
-
-    if (r.ok) {
-      const gist=await r.json();
-      // Save gist ID to cloud DB
-      const db=await dbRead();
-      if (!db.github) db.github={};
-      db.github.gistId=gist.id;
-      await dbWrite(db);
-
-      const rawUrl=`https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
-      document.getElementById('rawUrl').textContent=rawUrl;
-      document.getElementById('gistLink').href=gist.html_url;
-      document.getElementById('resultCard').style.display='block';
-      try{await navigator.clipboard.writeText(rawUrl)}catch(e){}
-      showAlert('uploadAlert',`✅ ${parsed.length} items uploaded & URL saved to cloud!`,'a-success');
-
-      const cu=currentUser();
-      document.getElementById('waPreview').textContent=`🧵 FabricFlow Stock Update\n\nStock data updated.\n\n📦 Items: ${parsed.length}\n🔗 Raw URL:\n${rawUrl}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
-      document.getElementById('waNumber').value=cu.whatsapp||'';
-      document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
+    const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
+    const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
+    
+    // Determine if we need to create or update
+    const hasExistingGist = gh.gistId && gh.gistId.length > 0;
+    
+    let method, url, body;
+    
+    if (hasExistingGist) {
+      // UPDATE existing gist
+      method = 'PATCH';
+      url = `https://api.github.com/gists/${gh.gistId}`;
+      body = {
+        description: description,
+        files: {
+          [filename]: {
+            content: JSON.stringify(data, null, 2)
+          }
+        }
+      };
+      console.log('Updating existing gist:', gh.gistId);
     } else {
-      const err=await r.json();
-      showAlert('uploadAlert',`❌ GitHub error: ${err.message}`,'a-error');
+      // CREATE new gist
+      method = 'POST';
+      url = 'https://api.github.com/gists';
+      body = {
+        description: description,
+        public: true,
+        files: {
+          [filename]: {
+            content: JSON.stringify(data, null, 2)
+          }
+        }
+      };
+      console.log('Creating new gist...');
     }
-  } catch(e) {
-    showAlert('uploadAlert',`❌ ${e.message}`,'a-error');
-  } finally {
-    btn.disabled=false; btn.textContent='🚀 Upload to GitHub Gist';
+    
+    const res = await fetch(url, { 
+      method: method, 
+      headers: { 
+        'Authorization': `token ${gh.token}`, 
+        'Content-Type': 'application/json',
+        'User-Agent': 'FabricFlow'
+      }, 
+      body: JSON.stringify(body) 
+    });
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error('GitHub error:', errorData);
+      throw new Error(errorData.message || `HTTP ${res.status}`);
+    }
+    
+    const gist = await res.json();
+    console.log('Gist success:', gist.id);
+    
+    // Save the gist ID to database
+    const db = await dbRead();
+    if (!db.github) db.github = {};
+    db.github.gistId = gist.id;
+    db.github.username = gh.username;
+    db.github.token = gh.token;
+    await dbWrite(db);
+    
+    // Update the UI with the new URL
+    const rawUrl = `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
+    const resultCard = document.getElementById('resultCard');
+    const rawUrlSpan = document.getElementById('rawUrl');
+    const gistLink = document.getElementById('gistLink');
+    
+    // If resultCard doesn't exist, re-render to show it
+    if (!document.getElementById('resultCard')) {
+      renderMain();
+    } else {
+      if (rawUrlSpan) rawUrlSpan.textContent = rawUrl;
+      if (gistLink) gistLink.href = gist.html_url;
+      if (resultCard) resultCard.style.display = 'block';
+    }
+    
+    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items. URL saved to cloud!`, 'a-success');
+    
+    // Show preview
+    showPreview(data);
+    
+  } catch(e) { 
+    console.error('Upload error:', e);
+    showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error'); 
+  } finally { 
+    btn.disabled = false; 
+    btn.textContent = '🚀 Upload to Gist'; 
   }
 }
 
-function copyUrl(){
-  const url=document.getElementById('rawUrl').textContent;
-  if(url){navigator.clipboard.writeText(url).catch(()=>{});showAlert('uploadAlert','📋 URL copied!','a-success')}
-}
-
-// ═══ WHATSAPP ═══
-function triggerWA(){
-  const gh=(DB_CACHE&&DB_CACHE.github)||{};
-  const cu=currentUser();
-  if(!document.getElementById('waPreview').textContent&&gh.gistId){
-    const rawUrl=`https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json`;
-    document.getElementById('waPreview').textContent=`🧵 FabricFlow Stock Update\n\n🔗 Raw URL:\n${rawUrl}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
-    document.getElementById('waNumber').value=cu.whatsapp||'';
+async function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const fi = document.getElementById('fileInfo');
+  if(fi) { fi.style.display='block'; fi.textContent=`📄 ${file.name} — Processing...`; }
+  try {
+    const json = await parseExcel(file);
+    document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
+    showAlert('uploadAlert', `✅ Loaded ${json.length} items`, 'a-success');
+    showPreview(json);
+    if(fi) fi.textContent = `✅ ${file.name} — ${json.length} entries loaded`;
+  } catch(e) { 
+    showAlert('uploadAlert', e.message, 'a-error');
+    if(fi) fi.textContent = `❌ ${e.message}`;
   }
-  document.getElementById('waOverlay').classList.add('show');
-}
-function closeWA(){document.getElementById('waOverlay').classList.remove('show')}
-function openWhatsApp(){
-  const n=document.getElementById('waNumber').value.trim().replace(/\D/g,'');
-  const m=document.getElementById('waPreview').textContent;
-  if(!n){alert('Enter a WhatsApp number.');return}
-  window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`,'_blank');
-  closeWA();
 }
 
-// ═══ EXCEL PARSER ═══
-async function parseExcel(file){
-  return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=e=>{
-      try{
-        const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});
-        const sheet=wb.Sheets[wb.SheetNames[0]];
-        const rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:''});
-        const out=[];let fabric='';
-        for(const row of rows){
-          if(!row||row.length<4)continue;
-          const sno=String(row[0]).trim(),item=String(row[1]).trim(),design=String(row[2]).trim(),
-                qtyRaw=String(row[3]).trim(),unit=String(row[4]||'Rolls').trim(),comment=String(row[5]||'').trim();
-          if(!sno&&!item&&!design&&!qtyRaw)continue;
-          if(sno&&!isNaN(parseFloat(sno))&&isFinite(sno)&&item){fabric=item.toUpperCase().trim();continue}
-          if(design&&qtyRaw&&fabric&&!design.toLowerCase().includes('total')){
-            const qty=parseFloat(qtyRaw);
-            if(!isNaN(qty)&&qty>0)out.push({fabric,design,qty,unit:unit||'Rolls',comment});
-          }
-        }
-        if(out.length===0){
-          const json=XLSX.utils.sheet_to_json(sheet);let af='';
-          for(const row of json){
-            const sno=row.SNo||row['SNo'],item=row['Item Name']||row.ItemName,
-                  design=row['Design / Color No']||row.Design,qty=row.Quantity||row.Qty,
-                  unit=row.Unit||'Rolls',comment=row.Comment||'';
-            if(sno&&item&&!isNaN(parseFloat(sno)))af=String(item).toUpperCase().trim();
-            if(design&&qty&&af&&!String(design).toLowerCase().includes('total')){
-              const q=parseFloat(qty);
-              if(!isNaN(q)&&q>0)out.push({fabric:af,design:String(design).trim(),qty:q,unit:String(unit).trim(),comment:String(comment).trim()});
-            }
-          }
-        }
-        if(out.length===0)rej(new Error('No valid data found. Expected columns: SNo, Item Name, Design, Quantity'));
-        else res(out);
-      }catch(e){rej(e)}
+async function parseExcel(file) {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
+        const sheet = wb.Sheets[wb.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        if (!json.length) rej(new Error('No data found in file'));
+        else res(json);
+      } catch(e) { rej(e); }
     };
-    reader.onerror=e=>rej(e);
+    reader.onerror = rej;
     reader.readAsArrayBuffer(file);
   });
 }
 
-function showPreview(data){
-  const el=document.getElementById('preview');
-  if(!data||!data.length){el.style.display='none';return}
-  const s=data.slice(0,15),h=Object.keys(s[0]);
-  let html=`<div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600">📊 Total: ${data.length} items — showing first ${s.length}</div>`;
-  html+=`<table><thead><tr>${h.map(x=>`<th>${escHtml(String(x))}</th>`).join('')}</tr></thead><tbody>`;
-  s.forEach(r=>{html+=`<tr>${h.map(x=>`<td>${escHtml(String(r[x]??''))}</td>`).join('')}</tr>`});
-  html+=`</tbody></table>`;
-  if(data.length>15)html+=`<p style="font-size:11px;color:var(--muted);margin-top:5px">… and ${data.length-15} more items</p>`;
-  el.innerHTML=html;el.style.display='block';
+function showPreview(data) {
+  const el = document.getElementById('preview');
+  if (!data || !data.length) { if(el) el.style.display = 'none'; return; }
+  const headers = Object.keys(data[0]);
+  let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
+  html += `<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  data.slice(0, 10).forEach(row => {
+    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
+  });
+  html += `</tbody></table>`;
+  if (el) { el.innerHTML = html; el.style.display = 'block'; }
 }
 
-// ═══ UTILS ═══
-function showAlert(id,msg,cls){
-  const el=document.getElementById(id);if(!el)return;
-  el.textContent=msg;el.className=`alert ${cls}`;el.style.display='block';
-  if(cls!=='a-warning')setTimeout(()=>{el.style.display='none'},6000);
+function copyUrl() {
+  const url = document.getElementById('rawUrl')?.textContent;
+  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied!', 'a-success'); }
 }
-function showLF(id,msg,cls){
-  const el=document.getElementById(id);if(!el)return;
-  el.textContent=msg;el.className=`lf-alert ${cls}`;el.style.display='block';
+
+function triggerWA(url) {
+  const cu = currentUser();
+  document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\nStock data updated.\n\n🔗 Raw URL:\n${url}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
+  document.getElementById('waNumber').value = cu.whatsapp || '';
+  document.getElementById('waOverlay').classList.add('show');
 }
-function escHtml(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
+
+function openWhatsApp() {
+  const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
+  const m = document.getElementById('waPreview').textContent;
+  if (!n) { alert('Enter WhatsApp number with country code'); return; }
+  window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
+  closeWA();
 }
-function toggleTheme(){
+
+function showAlert(id, msg, cls) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.className = `alert ${cls}`; el.style.display = 'block'; setTimeout(() => { if(el) el.style.display = 'none'; }, 5000); }
+}
+
+function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function toggleTheme() {
   document.body.classList.toggle('dark');
-  const d=document.body.classList.contains('dark');
-  document.getElementById('themeLabel').textContent=d?'Light':'Dark';
-  localStorage.setItem('ff_theme',d?'dark':'light');
+  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
 }
-if(localStorage.getItem('ff_theme')==='dark'){
-  document.body.classList.add('dark');
-  document.addEventListener('DOMContentLoaded',()=>{
-    const el=document.getElementById('themeLabel');if(el)el.textContent='Light';
-  });
+
+if (localStorage.getItem('ff_theme') === 'dark') { 
+  document.body.classList.add('dark'); 
+  if(document.getElementById('themeLabel')) document.getElementById('themeLabel').textContent = 'Light';
 }
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
 </script>
 </body>
 </html>
