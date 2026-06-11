@@ -19,9 +19,8 @@
 body.dark{
   --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
   --text:#e6edf3;--muted:#8b949e;
-  --shadow:0 1px 4px rgba(0,0,0,.4);--shadow-lg:0 8px 32px rgba(0,0,0,.5);
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s,color .3s}
+body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s}
 .theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff}
 body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
 #loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2e40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .4s}
@@ -32,28 +31,13 @@ body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--
 .loader-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
 @keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
-.setup-container{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
-.setup-container.show{display:flex}
-.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
-.setup-card h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
-.setup-card .setup-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
-.setup-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.setup-input::placeholder{color:rgba(255,255,255,.25)}
-.setup-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.setup-btn{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
-.setup-btn:hover{opacity:.9}
-.setup-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.setup-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.setup-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px}
-.info-box a{color:#58a6ff}
 #loginPage{min-height:100vh;display:none;position:relative}
 #loginPage.show{display:flex}
 .login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
 .login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px;position:relative;z-index:2}
 .login-brand{margin-bottom:48px}
 .logo-mark{width:52px;height:52px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-.login-brand h1{font-size:32px;font-weight:700;color:#fff}
+.login-brand h1{font-size:32px;font-weight:700;color:#fff;letter-spacing:-.5px}
 .login-brand p{font-size:15px;color:rgba(255,255,255,.55);margin-top:8px}
 .login-right{width:460px;display:flex;align-items:center;justify-content:center;padding:40px 48px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.07)}
 .login-panel{width:100%}
@@ -63,23 +47,23 @@ body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--
 .auth-tabs{display:flex;background:rgba(255,255,255,.07);border-radius:10px;padding:4px;margin-bottom:24px;gap:4px}
 .auth-tab{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.5)}
 .auth-tab.active{background:rgba(255,255,255,.12);color:#fff}
-.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
-.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.lf-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.btn-login{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
+.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
+.lf-input:focus{outline:none;border-color:#3a7bd5}
+.btn-login{width:100%;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff;transition:opacity .2s}
 .btn-login:hover{opacity:.9}
-.lf-alert{padding:10px 14px;border-radius:var(--r-sm);font-size:12.5px;margin-top:12px;display:none}
+.lf-alert{padding:10px 14px;border-radius:8px;font-size:12px;margin-top:12px;display:none}
 .lf-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .lf-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
 #app{display:none}
 #app.show{display:block}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
 .topbar-l{display:flex;align-items:center;gap:10px}
 .tbar-logo{background:linear-gradient(135deg,#24292e,#2c5364);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
 .topbar-l h2{font-size:16px;font-weight:700}
 .topbar-r{display:flex;align-items:center;gap:8px}
 .user-chip{background:var(--surface2);border:1px solid var(--border);border-radius:50px;padding:5px 13px;font-size:13px;display:flex;align-items:center;gap:7px}
-.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px}
+.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;text-transform:uppercase}
 .rt-admin{background:#dcfce7;color:#166534}
 .rt-sub{background:#dbeafe;color:#1e40af}
 body.dark .rt-admin{background:#0b2e1a;color:#4ade80}
@@ -87,26 +71,31 @@ body.dark .rt-sub{background:#1e3a5f;color:#93c5fd}
 .main{max-width:820px;margin:0 auto;padding:28px 20px}
 .ptabs{display:flex;gap:2px;margin-bottom:22px;border-bottom:2px solid var(--border)}
 .ptab{padding:9px 18px;border:none;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px}
-.ptab.active{color:var(--accent2);border-bottom-color:var(--accent2)}
+.ptab.active{color:#2c5364;border-bottom-color:#2c5364}
 body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 .badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
 .card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .step-num.done{background:#16a34a}
-.step-locked{opacity:0.5;pointer-events:none}
+.step-locked{opacity:.5;pointer-events:none}
 .fg{margin-bottom:14px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
-.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;background:var(--surface2);color:var(--text)}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-family:'Inter',sans-serif;background:var(--surface2);color:var(--text);transition:border-color .2s}
 .fg input:focus,.fg textarea:focus{outline:none;border-color:#2c5364}
-.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
 .btn-primary{background:linear-gradient(135deg,#24292e,#2c5364);color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .btn-success{background:#16a34a;color:#fff}
+.btn-success:hover{background:#15803d}
 .btn-danger{background:#dc2626;color:#fff}
+.btn-danger:hover{background:#b91c1c}
 .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:#2c5364}
 .btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1ebe57}
 .btn-sm{padding:7px 13px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .alert{padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-top:12px;display:none}
 .a-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
 .a-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
@@ -124,7 +113,9 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 .url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;border:1px solid var(--border)}
 .wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;padding:20px}
 .wa-backdrop.show{display:flex}
-.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%}
+.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%;box-shadow:var(--shadow-lg)}
+.wa-modal h3{font-size:18px;font-weight:700;margin-bottom:5px}
+.wa-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
 .wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap}
 .saving-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c;margin-right:6px;animation:pulse .8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -143,42 +134,8 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 <div id="loadingScreen">
   <div class="loader-logo">📊</div>
   <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Loading...</div>
+  <div class="loader-sub">Connecting to database...</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- ONE-TIME SETUP WIZARD -->
-<div id="setupContainer" class="setup-container">
-  <div class="setup-card">
-    <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>One-Time Setup</h2>
-    <p class="setup-sub">This runs ONLY ONCE. After setup, every device goes straight to login.</p>
-    <div class="info-box">
-      🔐 <strong>Get JSONBin credentials:</strong><br>
-      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
-      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
-      3. Create a new bin and copy its ID<br>
-      <br>
-      🔑 <strong>Get GitHub Token:</strong><br>
-      1. GitHub → Settings → Developer settings → Personal access tokens<br>
-      2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-      3. Copy token (starts with ghp_)
-    </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
-    <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 64abc123...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Min 4 characters">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
-    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Token (for auto-update)</label>
-    <input class="setup-input" type="password" id="setupGhToken" placeholder="ghp_xxxx... (repo scope)">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Repo (username/repo)</label>
-    <input class="setup-input" type="text" id="setupRepo" placeholder="yourusername/frtstockmanager">
-    <button class="setup-btn" onclick="saveCredentialsPermanently()">💾 Save & Create Admin →</button>
-    <div id="setupAlert" class="setup-alert"></div>
-  </div>
 </div>
 
 <!-- LOGIN PAGE -->
@@ -188,31 +145,31 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
     <div class="login-brand">
       <div class="logo-mark">📊</div>
       <h1>FabricFlow<br>Stock Manager</h1>
-      <p>Excel to GitHub Gist — one upload, permanent URL, instant sync.</p>
+      <p>Excel to GitHub Gist — one upload,<br>permanent URL, instant sync.</p>
     </div>
   </div>
   <div class="login-right">
     <div class="login-panel">
-      <div class="panel-head"><h2>Welcome</h2><p>Sign in to manage your stock</p></div>
+      <div class="panel-head"><h2>Welcome back</h2><p>Sign in to manage your stock data</p></div>
       <div class="auth-tabs">
         <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
         <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
       </div>
       <div id="loginForm">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
+        <input class="lf-input" type="text" id="loginUsername" placeholder="Enter your username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+        <input class="lf-input" type="password" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()">
         <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
         <div id="loginAlert" class="lf-alert"></div>
       </div>
       <div id="registerForm" style="display:none">
         <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Full name">
+        <input class="lf-input" type="text" id="regName" placeholder="Your full name">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
+        <input class="lf-input" type="text" id="regUsername" placeholder="Choose a username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
+        <input class="lf-input" type="password" id="regPassword" placeholder="Choose a password (min 4 chars)">
         <label class="lbl">WhatsApp Number</label>
         <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
         <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
@@ -225,9 +182,12 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 <!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
+    <div class="topbar-l">
+      <div class="tbar-logo">📊</div>
+      <h2>FabricFlow Stock Manager</h2>
+    </div>
     <div class="topbar-r">
-      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
+      <span id="savingIndicator" style="font-size:12px;color:var(--muted);display:none"><span class="saving-dot"></span>Saving...</span>
       <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
       <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
     </div>
@@ -235,310 +195,169 @@ body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
   <div class="main" id="mainContent"></div>
 </div>
 
+<!-- WHATSAPP MODAL -->
 <div class="wa-backdrop" id="waOverlay">
   <div class="wa-modal">
     <h3>📲 Send via WhatsApp</h3>
+    <p class="wa-sub">Your Permanent Raw URL is ready — share it now.</p>
     <div class="wa-preview" id="waPreview"></div>
-    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Later</button></div>
+    <div class="fg">
+      <label>WhatsApp Number (with country code)</label>
+      <input type="text" id="waNumber" placeholder="e.g. 919876543210">
+    </div>
+    <div class="wa-btns" style="display:flex;gap:8px">
+      <button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">📲 Open WhatsApp</button>
+      <button class="btn btn-ghost" onclick="closeWA()">Later</button>
+    </div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-// HARDCODED CREDENTIALS - These get replaced during setup
-// ═══════════════════════════════════════════════════════════
-let HARDCODED_BIN_KEY = '%%BIN_KEY%%';
-let HARDCODED_BIN_ID = '%%BIN_ID%%';
-const HAS_CREDENTIALS = (HARDCODED_BIN_KEY !== '%%BIN_KEY%%' && HARDCODED_BIN_KEY !== '');
+// ============================================================
+// FABRICFLOW STOCK MANAGER - COMPLETE WORKING VERSION
+// ============================================================
 
-let BIN_API_KEY = HAS_CREDENTIALS ? HARDCODED_BIN_KEY : '';
-let BIN_ID = HAS_CREDENTIALS ? HARDCODED_BIN_ID : '';
+// YOUR JSONBIN CREDENTIALS - ALREADY CONFIGURED
+const BIN_API_KEY = '$2a$10$9inW1ICY647Xn21UtAMgNei3ZhvVoXi.uG2hfLfFnmr4Lxr.bCpIy';
+const BIN_ID = '6a2a05f0da38895dfeaa5882';
+
 let DB_CACHE = null;
 let CU_username = null;
 
-// ═══════════════════════════════════════════════════════════
-// DEBUG LOGGING SYSTEM
-// ═══════════════════════════════════════════════════════════
-function createLogPanel() {
-  let logPanel = document.getElementById('debugLogPanel');
-  if (!logPanel) {
-    const panel = document.createElement('div');
-    panel.id = 'debugLogPanel';
-    panel.style.cssText = `
-      position: fixed;
-      bottom: 50px;
-      right: 10px;
-      width: 450px;
-      max-height: 350px;
-      background: #1e1e1e;
-      color: #0f0;
-      font-family: monospace;
-      font-size: 11px;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-y: auto;
-      z-index: 10000;
-      border: 1px solid #333;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    `;
-    panel.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:8px;position:sticky;top:0;background:#1e1e1e;padding-bottom:5px"><strong>🔍 Debug Log</strong><div><button onclick="clearLogs()" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;margin-right:5px;cursor:pointer">Clear</button><button onclick="document.getElementById(\'debugLogPanel\').style.display=\'none\'" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;cursor:pointer">✖</button></div></div><div id="debugLogContent"></div>';
-    document.body.appendChild(panel);
-  }
-  return document.getElementById('debugLogPanel');
-}
-
-function clearLogs() {
-  const content = document.getElementById('debugLogContent');
-  if (content) content.innerHTML = '';
-  addLog('Logs cleared', 'info');
-}
-
-function addLog(message, type = 'info') {
-  const panel = createLogPanel();
-  const content = document.getElementById('debugLogContent');
-  const colors = { info: '#0f0', error: '#f00', warning: '#ff0', step: '#0ff', success: '#0f0' };
-  const timestamp = new Date().toLocaleTimeString();
-  const logEntry = document.createElement('div');
-  logEntry.style.cssText = `color: ${colors[type] || '#0f0'}; margin-bottom: 4px; border-bottom: 1px solid #333; padding: 2px 0; font-size: 10px;`;
-  logEntry.innerHTML = `[${timestamp}] ${message}`;
-  content.appendChild(logEntry);
-  content.scrollTop = content.scrollHeight;
-  console.log(`[${type.toUpperCase()}] ${message}`);
-  
-  if (type === 'error') {
-    panel.style.display = 'block';
-  }
-}
-
-function toggleLogPanel() {
-  const panel = document.getElementById('debugLogPanel');
-  if (panel) {
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  } else {
-    createLogPanel().style.display = 'block';
-  }
-}
-
-function addLogButton() {
-  if (!document.getElementById('debugLogButton')) {
-    const btn = document.createElement('button');
-    btn.id = 'debugLogButton';
-    btn.innerHTML = '🔍 Show Logs';
-    btn.style.cssText = `
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background: #2c5364;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 11px;
-      cursor: pointer;
-      z-index: 9999;
-      font-family: monospace;
-    `;
-    btn.onclick = toggleLogPanel;
-    document.body.appendChild(btn);
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// JSONBin API Functions
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+// JSONBIN API FUNCTIONS
+// ============================================================
 async function dbRead() {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  addLog(`Reading from JSONBin: ${BIN_ID}`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-    headers: { 'X-Master-Key': BIN_API_KEY }
-  });
-  if (!r.ok) throw new Error(`Read failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Read successful, users: ${(DB_CACHE.users || []).length}`, 'info');
-  return DB_CACHE;
+  try {
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: { 'X-Master-Key': BIN_API_KEY }
+    });
+    if (!r.ok) throw new Error(`Read failed (${r.status})`);
+    const data = await r.json();
+    DB_CACHE = data.record;
+    return DB_CACHE;
+  } catch(e) {
+    console.error('DB Read Error:', e);
+    throw e;
+  }
 }
 
 async function dbWrite(newData) {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
   showSaving(true);
-  addLog(`Writing to JSONBin...`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_API_KEY },
-    body: JSON.stringify(newData)
-  });
-  showSaving(false);
-  if (!r.ok) throw new Error(`Write failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Write successful`, 'success');
-  return DB_CACHE;
-}
-
-function showSaving(on) { const el = document.getElementById('savingIndicator'); if(el) el.style.display = on ? 'flex' : 'none'; }
-function findUser(db, username) { return (db.users || []).find(u => u.username === username); }
-
-// ═══════════════════════════════════════════════════════════
-// ONE-TIME SETUP
-// ═══════════════════════════════════════════════════════════
-async function saveCredentialsPermanently() {
-  const apiKey = document.getElementById('setupApiKey').value.trim();
-  const binId = document.getElementById('setupBinId').value.trim();
-  const adminPw = document.getElementById('setupAdminPw').value;
-  const adminWa = document.getElementById('setupAdminWa').value.trim();
-  const ghToken = document.getElementById('setupGhToken').value.trim();
-  const repo = document.getElementById('setupRepo').value.trim();
-  
-  if (!apiKey || !binId) { showSetupAlert('❌ API Key and Bin ID required', 'setup-error'); return; }
-  if (!adminPw || adminPw.length < 4) { showSetupAlert('❌ Admin password must be at least 4 characters', 'setup-error'); return; }
-  if (!ghToken || !repo) { showSetupAlert('❌ GitHub token and repo required', 'setup-error'); return; }
-  if (!repo.includes('/')) { showSetupAlert('❌ Repo format: username/repo-name', 'setup-error'); return; }
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Creating database...';
-  
   try {
-    addLog('Creating JSONBin with admin user...', 'step');
-    const createRes = await fetch('https://api.jsonbin.io/v3/b', {
-      method: 'POST',
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'X-Master-Key': apiKey,
-        'X-Bin-Name': 'FabricFlow-DB',
-        'X-Bin-Private': 'true'
+        'X-Master-Key': BIN_API_KEY
       },
-      body: JSON.stringify({
+      body: JSON.stringify(newData)
+    });
+    if (!r.ok) throw new Error(`Write failed (${r.status})`);
+    const data = await r.json();
+    DB_CACHE = data.record;
+    return DB_CACHE;
+  } finally {
+    showSaving(false);
+  }
+}
+
+function showSaving(on) {
+  const el = document.getElementById('savingIndicator');
+  if (el) el.style.display = on ? 'flex' : 'none';
+}
+
+function findUser(db, username) {
+  return (db.users || []).find(u => u.username === username);
+}
+
+// ============================================================
+// INITIALIZE DATABASE IF NEEDED
+// ============================================================
+async function initializeDatabaseIfNeeded() {
+  try {
+    await dbRead();
+    return true;
+  } catch(e) {
+    console.log('Database not found, creating...');
+    try {
+      const initialData = {
         github: { token: '', username: '', gistId: '' },
         users: [{
           username: 'admin',
-          password: adminPw,
+          password: 'admin123',
           name: 'Administrator',
           role: 'admin',
           status: 'approved',
-          whatsapp: adminWa
+          whatsapp: ''
         }]
-      })
-    });
-    
-    if (!createRes.ok) throw new Error('Failed to create JSONBin');
-    const createData = await createRes.json();
-    const newBinId = createData.metadata.id;
-    addLog(`JSONBin created with ID: ${newBinId}`, 'success');
-    
-    const [owner, repoName] = repo.split('/');
-    const fileUrl = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
-    addLog(`Updating GitHub file: ${fileUrl}`, 'step');
-    
-    let currentSha = '';
-    try {
-      const getRes = await fetch(fileUrl, {
-        headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
+      };
+      
+      const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': BIN_API_KEY
+        },
+        body: JSON.stringify(initialData)
       });
-      if (getRes.ok) {
-        const data = await getRes.json();
-        currentSha = data.sha;
-        addLog(`Current file SHA: ${currentSha}`, 'info');
+      
+      if (r.ok) {
+        console.log('Database initialized');
+        DB_CACHE = initialData;
+        return true;
       }
-    } catch(e) { addLog(`No existing file or error: ${e.message}`, 'warning'); }
-    
-    const response = await fetch(window.location.href);
-    let html = await response.text();
-    html = html
-      .replace(/let HARDCODED_BIN_KEY = '%%BIN_KEY%%';/, `let HARDCODED_BIN_KEY = '${apiKey}';`)
-      .replace(/let HARDCODED_BIN_ID = '%%BIN_ID%%';/, `let HARDCODED_BIN_ID = '${newBinId}';`);
-    
-    const putRes = await fetch(fileUrl, {
-      method: 'PUT',
-      headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: 'Setup complete - credentials saved',
-        content: btoa(unescape(encodeURIComponent(html))),
-        sha: currentSha || undefined
-      })
-    });
-    
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || 'GitHub update failed');
+      return false;
+    } catch(err) {
+      console.error('Init failed:', err);
+      return false;
     }
-    
-    addLog(`GitHub file updated successfully!`, 'success');
-    showSetupAlert('✅ Setup complete! Netlify will redeploy in 1-2 minutes. Page will refresh...', 'setup-success');
-    setTimeout(() => window.location.reload(), 5000);
-    
-  } catch(e) {
-    addLog(`Setup error: ${e.message}`, 'error');
-    showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
-    btn.disabled = false;
-    btn.textContent = '💾 Save & Create Admin →';
   }
 }
 
-function showSetupAlert(msg, cls) {
-  const el = document.getElementById('setupAlert');
-  el.textContent = msg;
-  el.className = `setup-alert ${cls}`;
-  el.style.display = 'block';
-}
-
-// ═══════════════════════════════════════════════════════════
+// ============================================================
 // BOOT SEQUENCE
-// ═══════════════════════════════════════════════════════════
-let aTab = 'github';
-let sTab = 'upload';
-
+// ============================================================
 async function boot() {
   const loading = document.getElementById('loadingScreen');
-  addLog('Boot sequence started', 'step');
   
-  if (!HAS_CREDENTIALS) {
-    addLog('No hardcoded credentials found - showing setup wizard', 'info');
-    loading.classList.add('hide');
-    setTimeout(() => { loading.style.display = 'none'; }, 400);
-    document.getElementById('setupContainer').classList.add('show');
-    return;
-  }
-  
-  addLog('Hardcoded credentials found - connecting to JSONBin', 'info');
-  try {
-    await dbRead();
-    addLog('Connected to JSONBin successfully', 'success');
-    const sess = localStorage.getItem('ff_sess');
-    if (sess) {
-      const user = findUser(DB_CACHE, sess);
-      if (user && user.status === 'approved') {
-        CU_username = sess;
-        addLog(`Auto-login as ${sess}`, 'success');
-        loading.classList.add('hide');
-        setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
-        return;
-      } else {
-        localStorage.removeItem('ff_sess');
-      }
-    }
+  const dbReady = await initializeDatabaseIfNeeded();
+  if (!dbReady) {
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
       document.getElementById('loginPage').classList.add('show');
       document.body.classList.add('login-active');
-      addLog('Showing login page', 'info');
+      showLF('loginAlert', '⚠️ Database connection failed. Please check your credentials.', 'lf-error');
     }, 400);
-  } catch(e) {
-    addLog(`Boot error: ${e.message}`, 'error');
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('setupContainer').classList.add('show');
-    }, 400);
+    return;
   }
+  
+  const sess = localStorage.getItem('ff_sess');
+  if (sess) {
+    const user = findUser(DB_CACHE, sess);
+    if (user && user.status === 'approved') {
+      CU_username = sess;
+      loading.classList.add('hide');
+      setTimeout(() => {
+        loading.style.display = 'none';
+        launchApp();
+      }, 400);
+      return;
+    } else {
+      localStorage.removeItem('ff_sess');
+    }
+  }
+  
+  loading.classList.add('hide');
+  setTimeout(() => {
+    loading.style.display = 'none';
+    document.getElementById('loginPage').classList.add('show');
+    document.body.classList.add('login-active');
+  }, 400);
 }
 
 function launchApp() {
-  addLog('Launching app...', 'step');
   document.getElementById('app').style.display = 'block';
   document.getElementById('app').classList.add('show');
   document.getElementById('loginPage').classList.remove('show');
@@ -549,48 +368,47 @@ function launchApp() {
   rb.textContent = cu.role === 'admin' ? 'Admin' : 'Sub-Admin';
   rb.className = 'role-tag ' + (cu.role === 'admin' ? 'rt-admin' : 'rt-sub');
   renderMain();
-  addLogButton();
-  addLog('App ready - role: ' + cu.role, 'success');
 }
 
-function currentUser() { return DB_CACHE ? findUser(DB_CACHE, CU_username) : null; }
+function currentUser() {
+  return DB_CACHE ? findUser(DB_CACHE, CU_username) : null;
+}
 
-// ═══════════════════════════════════════════════════════════
-// AUTHENTICATION FUNCTIONS
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+// AUTHENTICATION
+// ============================================================
 async function doLogin() {
   const u = document.getElementById('loginUsername').value.trim();
   const p = document.getElementById('loginPassword').value;
   const btn = document.getElementById('loginBtn');
-  btn.disabled = true; btn.textContent = 'Signing in...';
-  addLog(`Login attempt for: ${u}`, 'info');
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+  
   try {
     const db = await dbRead();
     const user = findUser(db, u);
-    if (!user || user.password !== p) { 
-      addLog(`Login failed: Invalid credentials for ${u}`, 'error');
-      showLF('loginAlert','❌ Invalid credentials','lf-error'); 
-      return; 
+    if (!user || user.password !== p) {
+      showLF('loginAlert', '❌ Invalid username or password', 'lf-error');
+      return;
     }
-    if (user.status === 'pending') { 
-      addLog(`Login blocked: Account ${u} pending approval`, 'warning');
-      showLF('loginAlert','⏳ Account pending admin approval','lf-error'); 
-      return; 
+    if (user.status === 'pending') {
+      showLF('loginAlert', '⏳ Your account is pending admin approval', 'lf-error');
+      return;
     }
-    if (user.status === 'rejected') { 
-      addLog(`Login blocked: Account ${u} rejected`, 'error');
-      showLF('loginAlert','🚫 Account rejected. Contact admin.','lf-error'); 
-      return; 
+    if (user.status === 'rejected') {
+      showLF('loginAlert', '🚫 Account rejected. Contact admin.', 'lf-error');
+      return;
     }
+    
     CU_username = u;
     localStorage.setItem('ff_sess', u);
-    addLog(`Login successful: ${u} (${user.role})`, 'success');
     launchApp();
-  } catch(e) { 
-    addLog(`Login error: ${e.message}`, 'error');
-    showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); 
+  } catch(e) {
+    showLF('loginAlert', `❌ Connection error: ${e.message}`, 'lf-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In →';
   }
-  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
 }
 
 async function doRegister() {
@@ -598,55 +416,84 @@ async function doRegister() {
   const username = document.getElementById('regUsername').value.trim();
   const password = document.getElementById('regPassword').value;
   const wa = document.getElementById('regWhatsapp').value.trim();
-  if (!name||!username||!password) { showLF('registerAlert','❌ All fields required','lf-error'); return; }
-  if (password.length < 4) { showLF('registerAlert','❌ Password must be at least 4 characters','lf-error'); return; }
   const btn = document.getElementById('registerBtn');
-  btn.disabled = true; btn.textContent = 'Submitting...';
-  addLog(`Registration attempt: ${username}`, 'info');
+  
+  if (!name || !username || !password) {
+    showLF('registerAlert', '❌ Please fill all required fields', 'lf-error');
+    return;
+  }
+  if (password.length < 4) {
+    showLF('registerAlert', '❌ Password must be at least 4 characters', 'lf-error');
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  
   try {
     const db = await dbRead();
-    if (findUser(db, username)) { 
-      addLog(`Registration failed: Username ${username} already taken`, 'error');
-      showLF('registerAlert','❌ Username already taken','lf-error'); 
-      return; 
+    if (findUser(db, username)) {
+      showLF('registerAlert', '❌ Username already taken', 'lf-error');
+      return;
     }
-    db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
+    
+    db.users.push({
+      username,
+      password,
+      name,
+      role: 'subadmin',
+      status: 'pending',
+      whatsapp: wa
+    });
+    
     await dbWrite(db);
-    addLog(`Registration successful: ${username} (pending approval)`, 'success');
-    showLF('registerAlert','✅ Registration submitted! Wait for admin approval.','lf-success');
+    showLF('registerAlert', '✅ Request submitted! Admin will approve your account.', 'lf-success');
     setTimeout(() => switchAuthTab('login'), 2000);
-  } catch(e) { 
-    addLog(`Registration error: ${e.message}`, 'error');
-    showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); 
+  } catch(e) {
+    showLF('registerAlert', `❌ ${e.message}`, 'lf-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Request Account →';
   }
-  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
 }
 
 function switchAuthTab(t) {
-  document.querySelectorAll('.auth-tab').forEach((b,i) => b.classList.toggle('active', (t==='login'&&i===0)||(t==='register'&&i===1)));
-  document.getElementById('loginForm').style.display = t==='login' ? 'block' : 'none';
-  document.getElementById('registerForm').style.display = t==='register' ? 'block' : 'none';
+  const isLogin = t === 'login';
+  document.querySelectorAll('.auth-tab').forEach((tab, i) => {
+    tab.classList.toggle('active', (isLogin && i === 0) || (!isLogin && i === 1));
+  });
+  document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = isLogin ? 'none' : 'block';
 }
 
 function logout() {
-  addLog(`Logout: ${CU_username}`, 'info');
   CU_username = null;
   localStorage.removeItem('ff_sess');
   document.getElementById('app').classList.remove('show');
   document.getElementById('app').style.display = 'none';
   document.getElementById('loginPage').classList.add('show');
   document.body.classList.add('login-active');
+  renderMain();
 }
 
 function showLF(id, msg, cls) {
   const el = document.getElementById(id);
-  el.textContent = msg; el.className = `lf-alert ${cls}`; el.style.display = 'block';
-  setTimeout(() => { if(el) el.style.display = 'none'; }, 4000);
+  if (el) {
+    el.textContent = msg;
+    el.className = `lf-alert ${cls}`;
+    el.style.display = 'block';
+    setTimeout(() => {
+      if (el) el.style.display = 'none';
+    }, 5000);
+  }
 }
 
-// ═══════════════════════════════════════════════════════════
+// ============================================================
 // RENDER FUNCTIONS
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+let aTab = 'github';
+let sTab = 'upload';
+
 function renderMain() {
   const cu = currentUser();
   if (!cu) return;
@@ -658,8 +505,8 @@ function switchSTab(t) { sTab = t; renderMain(); }
 
 function renderAdmin() {
   const db = DB_CACHE;
-  const pending = (db.users||[]).filter(u => u.status==='pending' && u.username !== 'admin');
-  const others = (db.users||[]).filter(u => u.username !== 'admin');
+  const pending = (db.users || []).filter(u => u.status === 'pending' && u.username !== 'admin');
+  const others = (db.users || []).filter(u => u.username !== 'admin');
   const gh = db.github || {};
   const ghReady = !!(gh.token && gh.username);
   const hasGist = !!gh.gistId;
@@ -667,61 +514,82 @@ function renderAdmin() {
   
   return `
     <div class="ptabs">
-      <button class="ptab ${aTab==='github'?'active':''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady?'✅':'⚠️'}</button>
-      <button class="ptab ${aTab==='upload'?'active':''}" onclick="switchATab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${aTab==='users'?'active':''}" onclick="switchATab('users')">👥 Users ${pending.length?`<span class="badge-red">${pending.length}</span>`:''}</button>
-      <button class="ptab ${aTab==='pw'?'active':''}" onclick="switchATab('pw')">🔑 Password</button>
+      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady ? '✅' : '⚠️'}</button>
+      <button class="ptab ${aTab === 'upload' ? 'active' : ''}" onclick="switchATab('upload')">📁 Upload Stock</button>
+      <button class="ptab ${aTab === 'users' ? 'active' : ''}" onclick="switchATab('users')">👥 Users ${pending.length ? `<span class="badge-red">${pending.length}</span>` : ''}</button>
+      <button class="ptab ${aTab === 'pw' ? 'active' : ''}" onclick="switchATab('pw')">🔑 Password</button>
     </div>
-    ${aTab==='github' ? renderGithubTab(gh) : ''}
-    ${aTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
-    ${aTab==='users' ? renderUsersTab(others, pending) : ''}
-    ${aTab==='pw' ? renderPwTab() : ''}`;
+    ${aTab === 'github' ? renderGithubTab(gh) : ''}
+    ${aTab === 'upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
+    ${aTab === 'users' ? renderUsersTab(others, pending) : ''}
+    ${aTab === 'pw' ? renderPwTab() : ''}
+  `;
 }
 
 function renderSubAdmin() {
   const gh = (DB_CACHE && DB_CACHE.github) || {};
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
+  
   return `
     <div class="ptabs">
-      <button class="ptab ${sTab==='upload'?'active':''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${sTab==='pw'?'active':''}" onclick="switchSTab('pw')">🔑 Password</button>
+      <button class="ptab ${sTab === 'upload' ? 'active' : ''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
+      <button class="ptab ${sTab === 'pw' ? 'active' : ''}" onclick="switchSTab('pw')">🔑 Password</button>
     </div>
-    ${sTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}`;
+    ${sTab === 'upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}
+  `;
 }
 
 function renderGithubTab(gh) {
   return `
     <div class="card">
-      <div class="card-title"><span class="step-num ${gh.token?'done':''}">1</span> GitHub Authentication</div>
-      <div class="info-box" style="margin-bottom:16px">
+      <div class="card-title"><span class="step-num ${gh.token ? 'done' : ''}">1</span> GitHub Authentication</div>
+      <div class="info-box" style="margin-bottom:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
         🔑 <strong>GitHub Personal Access Token</strong><br>
         1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
         2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-        3. Copy token (starts with ghp_) and paste below<br>
-        <br>
-        ✅ Once saved, credentials are stored in cloud and used by all users.
+        3. Copy token (starts with ghp_) and paste below
       </div>
-      <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx..."></div>
-      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username"></div>
+      <div class="fg">
+        <label>GitHub Token</label>
+        <input type="password" id="ghToken" value="${escHtml(gh.token || '')}" placeholder="ghp_xxxx...">
+      </div>
+      <div class="fg">
+        <label>GitHub Username</label>
+        <input type="text" id="ghUsername" value="${escHtml(gh.username || '')}" placeholder="your-github-username">
+      </div>
       <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
       <div id="ghAlert" class="alert"></div>
-    </div>`;
+    </div>
+  `;
 }
 
 function renderUploadTab(gh, savedUrl, hasGist) {
   const ghReady = !!(gh.token && gh.username);
+  
   return `
-    <div class="card ${ghReady?'':'step-locked'}">
+    <div class="card ${ghReady ? '' : 'step-locked'}">
       <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
       ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
-      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new Gist with a permanent URL.</div>'}
-      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
-      <div class="fg"><label>Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
-      <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
-      <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady?'disabled':''}>🚀 Upload to Gist</button>
+      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : ''}
+      <div class="fg">
+        <label>Excel / CSV File</label>
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)">
+      </div>
+      <div class="fg">
+        <label>Gist Description</label>
+        <input type="text" id="gistDesc" value="FabricFlow Stock Data">
+      </div>
+      <div class="fg">
+        <label>Filename</label>
+        <input type="text" id="gistFilename" value="stock.json">
+      </div>
+      <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady ? 'disabled' : ''}>🚀 Upload to Gist</button>
       <div id="uploadAlert" class="alert"></div>
-      <div class="fg"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
+      <div class="fg" style="margin-top:14px">
+        <label>JSON Preview (Editable)</label>
+        <textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea>
+      </div>
       <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
     </div>
     ${hasGist ? `
@@ -737,70 +605,108 @@ function renderUploadTab(gh, savedUrl, hasGist) {
         </div>
         <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
       </div>
-    </div>` : ''}`;
+    </div>` : ''}
+  `;
 }
 
 function renderUsersTab(others, pending) {
   let rows = '';
   others.forEach(u => {
-    rows += `<tr>
-      <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
-      <td>${escHtml(u.whatsapp||'-')}</td>
-      <td><span class="sdot ${u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red'}"></span>${u.status}</td>
-      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`}</td>
-    </tr>`;
+    rows += `
+      <tr>
+        <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
+        <td>${escHtml(u.whatsapp || '-')}</td>
+        <td><span class="sdot ${u.status === 'approved' ? 'd-green' : u.status === 'pending' ? 'd-orange' : 'd-red'}"></span>${u.status}</td>
+        <td>
+          ${u.status === 'pending' 
+            ? `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`
+            : u.status === 'approved'
+              ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`
+              : `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`
+          }
+        </td>
+      </tr>
+    `;
   });
-  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}</tbody></td></div>`;
+  
+  return `
+    <div class="card">
+      <table class="utab">
+        <thead>
+          <tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          ${rows || '<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}
+        </tbody>
+      </table>
+    </div>
+  `;
 }
 
 function renderPwTab() {
-  return `<div class="card">
-    <div class="card-title">🔑 Change Password</div>
-    <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
-    <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
-    <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
-    <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
-    <div id="pwAlert" class="alert"></div>
-  </div>`;
+  return `
+    <div class="card">
+      <div class="card-title">🔑 Change Password</div>
+      <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
+      <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
+      <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
+      <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+      <div id="pwAlert" class="alert"></div>
+    </div>
+  `;
 }
 
-// ═══════════════════════════════════════════════════════════
+// ============================================================
 // ADMIN ACTIONS
-// ═══════════════════════════════════════════════════════════
+// ============================================================
 async function saveGithub() {
   const token = document.getElementById('ghToken').value.trim();
   const username = document.getElementById('ghUsername').value.trim();
-  if (!token || !username) { showAlert('ghAlert', 'Both fields required', 'a-error'); return; }
-  addLog(`Saving GitHub credentials for user: ${username}`, 'info');
+  
+  if (!token || !username) {
+    showAlert('ghAlert', 'Both fields required', 'a-error');
+    return;
+  }
+  
   try {
     const db = await dbRead();
     db.github = { ...db.github, token, username };
     await dbWrite(db);
-    addLog(`GitHub credentials saved successfully`, 'success');
     showAlert('ghAlert', '✅ GitHub credentials saved to cloud! All users can now upload.', 'a-success');
     renderMain();
-  } catch(e) { 
-    addLog(`Save GitHub error: ${e.message}`, 'error');
-    showAlert('ghAlert', e.message, 'a-error'); 
+  } catch(e) {
+    showAlert('ghAlert', e.message, 'a-error');
   }
 }
 
 async function approveUser(username) {
-  addLog(`Approving user: ${username}`, 'info');
   try {
     const db = await dbRead();
     const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); showAlert('ghAlert', `✅ ${username} approved`, 'a-success'); addLog(`User ${username} approved`, 'success'); }
-  } catch(e) { addLog(`Approve error: ${e.message}`, 'error'); alert(e.message); }
+    if (u) {
+      u.status = 'approved';
+      await dbWrite(db);
+      renderMain();
+      showAlert('ghAlert', `✅ ${username} approved`, 'a-success');
+    }
+  } catch(e) {
+    alert(e.message);
+  }
 }
 
 async function rejectUser(username) {
-  addLog(`Rejecting user: ${username}`, 'info');
   try {
     const db = await dbRead();
     const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); showAlert('ghAlert', `❌ ${username} rejected`, 'a-success'); addLog(`User ${username} rejected`, 'success'); }
-  } catch(e) { addLog(`Reject error: ${e.message}`, 'error'); alert(e.message); }
+    if (u) {
+      u.status = 'rejected';
+      await dbWrite(db);
+      renderMain();
+      showAlert('ghAlert', `❌ ${username} rejected`, 'a-success');
+    }
+  } catch(e) {
+    alert(e.message);
+  }
 }
 
 async function changePassword() {
@@ -808,72 +714,59 @@ async function changePassword() {
   const nw = document.getElementById('pwNew').value;
   const cf = document.getElementById('pwConf').value;
   const cu = currentUser();
-  if (cur !== cu.password) { showAlert('pwAlert', 'Current password incorrect', 'a-error'); return; }
-  if (nw.length < 4) { showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error'); return; }
-  if (nw !== cf) { showAlert('pwAlert', 'Passwords do not match', 'a-error'); return; }
-  addLog(`Changing password for ${CU_username}`, 'info');
+  
+  if (cur !== cu.password) {
+    showAlert('pwAlert', 'Current password incorrect', 'a-error');
+    return;
+  }
+  if (nw.length < 4) {
+    showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error');
+    return;
+  }
+  if (nw !== cf) {
+    showAlert('pwAlert', 'Passwords do not match', 'a-error');
+    return;
+  }
+  
   try {
     const db = await dbRead();
     const u = db.users.find(x => x.username === CU_username);
     if (u) u.password = nw;
     await dbWrite(db);
-    addLog(`Password changed successfully`, 'success');
     showAlert('pwAlert', '✅ Password updated successfully!', 'a-success');
     document.getElementById('pwCur').value = '';
     document.getElementById('pwNew').value = '';
     document.getElementById('pwConf').value = '';
-  } catch(e) { 
-    addLog(`Password change error: ${e.message}`, 'error');
-    showAlert('pwAlert', e.message, 'a-error'); 
+  } catch(e) {
+    showAlert('pwAlert', e.message, 'a-error');
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// GITHUB GIST UPLOAD - WITH FULL LOGGING
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+// GITHUB GIST UPLOAD
+// ============================================================
 async function uploadGist() {
-  addLog('════════════════════════════════════════', 'step');
-  addLog('🚀 UPLOAD STARTED', 'step');
-  
   const gh = DB_CACHE.github || {};
-  addLog(`GitHub config: username=${gh.username || 'NOT SET'}, hasToken=${!!gh.token}, hasGistId=${!!gh.gistId}`, 'info');
   
-  if (!gh.token || !gh.username) { 
-    const errMsg = '❌ GitHub not configured by Admin';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
+  if (!gh.token || !gh.username) {
+    showAlert('uploadAlert', '❌ GitHub not configured by Admin', 'a-error');
+    return;
   }
-  addLog('✅ GitHub configuration found', 'info');
   
   const jsonStr = document.getElementById('jsonData').value.trim();
-  if (!jsonStr) { 
-    const errMsg = '❌ No data. Load an Excel file first';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
+  if (!jsonStr) {
+    showAlert('uploadAlert', '❌ No data. Load an Excel file first', 'a-error');
+    return;
   }
-  addLog(`JSON data length: ${jsonStr.length} characters`, 'info');
   
   let data;
-  try { 
-    data = JSON.parse(jsonStr); 
+  try {
+    data = JSON.parse(jsonStr);
     if (!Array.isArray(data)) throw new Error('Data must be an array');
-    addLog(`✅ JSON parsed: ${data.length} items`, 'success');
-    if (data.length > 0) {
-      addLog(`Sample item: ${JSON.stringify(data[0]).substring(0, 100)}...`, 'info');
-    }
-  } catch(e) { 
-    const errMsg = `❌ Invalid JSON: ${e.message}`;
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
+  } catch(e) {
+    showAlert('uploadAlert', `❌ Invalid JSON: ${e.message}`, 'a-error');
+    return;
   }
-  
-  const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
-  const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
-  addLog(`Filename: ${filename}`, 'info');
-  addLog(`Description: ${description}`, 'info');
   
   const btn = event.target;
   btn.disabled = true;
@@ -881,8 +774,10 @@ async function uploadGist() {
   showAlert('uploadAlert', `⏳ Uploading ${data.length} items to GitHub...`, 'a-warning');
   
   try {
-    const hasExistingGist = gh.gistId && gh.gistId.length > 0 && gh.gistId !== 'undefined';
-    addLog(`Has existing Gist? ${hasExistingGist}`, 'step');
+    const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
+    const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
+    
+    const hasExistingGist = gh.gistId && gh.gistId.length > 0;
     
     let method, url, body;
     
@@ -897,7 +792,6 @@ async function uploadGist() {
           }
         }
       };
-      addLog(`🔄 Updating existing gist: ${gh.gistId}`, 'info');
     } else {
       method = 'POST';
       url = 'https://api.github.com/gists';
@@ -910,109 +804,65 @@ async function uploadGist() {
           }
         }
       };
-      addLog(`🆕 Creating NEW gist`, 'info');
     }
     
-    addLog(`Request URL: ${url}`, 'info');
-    addLog(`Method: ${method}`, 'info');
-    addLog(`Authorization: token ${gh.token.substring(0, 8)}...${gh.token.substring(gh.token.length - 4)}`, 'info');
-    
-    const res = await fetch(url, { 
-      method: method, 
-      headers: { 
-        'Authorization': `token ${gh.token}`, 
+    const res = await fetch(url, {
+      method: method,
+      headers: {
+        'Authorization': `token ${gh.token}`,
         'Content-Type': 'application/json',
         'User-Agent': 'FabricFlow'
-      }, 
-      body: JSON.stringify(body) 
+      },
+      body: JSON.stringify(body)
     });
     
-    addLog(`Response status: ${res.status} ${res.statusText}`, 'info');
-    
     if (!res.ok) {
-      let errorData;
-      try {
-        errorData = await res.json();
-        addLog(`Error response: ${JSON.stringify(errorData)}`, 'error');
-      } catch(e) {
-        const errorText = await res.text();
-        addLog(`Error response text: ${errorText.substring(0, 500)}`, 'error');
-        errorData = { message: errorText.substring(0, 200) };
+      const errorData = await res.json();
+      if (res.status === 404 && hasExistingGist) {
+        const db = await dbRead();
+        if (db.github) db.github.gistId = '';
+        await dbWrite(db);
+        throw new Error('Gist not found. Please try again - it will create a new gist.');
       }
-      
-      if (res.status === 401) {
-        throw new Error('GitHub token is invalid or expired. Please update in GitHub settings tab.');
-      } else if (res.status === 404) {
-        if (hasExistingGist) {
-          addLog(`Gist ${gh.gistId} not found - will clear and create new one`, 'warning');
-          const db = await dbRead();
-          if (db.github) db.github.gistId = '';
-          await dbWrite(db);
-          throw new Error('Gist not found. Please try uploading again - it will create a new gist.');
-        } else {
-          throw new Error('GitHub API endpoint not found. Check your token permissions (needs "gist" scope).');
-        }
-      } else if (res.status === 422) {
-        throw new Error(`GitHub validation error: ${errorData.message || 'Filename conflict or invalid data'}`);
-      } else {
-        throw new Error(errorData.message || `HTTP ${res.status}: ${res.statusText}`);
-      }
+      throw new Error(errorData.message || `HTTP ${res.status}`);
     }
     
     const gist = await res.json();
-    addLog(`✅ Gist ${hasExistingGist ? 'updated' : 'created'} successfully!`, 'success');
-    addLog(`Gist ID: ${gist.id}`, 'info');
-    addLog(`Gist URL: ${gist.html_url}`, 'info');
-    
     const rawUrl = gist.files[filename]?.raw_url || 
                    `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
-    addLog(`Raw URL: ${rawUrl}`, 'info');
     
-    addLog(`Saving gist ID to JSONBin...`, 'step');
     const db = await dbRead();
     if (!db.github) db.github = {};
     db.github.gistId = gist.id;
     db.github.username = gh.username;
     db.github.token = gh.token;
     await dbWrite(db);
-    addLog(`✅ Gist ID saved to cloud database`, 'success');
     
-    addLog(`Updating UI...`, 'step');
     renderMain();
-    
-    addLog(`════════════════════════════════════════`, 'step');
-    addLog(`🎉 UPLOAD COMPLETED! ${data.length} items uploaded.`, 'success');
-    addLog(`════════════════════════════════════════`, 'step');
-    
     showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
     showPreview(data);
     
-  } catch(e) { 
-    addLog(`❌ ERROR: ${e.message}`, 'error');
-    if (e.stack) addLog(`Stack: ${e.stack.substring(0, 300)}`, 'error');
-    addLog(`════════════════════════════════════════`, 'error');
-    showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error'); 
-  } finally { 
-    btn.disabled = false; 
-    btn.textContent = '🚀 Upload to Gist'; 
+  } catch(e) {
+    showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 Upload to Gist';
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// FILE HANDLING FUNCTIONS
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+// FILE HANDLING
+// ============================================================
 async function handleFile(input) {
   const file = input.files[0];
   if (!file) return;
-  addLog(`File selected: ${file.name} (${(file.size/1024).toFixed(1)} KB)`, 'info');
+  
   try {
     const json = await parseExcel(file);
     document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    addLog(`✅ Loaded ${json.length} items from ${file.name}`, 'success');
     showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
     showPreview(json);
-  } catch(e) { 
-    addLog(`File parse error: ${e.message}`, 'error');
+  } catch(e) {
     showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
   }
 }
@@ -1036,1114 +886,32 @@ async function parseExcel(file) {
 
 function showPreview(data) {
   const el = document.getElementById('preview');
-  if (!data || !data.length) { if(el) el.style.display = 'none'; return; }
-  const headers = Object.keys(data[0]);
-  let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
-  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
-  data.slice(0, 10).forEach(row => {
-    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
-  });
-  html += `</tbody></table></div>`;
-  if (el) { el.innerHTML = html; el.style.display = 'block'; }
-}
-
-function copyUrl() {
-  const url = document.getElementById('rawUrl')?.textContent;
-  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success'); addLog('URL copied to clipboard', 'info'); }
-}
-
-function triggerWA(url) {
-  const cu = currentUser();
-  document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\nStock data updated.\n\n🔗 Raw URL:\n${url}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
-  document.getElementById('waNumber').value = cu.whatsapp || '';
-  document.getElementById('waOverlay').classList.add('show');
-}
-
-function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
-
-function openWhatsApp() {
-  const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
-  const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
-  window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
-  closeWA();
-}
-
-function showAlert(id, msg, cls) {
-  const el = document.getElementById(id);
-  if (el) { el.textContent = msg; el.className = `alert ${cls}`; el.style.display = 'block'; setTimeout(() => { if(el) el.style.display = 'none'; }, 5000); }
-}
-
-function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
-}
-
-if (localStorage.getItem('ff_theme') === 'dark') { 
-  document.body.classList.add('dark'); 
-  if(document.getElementById('themeLabel')) document.getElementById('themeLabel').textContent = 'Light';
-}
-
-// Start the app
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FabricFlow Stock Manager</title>
-<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#f0f4f8;--surface:#fff;--surface2:#f7f8fa;--border:#e5e7eb;
-  --text:#111827;--muted:#6b7280;--accent2:#2c5364;
-  --green:#16a34a;--red:#dc2626;--orange:#ea580c;
-  --shadow:0 1px 4px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
-  --r:12px;--r-sm:8px;
-}
-body.dark{
-  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
-  --text:#e6edf3;--muted:#8b949e;
-  --shadow:0 1px 4px rgba(0,0,0,.4);--shadow-lg:0 8px 32px rgba(0,0,0,.5);
-}
-body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s,color .3s}
-.theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff}
-body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
-#loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2e40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .4s}
-#loadingScreen.hide{opacity:0;pointer-events:none}
-.loader-logo{width:60px;height:60px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
-.loader-text{color:#fff;font-size:16px;font-weight:600;margin-bottom:8px}
-.loader-sub{color:rgba(255,255,255,.4);font-size:13px;margin-bottom:24px}
-.loader-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
-.loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
-@keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
-.setup-container{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
-.setup-container.show{display:flex}
-.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
-.setup-card h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
-.setup-card .setup-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
-.setup-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.setup-input::placeholder{color:rgba(255,255,255,.25)}
-.setup-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.setup-btn{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
-.setup-btn:hover{opacity:.9}
-.setup-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.setup-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.setup-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px}
-.info-box a{color:#58a6ff}
-#loginPage{min-height:100vh;display:none;position:relative}
-#loginPage.show{display:flex}
-.login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
-.login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px;position:relative;z-index:2}
-.login-brand{margin-bottom:48px}
-.logo-mark{width:52px;height:52px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-.login-brand h1{font-size:32px;font-weight:700;color:#fff}
-.login-brand p{font-size:15px;color:rgba(255,255,255,.55);margin-top:8px}
-.login-right{width:460px;display:flex;align-items:center;justify-content:center;padding:40px 48px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.07)}
-.login-panel{width:100%}
-.panel-head{margin-bottom:28px}
-.panel-head h2{font-size:22px;font-weight:700;color:#fff}
-.panel-head p{font-size:13px;color:rgba(255,255,255,.45)}
-.auth-tabs{display:flex;background:rgba(255,255,255,.07);border-radius:10px;padding:4px;margin-bottom:24px;gap:4px}
-.auth-tab{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.5)}
-.auth-tab.active{background:rgba(255,255,255,.12);color:#fff}
-.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
-.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.lf-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.btn-login{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
-.btn-login:hover{opacity:.9}
-.lf-alert{padding:10px 14px;border-radius:var(--r-sm);font-size:12.5px;margin-top:12px;display:none}
-.lf-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.lf-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-#app{display:none}
-#app.show{display:block}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.topbar-l{display:flex;align-items:center;gap:10px}
-.tbar-logo{background:linear-gradient(135deg,#24292e,#2c5364);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
-.topbar-l h2{font-size:16px;font-weight:700}
-.topbar-r{display:flex;align-items:center;gap:8px}
-.user-chip{background:var(--surface2);border:1px solid var(--border);border-radius:50px;padding:5px 13px;font-size:13px;display:flex;align-items:center;gap:7px}
-.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px}
-.rt-admin{background:#dcfce7;color:#166534}
-.rt-sub{background:#dbeafe;color:#1e40af}
-body.dark .rt-admin{background:#0b2e1a;color:#4ade80}
-body.dark .rt-sub{background:#1e3a5f;color:#93c5fd}
-.main{max-width:820px;margin:0 auto;padding:28px 20px}
-.ptabs{display:flex;gap:2px;margin-bottom:22px;border-bottom:2px solid var(--border)}
-.ptab{padding:9px 18px;border:none;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px}
-.ptab.active{color:var(--accent2);border-bottom-color:var(--accent2)}
-body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
-.badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
-.card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.step-num.done{background:#16a34a}
-.step-locked{opacity:0.5;pointer-events:none}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
-.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;background:var(--surface2);color:var(--text)}
-.fg input:focus,.fg textarea:focus{outline:none;border-color:#2c5364}
-.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.btn-primary{background:linear-gradient(135deg,#24292e,#2c5364);color:#fff}
-.btn-success{background:#16a34a;color:#fff}
-.btn-danger{background:#dc2626;color:#fff}
-.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
-.btn-wa{background:#25d366;color:#fff}
-.btn-sm{padding:7px 13px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.alert{padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-top:12px;display:none}
-.a-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
-.a-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-.a-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
-.a-info{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
-body.dark .a-success{background:#0b2e1a;color:#4ade80}
-body.dark .a-error{background:#3d1a1a;color:#f87171}
-body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
-.utab{width:100%;border-collapse:collapse;font-size:13px}
-.utab th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
-.utab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
-.sdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
-.d-green{background:#16a34a}.d-orange{background:#ea580c}.d-red{background:#dc2626}
-.url-result{background:var(--surface2);border:2px dashed #16a34a;border-radius:var(--r-sm);padding:18px;text-align:center}
-.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;border:1px solid var(--border)}
-.wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;padding:20px}
-.wa-backdrop.show{display:flex}
-.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%}
-.wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap}
-.saving-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c;margin-right:6px;animation:pulse .8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@media(max-width:700px){
-  .login-left{display:none}
-  .login-right{width:100%;padding:40px 28px}
-  .main{padding:16px 12px}
-  .ptab{padding:8px 10px;font-size:12px}
-}
-</style>
-</head>
-<body>
-
-<button class="theme-btn" onclick="toggleTheme()">🌓 <span id="themeLabel">Dark</span></button>
-
-<div id="loadingScreen">
-  <div class="loader-logo">📊</div>
-  <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Loading...</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- ONE-TIME SETUP WIZARD -->
-<div id="setupContainer" class="setup-container">
-  <div class="setup-card">
-    <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>One-Time Setup</h2>
-    <p class="setup-sub">This runs ONLY ONCE. After setup, every device goes straight to login.</p>
-    <div class="info-box">
-      🔐 <strong>Get JSONBin credentials:</strong><br>
-      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
-      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
-      3. Create a new bin and copy its ID<br>
-      <br>
-      🔑 <strong>Get GitHub Token:</strong><br>
-      1. GitHub → Settings → Developer settings → Personal access tokens<br>
-      2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-      3. Copy token (starts with ghp_)
-    </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
-    <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 64abc123...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Min 4 characters">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
-    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Token (for auto-update)</label>
-    <input class="setup-input" type="password" id="setupGhToken" placeholder="ghp_xxxx... (repo scope)">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Repo (username/repo)</label>
-    <input class="setup-input" type="text" id="setupRepo" placeholder="yourusername/frtstockmanager">
-    <button class="setup-btn" onclick="saveCredentialsPermanently()">💾 Save & Create Admin →</button>
-    <div id="setupAlert" class="setup-alert"></div>
-  </div>
-</div>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage">
-  <div class="login-bg"></div>
-  <div class="login-left">
-    <div class="login-brand">
-      <div class="logo-mark">📊</div>
-      <h1>FabricFlow<br>Stock Manager</h1>
-      <p>Excel to GitHub Gist — one upload, permanent URL, instant sync.</p>
-    </div>
-  </div>
-  <div class="login-right">
-    <div class="login-panel">
-      <div class="panel-head"><h2>Welcome</h2><p>Sign in to manage your stock</p></div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
-        <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
-      </div>
-      <div id="loginForm">
-        <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
-        <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
-        <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
-        <div id="loginAlert" class="lf-alert"></div>
-      </div>
-      <div id="registerForm" style="display:none">
-        <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Full name">
-        <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
-        <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
-        <label class="lbl">WhatsApp Number</label>
-        <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
-        <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
-        <div id="registerAlert" class="lf-alert"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MAIN APP -->
-<div id="app">
-  <div class="topbar">
-    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
-    <div class="topbar-r">
-      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
-      <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
-      <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
-    </div>
-  </div>
-  <div class="main" id="mainContent"></div>
-</div>
-
-<div class="wa-backdrop" id="waOverlay">
-  <div class="wa-modal">
-    <h3>📲 Send via WhatsApp</h3>
-    <div class="wa-preview" id="waPreview"></div>
-    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Later</button></div>
-  </div>
-</div>
-
-<script>
-// ═══════════════════════════════════════════════════════════
-// HARDCODED CREDENTIALS - These get replaced during setup
-// ═══════════════════════════════════════════════════════════
-let HARDCODED_BIN_KEY = '%%BIN_KEY%%';
-let HARDCODED_BIN_ID = '%%BIN_ID%%';
-const HAS_CREDENTIALS = (HARDCODED_BIN_KEY !== '%%BIN_KEY%%' && HARDCODED_BIN_KEY !== '');
-
-let BIN_API_KEY = HAS_CREDENTIALS ? HARDCODED_BIN_KEY : '';
-let BIN_ID = HAS_CREDENTIALS ? HARDCODED_BIN_ID : '';
-let DB_CACHE = null;
-let CU_username = null;
-
-// ═══════════════════════════════════════════════════════════
-// DEBUG LOGGING SYSTEM
-// ═══════════════════════════════════════════════════════════
-function createLogPanel() {
-  let logPanel = document.getElementById('debugLogPanel');
-  if (!logPanel) {
-    const panel = document.createElement('div');
-    panel.id = 'debugLogPanel';
-    panel.style.cssText = `
-      position: fixed;
-      bottom: 50px;
-      right: 10px;
-      width: 450px;
-      max-height: 350px;
-      background: #1e1e1e;
-      color: #0f0;
-      font-family: monospace;
-      font-size: 11px;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-y: auto;
-      z-index: 10000;
-      border: 1px solid #333;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    `;
-    panel.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:8px;position:sticky;top:0;background:#1e1e1e;padding-bottom:5px"><strong>🔍 Debug Log</strong><div><button onclick="clearLogs()" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;margin-right:5px;cursor:pointer">Clear</button><button onclick="document.getElementById(\'debugLogPanel\').style.display=\'none\'" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;cursor:pointer">✖</button></div></div><div id="debugLogContent"></div>';
-    document.body.appendChild(panel);
-  }
-  return document.getElementById('debugLogPanel');
-}
-
-function clearLogs() {
-  const content = document.getElementById('debugLogContent');
-  if (content) content.innerHTML = '';
-  addLog('Logs cleared', 'info');
-}
-
-function addLog(message, type = 'info') {
-  const panel = createLogPanel();
-  const content = document.getElementById('debugLogContent');
-  const colors = { info: '#0f0', error: '#f00', warning: '#ff0', step: '#0ff', success: '#0f0' };
-  const timestamp = new Date().toLocaleTimeString();
-  const logEntry = document.createElement('div');
-  logEntry.style.cssText = `color: ${colors[type] || '#0f0'}; margin-bottom: 4px; border-bottom: 1px solid #333; padding: 2px 0; font-size: 10px;`;
-  logEntry.innerHTML = `[${timestamp}] ${message}`;
-  content.appendChild(logEntry);
-  content.scrollTop = content.scrollHeight;
-  console.log(`[${type.toUpperCase()}] ${message}`);
-  
-  if (type === 'error') {
-    panel.style.display = 'block';
-  }
-}
-
-function toggleLogPanel() {
-  const panel = document.getElementById('debugLogPanel');
-  if (panel) {
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  } else {
-    createLogPanel().style.display = 'block';
-  }
-}
-
-function addLogButton() {
-  if (!document.getElementById('debugLogButton')) {
-    const btn = document.createElement('button');
-    btn.id = 'debugLogButton';
-    btn.innerHTML = '🔍 Show Logs';
-    btn.style.cssText = `
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background: #2c5364;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 11px;
-      cursor: pointer;
-      z-index: 9999;
-      font-family: monospace;
-    `;
-    btn.onclick = toggleLogPanel;
-    document.body.appendChild(btn);
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// JSONBin API Functions
-// ═══════════════════════════════════════════════════════════
-async function dbRead() {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  addLog(`Reading from JSONBin: ${BIN_ID}`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-    headers: { 'X-Master-Key': BIN_API_KEY }
-  });
-  if (!r.ok) throw new Error(`Read failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Read successful, users: ${(DB_CACHE.users || []).length}`, 'info');
-  return DB_CACHE;
-}
-
-async function dbWrite(newData) {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  showSaving(true);
-  addLog(`Writing to JSONBin...`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_API_KEY },
-    body: JSON.stringify(newData)
-  });
-  showSaving(false);
-  if (!r.ok) throw new Error(`Write failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Write successful`, 'success');
-  return DB_CACHE;
-}
-
-function showSaving(on) { const el = document.getElementById('savingIndicator'); if(el) el.style.display = on ? 'flex' : 'none'; }
-function findUser(db, username) { return (db.users || []).find(u => u.username === username); }
-
-// ═══════════════════════════════════════════════════════════
-// ONE-TIME SETUP
-// ═══════════════════════════════════════════════════════════
-async function saveCredentialsPermanently() {
-  const apiKey = document.getElementById('setupApiKey').value.trim();
-  const binId = document.getElementById('setupBinId').value.trim();
-  const adminPw = document.getElementById('setupAdminPw').value;
-  const adminWa = document.getElementById('setupAdminWa').value.trim();
-  const ghToken = document.getElementById('setupGhToken').value.trim();
-  const repo = document.getElementById('setupRepo').value.trim();
-  
-  if (!apiKey || !binId) { showSetupAlert('❌ API Key and Bin ID required', 'setup-error'); return; }
-  if (!adminPw || adminPw.length < 4) { showSetupAlert('❌ Admin password must be at least 4 characters', 'setup-error'); return; }
-  if (!ghToken || !repo) { showSetupAlert('❌ GitHub token and repo required', 'setup-error'); return; }
-  if (!repo.includes('/')) { showSetupAlert('❌ Repo format: username/repo-name', 'setup-error'); return; }
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Creating database...';
-  
-  try {
-    addLog('Creating JSONBin with admin user...', 'step');
-    const createRes = await fetch('https://api.jsonbin.io/v3/b', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': apiKey,
-        'X-Bin-Name': 'FabricFlow-DB',
-        'X-Bin-Private': 'true'
-      },
-      body: JSON.stringify({
-        github: { token: '', username: '', gistId: '' },
-        users: [{
-          username: 'admin',
-          password: adminPw,
-          name: 'Administrator',
-          role: 'admin',
-          status: 'approved',
-          whatsapp: adminWa
-        }]
-      })
-    });
-    
-    if (!createRes.ok) throw new Error('Failed to create JSONBin');
-    const createData = await createRes.json();
-    const newBinId = createData.metadata.id;
-    addLog(`JSONBin created with ID: ${newBinId}`, 'success');
-    
-    const [owner, repoName] = repo.split('/');
-    const fileUrl = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
-    addLog(`Updating GitHub file: ${fileUrl}`, 'step');
-    
-    let currentSha = '';
-    try {
-      const getRes = await fetch(fileUrl, {
-        headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
-      });
-      if (getRes.ok) {
-        const data = await getRes.json();
-        currentSha = data.sha;
-        addLog(`Current file SHA: ${currentSha}`, 'info');
-      }
-    } catch(e) { addLog(`No existing file or error: ${e.message}`, 'warning'); }
-    
-    const response = await fetch(window.location.href);
-    let html = await response.text();
-    html = html
-      .replace(/let HARDCODED_BIN_KEY = '%%BIN_KEY%%';/, `let HARDCODED_BIN_KEY = '${apiKey}';`)
-      .replace(/let HARDCODED_BIN_ID = '%%BIN_ID%%';/, `let HARDCODED_BIN_ID = '${newBinId}';`);
-    
-    const putRes = await fetch(fileUrl, {
-      method: 'PUT',
-      headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: 'Setup complete - credentials saved',
-        content: btoa(unescape(encodeURIComponent(html))),
-        sha: currentSha || undefined
-      })
-    });
-    
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || 'GitHub update failed');
-    }
-    
-    addLog(`GitHub file updated successfully!`, 'success');
-    showSetupAlert('✅ Setup complete! Netlify will redeploy in 1-2 minutes. Page will refresh...', 'setup-success');
-    setTimeout(() => window.location.reload(), 5000);
-    
-  } catch(e) {
-    addLog(`Setup error: ${e.message}`, 'error');
-    showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
-    btn.disabled = false;
-    btn.textContent = '💾 Save & Create Admin →';
-  }
-}
-
-function showSetupAlert(msg, cls) {
-  const el = document.getElementById('setupAlert');
-  el.textContent = msg;
-  el.className = `setup-alert ${cls}`;
-  el.style.display = 'block';
-}
-
-// ═══════════════════════════════════════════════════════════
-// BOOT SEQUENCE
-// ═══════════════════════════════════════════════════════════
-let aTab = 'github';
-let sTab = 'upload';
-
-async function boot() {
-  const loading = document.getElementById('loadingScreen');
-  addLog('Boot sequence started', 'step');
-  
-  if (!HAS_CREDENTIALS) {
-    addLog('No hardcoded credentials found - showing setup wizard', 'info');
-    loading.classList.add('hide');
-    setTimeout(() => { loading.style.display = 'none'; }, 400);
-    document.getElementById('setupContainer').classList.add('show');
+  if (!data || !data.length) {
+    if (el) el.style.display = 'none';
     return;
   }
   
-  addLog('Hardcoded credentials found - connecting to JSONBin', 'info');
-  try {
-    await dbRead();
-    addLog('Connected to JSONBin successfully', 'success');
-    const sess = localStorage.getItem('ff_sess');
-    if (sess) {
-      const user = findUser(DB_CACHE, sess);
-      if (user && user.status === 'approved') {
-        CU_username = sess;
-        addLog(`Auto-login as ${sess}`, 'success');
-        loading.classList.add('hide');
-        setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
-        return;
-      } else {
-        localStorage.removeItem('ff_sess');
-      }
-    }
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('loginPage').classList.add('show');
-      document.body.classList.add('login-active');
-      addLog('Showing login page', 'info');
-    }, 400);
-  } catch(e) {
-    addLog(`Boot error: ${e.message}`, 'error');
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('setupContainer').classList.add('show');
-    }, 400);
-  }
-}
-
-function launchApp() {
-  addLog('Launching app...', 'step');
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('app').classList.add('show');
-  document.getElementById('loginPage').classList.remove('show');
-  document.body.classList.remove('login-active');
-  const cu = currentUser();
-  document.getElementById('topbarUser').textContent = cu.name;
-  const rb = document.getElementById('topbarRole');
-  rb.textContent = cu.role === 'admin' ? 'Admin' : 'Sub-Admin';
-  rb.className = 'role-tag ' + (cu.role === 'admin' ? 'rt-admin' : 'rt-sub');
-  renderMain();
-  addLogButton();
-  addLog('App ready - role: ' + cu.role, 'success');
-}
-
-function currentUser() { return DB_CACHE ? findUser(DB_CACHE, CU_username) : null; }
-
-// ═══════════════════════════════════════════════════════════
-// AUTHENTICATION FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-async function doLogin() {
-  const u = document.getElementById('loginUsername').value.trim();
-  const p = document.getElementById('loginPassword').value;
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = true; btn.textContent = 'Signing in...';
-  addLog(`Login attempt for: ${u}`, 'info');
-  try {
-    const db = await dbRead();
-    const user = findUser(db, u);
-    if (!user || user.password !== p) { 
-      addLog(`Login failed: Invalid credentials for ${u}`, 'error');
-      showLF('loginAlert','❌ Invalid credentials','lf-error'); 
-      return; 
-    }
-    if (user.status === 'pending') { 
-      addLog(`Login blocked: Account ${u} pending approval`, 'warning');
-      showLF('loginAlert','⏳ Account pending admin approval','lf-error'); 
-      return; 
-    }
-    if (user.status === 'rejected') { 
-      addLog(`Login blocked: Account ${u} rejected`, 'error');
-      showLF('loginAlert','🚫 Account rejected. Contact admin.','lf-error'); 
-      return; 
-    }
-    CU_username = u;
-    localStorage.setItem('ff_sess', u);
-    addLog(`Login successful: ${u} (${user.role})`, 'success');
-    launchApp();
-  } catch(e) { 
-    addLog(`Login error: ${e.message}`, 'error');
-    showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); 
-  }
-  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
-}
-
-async function doRegister() {
-  const name = document.getElementById('regName').value.trim();
-  const username = document.getElementById('regUsername').value.trim();
-  const password = document.getElementById('regPassword').value;
-  const wa = document.getElementById('regWhatsapp').value.trim();
-  if (!name||!username||!password) { showLF('registerAlert','❌ All fields required','lf-error'); return; }
-  if (password.length < 4) { showLF('registerAlert','❌ Password must be at least 4 characters','lf-error'); return; }
-  const btn = document.getElementById('registerBtn');
-  btn.disabled = true; btn.textContent = 'Submitting...';
-  addLog(`Registration attempt: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    if (findUser(db, username)) { 
-      addLog(`Registration failed: Username ${username} already taken`, 'error');
-      showLF('registerAlert','❌ Username already taken','lf-error'); 
-      return; 
-    }
-    db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
-    await dbWrite(db);
-    addLog(`Registration successful: ${username} (pending approval)`, 'success');
-    showLF('registerAlert','✅ Registration submitted! Wait for admin approval.','lf-success');
-    setTimeout(() => switchAuthTab('login'), 2000);
-  } catch(e) { 
-    addLog(`Registration error: ${e.message}`, 'error');
-    showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); 
-  }
-  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
-}
-
-function switchAuthTab(t) {
-  document.querySelectorAll('.auth-tab').forEach((b,i) => b.classList.toggle('active', (t==='login'&&i===0)||(t==='register'&&i===1)));
-  document.getElementById('loginForm').style.display = t==='login' ? 'block' : 'none';
-  document.getElementById('registerForm').style.display = t==='register' ? 'block' : 'none';
-}
-
-function logout() {
-  addLog(`Logout: ${CU_username}`, 'info');
-  CU_username = null;
-  localStorage.removeItem('ff_sess');
-  document.getElementById('app').classList.remove('show');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginPage').classList.add('show');
-  document.body.classList.add('login-active');
-}
-
-function showLF(id, msg, cls) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.className = `lf-alert ${cls}`; el.style.display = 'block';
-  setTimeout(() => { if(el) el.style.display = 'none'; }, 4000);
-}
-
-// ═══════════════════════════════════════════════════════════
-// RENDER FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-function renderMain() {
-  const cu = currentUser();
-  if (!cu) return;
-  document.getElementById('mainContent').innerHTML = cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
-}
-
-function switchATab(t) { aTab = t; renderMain(); }
-function switchSTab(t) { sTab = t; renderMain(); }
-
-function renderAdmin() {
-  const db = DB_CACHE;
-  const pending = (db.users||[]).filter(u => u.status==='pending' && u.username !== 'admin');
-  const others = (db.users||[]).filter(u => u.username !== 'admin');
-  const gh = db.github || {};
-  const ghReady = !!(gh.token && gh.username);
-  const hasGist = !!gh.gistId;
-  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  
-  return `
-    <div class="ptabs">
-      <button class="ptab ${aTab==='github'?'active':''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady?'✅':'⚠️'}</button>
-      <button class="ptab ${aTab==='upload'?'active':''}" onclick="switchATab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${aTab==='users'?'active':''}" onclick="switchATab('users')">👥 Users ${pending.length?`<span class="badge-red">${pending.length}</span>`:''}</button>
-      <button class="ptab ${aTab==='pw'?'active':''}" onclick="switchATab('pw')">🔑 Password</button>
-    </div>
-    ${aTab==='github' ? renderGithubTab(gh) : ''}
-    ${aTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
-    ${aTab==='users' ? renderUsersTab(others, pending) : ''}
-    ${aTab==='pw' ? renderPwTab() : ''}`;
-}
-
-function renderSubAdmin() {
-  const gh = (DB_CACHE && DB_CACHE.github) || {};
-  const hasGist = !!gh.gistId;
-  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  return `
-    <div class="ptabs">
-      <button class="ptab ${sTab==='upload'?'active':''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${sTab==='pw'?'active':''}" onclick="switchSTab('pw')">🔑 Password</button>
-    </div>
-    ${sTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}`;
-}
-
-function renderGithubTab(gh) {
-  return `
-    <div class="card">
-      <div class="card-title"><span class="step-num ${gh.token?'done':''}">1</span> GitHub Authentication</div>
-      <div class="info-box" style="margin-bottom:16px">
-        🔑 <strong>GitHub Personal Access Token</strong><br>
-        1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
-        2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-        3. Copy token (starts with ghp_) and paste below<br>
-        <br>
-        ✅ Once saved, credentials are stored in cloud and used by all users.
-      </div>
-      <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx..."></div>
-      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username"></div>
-      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
-      <div id="ghAlert" class="alert"></div>
-    </div>`;
-}
-
-function renderUploadTab(gh, savedUrl, hasGist) {
-  const ghReady = !!(gh.token && gh.username);
-  return `
-    <div class="card ${ghReady?'':'step-locked'}">
-      <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
-      ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
-      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new Gist with a permanent URL.</div>'}
-      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
-      <div class="fg"><label>Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
-      <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
-      <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady?'disabled':''}>🚀 Upload to Gist</button>
-      <div id="uploadAlert" class="alert"></div>
-      <div class="fg"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
-      <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
-    </div>
-    ${hasGist ? `
-    <div class="card">
-      <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
-      <div class="url-result">
-        <strong>🎉 Copy this URL to FabricFlow:</strong>
-        <div class="url-text" id="rawUrl">${savedUrl}</div>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-          <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
-          <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
-          <a id="gistLink" href="https://gist.github.com/${gh.username}/${gh.gistId}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
-      </div>
-    </div>` : ''}`;
-}
-
-function renderUsersTab(others, pending) {
-  let rows = '';
-  others.forEach(u => {
-    rows += `<tr>
-      <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
-      <td>${escHtml(u.whatsapp||'-')}</td>
-      <td><span class="sdot ${u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red'}"></span>${u.status}</td>
-      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`}</td>
-    </tr>`;
-  });
-  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}</tbody></td></div>`;
-}
-
-function renderPwTab() {
-  return `<div class="card">
-    <div class="card-title">🔑 Change Password</div>
-    <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
-    <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
-    <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
-    <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
-    <div id="pwAlert" class="alert"></div>
-  </div>`;
-}
-
-// ═══════════════════════════════════════════════════════════
-// ADMIN ACTIONS
-// ═══════════════════════════════════════════════════════════
-async function saveGithub() {
-  const token = document.getElementById('ghToken').value.trim();
-  const username = document.getElementById('ghUsername').value.trim();
-  if (!token || !username) { showAlert('ghAlert', 'Both fields required', 'a-error'); return; }
-  addLog(`Saving GitHub credentials for user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    db.github = { ...db.github, token, username };
-    await dbWrite(db);
-    addLog(`GitHub credentials saved successfully`, 'success');
-    showAlert('ghAlert', '✅ GitHub credentials saved to cloud! All users can now upload.', 'a-success');
-    renderMain();
-  } catch(e) { 
-    addLog(`Save GitHub error: ${e.message}`, 'error');
-    showAlert('ghAlert', e.message, 'a-error'); 
-  }
-}
-
-async function approveUser(username) {
-  addLog(`Approving user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); showAlert('ghAlert', `✅ ${username} approved`, 'a-success'); addLog(`User ${username} approved`, 'success'); }
-  } catch(e) { addLog(`Approve error: ${e.message}`, 'error'); alert(e.message); }
-}
-
-async function rejectUser(username) {
-  addLog(`Rejecting user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); showAlert('ghAlert', `❌ ${username} rejected`, 'a-success'); addLog(`User ${username} rejected`, 'success'); }
-  } catch(e) { addLog(`Reject error: ${e.message}`, 'error'); alert(e.message); }
-}
-
-async function changePassword() {
-  const cur = document.getElementById('pwCur').value;
-  const nw = document.getElementById('pwNew').value;
-  const cf = document.getElementById('pwConf').value;
-  const cu = currentUser();
-  if (cur !== cu.password) { showAlert('pwAlert', 'Current password incorrect', 'a-error'); return; }
-  if (nw.length < 4) { showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error'); return; }
-  if (nw !== cf) { showAlert('pwAlert', 'Passwords do not match', 'a-error'); return; }
-  addLog(`Changing password for ${CU_username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === CU_username);
-    if (u) u.password = nw;
-    await dbWrite(db);
-    addLog(`Password changed successfully`, 'success');
-    showAlert('pwAlert', '✅ Password updated successfully!', 'a-success');
-    document.getElementById('pwCur').value = '';
-    document.getElementById('pwNew').value = '';
-    document.getElementById('pwConf').value = '';
-  } catch(e) { 
-    addLog(`Password change error: ${e.message}`, 'error');
-    showAlert('pwAlert', e.message, 'a-error'); 
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// GITHUB GIST UPLOAD - WITH FULL LOGGING
-// ═══════════════════════════════════════════════════════════
-async function uploadGist() {
-  addLog('════════════════════════════════════════', 'step');
-  addLog('🚀 UPLOAD STARTED', 'step');
-  
-  const gh = DB_CACHE.github || {};
-  addLog(`GitHub config: username=${gh.username || 'NOT SET'}, hasToken=${!!gh.token}, hasGistId=${!!gh.gistId}`, 'info');
-  
-  if (!gh.token || !gh.username) { 
-    const errMsg = '❌ GitHub not configured by Admin';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  addLog('✅ GitHub configuration found', 'info');
-  
-  const jsonStr = document.getElementById('jsonData').value.trim();
-  if (!jsonStr) { 
-    const errMsg = '❌ No data. Load an Excel file first';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  addLog(`JSON data length: ${jsonStr.length} characters`, 'info');
-  
-  let data;
-  try { 
-    data = JSON.parse(jsonStr); 
-    if (!Array.isArray(data)) throw new Error('Data must be an array');
-    addLog(`✅ JSON parsed: ${data.length} items`, 'success');
-    if (data.length > 0) {
-      addLog(`Sample item: ${JSON.stringify(data[0]).substring(0, 100)}...`, 'info');
-    }
-  } catch(e) { 
-    const errMsg = `❌ Invalid JSON: ${e.message}`;
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  
-  const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
-  const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
-  addLog(`Filename: ${filename}`, 'info');
-  addLog(`Description: ${description}`, 'info');
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Uploading...';
-  showAlert('uploadAlert', `⏳ Uploading ${data.length} items to GitHub...`, 'a-warning');
-  
-  try {
-    const hasExistingGist = gh.gistId && gh.gistId.length > 0 && gh.gistId !== 'undefined';
-    addLog(`Has existing Gist? ${hasExistingGist}`, 'step');
-    
-    let method, url, body;
-    
-    if (hasExistingGist) {
-      method = 'PATCH';
-      url = `https://api.github.com/gists/${gh.gistId}`;
-      body = {
-        description: description,
-        files: {
-          [filename]: {
-            content: JSON.stringify(data, null, 2)
-          }
-        }
-      };
-      addLog(`🔄 Updating existing gist: ${gh.gistId}`, 'info');
-    } else {
-      method = 'POST';
-      url = 'https://api.github.com/gists';
-      body = {
-        description: description,
-        public: true,
-        files: {
-          [filename]: {
-            content: JSON.stringify(data, null, 2)
-          }
-        }
-      };
-      addLog(`🆕 Creating NEW gist`, 'info');
-    }
-    
-    addLog(`Request URL: ${url}`, 'info');
-    addLog(`Method: ${method}`, 'info');
-    addLog(`Authorization: token ${gh.token.substring(0, 8)}...${gh.token.substring(gh.token.length - 4)}`, 'info');
-    
-    const res = await fetch(url, { 
-      method: method, 
-      headers: { 
-        'Authorization': `token ${gh.token}`, 
-        'Content-Type': 'application/json',
-        'User-Agent': 'FabricFlow'
-      }, 
-      body: JSON.stringify(body) 
-    });
-    
-    addLog(`Response status: ${res.status} ${res.statusText}`, 'info');
-    
-    if (!res.ok) {
-      let errorData;
-      try {
-        errorData = await res.json();
-        addLog(`Error response: ${JSON.stringify(errorData)}`, 'error');
-      } catch(e) {
-        const errorText = await res.text();
-        addLog(`Error response text: ${errorText.substring(0, 500)}`, 'error');
-        errorData = { message: errorText.substring(0, 200) };
-      }
-      
-      if (res.status === 401) {
-        throw new Error('GitHub token is invalid or expired. Please update in GitHub settings tab.');
-      } else if (res.status === 404) {
-        if (hasExistingGist) {
-          addLog(`Gist ${gh.gistId} not found - will clear and create new one`, 'warning');
-          const db = await dbRead();
-          if (db.github) db.github.gistId = '';
-          await dbWrite(db);
-          throw new Error('Gist not found. Please try uploading again - it will create a new gist.');
-        } else {
-          throw new Error('GitHub API endpoint not found. Check your token permissions (needs "gist" scope).');
-        }
-      } else if (res.status === 422) {
-        throw new Error(`GitHub validation error: ${errorData.message || 'Filename conflict or invalid data'}`);
-      } else {
-        throw new Error(errorData.message || `HTTP ${res.status}: ${res.statusText}`);
-      }
-    }
-    
-    const gist = await res.json();
-    addLog(`✅ Gist ${hasExistingGist ? 'updated' : 'created'} successfully!`, 'success');
-    addLog(`Gist ID: ${gist.id}`, 'info');
-    addLog(`Gist URL: ${gist.html_url}`, 'info');
-    
-    const rawUrl = gist.files[filename]?.raw_url || 
-                   `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
-    addLog(`Raw URL: ${rawUrl}`, 'info');
-    
-    addLog(`Saving gist ID to JSONBin...`, 'step');
-    const db = await dbRead();
-    if (!db.github) db.github = {};
-    db.github.gistId = gist.id;
-    db.github.username = gh.username;
-    db.github.token = gh.token;
-    await dbWrite(db);
-    addLog(`✅ Gist ID saved to cloud database`, 'success');
-    
-    addLog(`Updating UI...`, 'step');
-    renderMain();
-    
-    addLog(`════════════════════════════════════════`, 'step');
-    addLog(`🎉 UPLOAD COMPLETED! ${data.length} items uploaded.`, 'success');
-    addLog(`════════════════════════════════════════`, 'step');
-    
-    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
-    showPreview(data);
-    
-  } catch(e) { 
-    addLog(`❌ ERROR: ${e.message}`, 'error');
-    if (e.stack) addLog(`Stack: ${e.stack.substring(0, 300)}`, 'error');
-    addLog(`════════════════════════════════════════`, 'error');
-    showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error'); 
-  } finally { 
-    btn.disabled = false; 
-    btn.textContent = '🚀 Upload to Gist'; 
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// FILE HANDLING FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-async function handleFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  addLog(`File selected: ${file.name} (${(file.size/1024).toFixed(1)} KB)`, 'info');
-  try {
-    const json = await parseExcel(file);
-    document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    addLog(`✅ Loaded ${json.length} items from ${file.name}`, 'success');
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
-    showPreview(json);
-  } catch(e) { 
-    addLog(`File parse error: ${e.message}`, 'error');
-    showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
-  }
-}
-
-async function parseExcel(file) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      try {
-        const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(sheet);
-        if (!json.length) rej(new Error('No data found in file'));
-        else res(json);
-      } catch(e) { rej(e); }
-    };
-    reader.onerror = rej;
-    reader.readAsArrayBuffer(file);
-  });
-}
-
-function showPreview(data) {
-  const el = document.getElementById('preview');
-  if (!data || !data.length) { if(el) el.style.display = 'none'; return; }
   const headers = Object.keys(data[0]);
   let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
   html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  
   data.slice(0, 10).forEach(row => {
     html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
   });
   html += `</tbody></table></div>`;
-  if (el) { el.innerHTML = html; el.style.display = 'block'; }
+  
+  if (el) {
+    el.innerHTML = html;
+    el.style.display = 'block';
+  }
 }
 
 function copyUrl() {
   const url = document.getElementById('rawUrl')?.textContent;
-  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success'); addLog('URL copied to clipboard', 'info'); }
+  if (url) {
+    navigator.clipboard.writeText(url);
+    showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success');
+  }
 }
 
 function triggerWA(url) {
@@ -2153,1131 +921,57 @@ function triggerWA(url) {
   document.getElementById('waOverlay').classList.add('show');
 }
 
-function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
+function closeWA() {
+  document.getElementById('waOverlay').classList.remove('show');
+}
 
 function openWhatsApp() {
   const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
   const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
-  window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
-  closeWA();
-}
-
-function showAlert(id, msg, cls) {
-  const el = document.getElementById(id);
-  if (el) { el.textContent = msg; el.className = `alert ${cls}`; el.style.display = 'block'; setTimeout(() => { if(el) el.style.display = 'none'; }, 5000); }
-}
-
-function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
-}
-
-if (localStorage.getItem('ff_theme') === 'dark') { 
-  document.body.classList.add('dark'); 
-  if(document.getElementById('themeLabel')) document.getElementById('themeLabel').textContent = 'Light';
-}
-
-// Start the app
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FabricFlow Stock Manager</title>
-<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#f0f4f8;--surface:#fff;--surface2:#f7f8fa;--border:#e5e7eb;
-  --text:#111827;--muted:#6b7280;--accent2:#2c5364;
-  --green:#16a34a;--red:#dc2626;--orange:#ea580c;
-  --shadow:0 1px 4px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
-  --r:12px;--r-sm:8px;
-}
-body.dark{
-  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
-  --text:#e6edf3;--muted:#8b949e;
-  --shadow:0 1px 4px rgba(0,0,0,.4);--shadow-lg:0 8px 32px rgba(0,0,0,.5);
-}
-body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s,color .3s}
-.theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff}
-body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
-#loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2e40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .4s}
-#loadingScreen.hide{opacity:0;pointer-events:none}
-.loader-logo{width:60px;height:60px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
-.loader-text{color:#fff;font-size:16px;font-weight:600;margin-bottom:8px}
-.loader-sub{color:rgba(255,255,255,.4);font-size:13px;margin-bottom:24px}
-.loader-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
-.loader-fill{height:100%;background:linear-gradient(90deg,#2c5364,#3a7bd5);border-radius:2px;animation:loadfill 1.5s ease-in-out infinite}
-@keyframes loadfill{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
-.setup-container{display:none;min-height:100vh;background:linear-gradient(135deg,#0f1923,#1a2e40);align-items:center;justify-content:center;padding:20px}
-.setup-container.show{display:flex}
-.setup-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px;max-width:500px;width:100%}
-.setup-card h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
-.setup-card .setup-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
-.setup-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.setup-input::placeholder{color:rgba(255,255,255,.25)}
-.setup-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.setup-btn{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
-.setup-btn:hover{opacity:.9}
-.setup-alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.setup-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.setup-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-.info-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px}
-.info-box a{color:#58a6ff}
-#loginPage{min-height:100vh;display:none;position:relative}
-#loginPage.show{display:flex}
-.login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1923 0%,#1a2e40 40%,#0d2137 70%,#1a1a2e 100%)}
-.login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px;position:relative;z-index:2}
-.login-brand{margin-bottom:48px}
-.logo-mark{width:52px;height:52px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-.login-brand h1{font-size:32px;font-weight:700;color:#fff}
-.login-brand p{font-size:15px;color:rgba(255,255,255,.55);margin-top:8px}
-.login-right{width:460px;display:flex;align-items:center;justify-content:center;padding:40px 48px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.07)}
-.login-panel{width:100%}
-.panel-head{margin-bottom:28px}
-.panel-head h2{font-size:22px;font-weight:700;color:#fff}
-.panel-head p{font-size:13px;color:rgba(255,255,255,.45)}
-.auth-tabs{display:flex;background:rgba(255,255,255,.07);border-radius:10px;padding:4px;margin-bottom:24px;gap:4px}
-.auth-tab{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.5)}
-.auth-tab.active{background:rgba(255,255,255,.12);color:#fff}
-.lbl{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
-.lf-input{width:100%;padding:11px 14px;border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-sm);font-size:14px;background:rgba(255,255,255,.07);color:#fff;margin-bottom:14px}
-.lf-input:focus{outline:none;border-color:rgba(58,123,213,.7)}
-.btn-login{width:100%;padding:12px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#2c5364,#3a7bd5);color:#fff}
-.btn-login:hover{opacity:.9}
-.lf-alert{padding:10px 14px;border-radius:var(--r-sm);font-size:12.5px;margin-top:12px;display:none}
-.lf-success{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
-.lf-error{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3)}
-#app{display:none}
-#app.show{display:block}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.topbar-l{display:flex;align-items:center;gap:10px}
-.tbar-logo{background:linear-gradient(135deg,#24292e,#2c5364);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
-.topbar-l h2{font-size:16px;font-weight:700}
-.topbar-r{display:flex;align-items:center;gap:8px}
-.user-chip{background:var(--surface2);border:1px solid var(--border);border-radius:50px;padding:5px 13px;font-size:13px;display:flex;align-items:center;gap:7px}
-.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px}
-.rt-admin{background:#dcfce7;color:#166534}
-.rt-sub{background:#dbeafe;color:#1e40af}
-body.dark .rt-admin{background:#0b2e1a;color:#4ade80}
-body.dark .rt-sub{background:#1e3a5f;color:#93c5fd}
-.main{max-width:820px;margin:0 auto;padding:28px 20px}
-.ptabs{display:flex;gap:2px;margin-bottom:22px;border-bottom:2px solid var(--border)}
-.ptab{padding:9px 18px;border:none;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px}
-.ptab.active{color:var(--accent2);border-bottom-color:var(--accent2)}
-body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
-.badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
-.card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.step-num.done{background:#16a34a}
-.step-locked{opacity:0.5;pointer-events:none}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
-.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;background:var(--surface2);color:var(--text)}
-.fg input:focus,.fg textarea:focus{outline:none;border-color:#2c5364}
-.btn{padding:10px 18px;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.btn-primary{background:linear-gradient(135deg,#24292e,#2c5364);color:#fff}
-.btn-success{background:#16a34a;color:#fff}
-.btn-danger{background:#dc2626;color:#fff}
-.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
-.btn-wa{background:#25d366;color:#fff}
-.btn-sm{padding:7px 13px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.alert{padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-top:12px;display:none}
-.a-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
-.a-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-.a-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
-.a-info{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
-body.dark .a-success{background:#0b2e1a;color:#4ade80}
-body.dark .a-error{background:#3d1a1a;color:#f87171}
-body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
-.utab{width:100%;border-collapse:collapse;font-size:13px}
-.utab th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
-.utab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
-.sdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
-.d-green{background:#16a34a}.d-orange{background:#ea580c}.d-red{background:#dc2626}
-.url-result{background:var(--surface2);border:2px dashed #16a34a;border-radius:var(--r-sm);padding:18px;text-align:center}
-.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;border:1px solid var(--border)}
-.wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;padding:20px}
-.wa-backdrop.show{display:flex}
-.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%}
-.wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap}
-.saving-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c;margin-right:6px;animation:pulse .8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@media(max-width:700px){
-  .login-left{display:none}
-  .login-right{width:100%;padding:40px 28px}
-  .main{padding:16px 12px}
-  .ptab{padding:8px 10px;font-size:12px}
-}
-</style>
-</head>
-<body>
-
-<button class="theme-btn" onclick="toggleTheme()">🌓 <span id="themeLabel">Dark</span></button>
-
-<div id="loadingScreen">
-  <div class="loader-logo">📊</div>
-  <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Loading...</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- ONE-TIME SETUP WIZARD -->
-<div id="setupContainer" class="setup-container">
-  <div class="setup-card">
-    <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>One-Time Setup</h2>
-    <p class="setup-sub">This runs ONLY ONCE. After setup, every device goes straight to login.</p>
-    <div class="info-box">
-      🔐 <strong>Get JSONBin credentials:</strong><br>
-      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up free<br>
-      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
-      3. Create a new bin and copy its ID<br>
-      <br>
-      🔑 <strong>Get GitHub Token:</strong><br>
-      1. GitHub → Settings → Developer settings → Personal access tokens<br>
-      2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-      3. Copy token (starts with ghp_)
-    </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
-    <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 64abc123...">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Min 4 characters">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
-    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Token (for auto-update)</label>
-    <input class="setup-input" type="password" id="setupGhToken" placeholder="ghp_xxxx... (repo scope)">
-    <label class="lbl" style="color:rgba(255,255,255,.7)">GitHub Repo (username/repo)</label>
-    <input class="setup-input" type="text" id="setupRepo" placeholder="yourusername/frtstockmanager">
-    <button class="setup-btn" onclick="saveCredentialsPermanently()">💾 Save & Create Admin →</button>
-    <div id="setupAlert" class="setup-alert"></div>
-  </div>
-</div>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage">
-  <div class="login-bg"></div>
-  <div class="login-left">
-    <div class="login-brand">
-      <div class="logo-mark">📊</div>
-      <h1>FabricFlow<br>Stock Manager</h1>
-      <p>Excel to GitHub Gist — one upload, permanent URL, instant sync.</p>
-    </div>
-  </div>
-  <div class="login-right">
-    <div class="login-panel">
-      <div class="panel-head"><h2>Welcome</h2><p>Sign in to manage your stock</p></div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
-        <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
-      </div>
-      <div id="loginForm">
-        <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
-        <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
-        <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
-        <div id="loginAlert" class="lf-alert"></div>
-      </div>
-      <div id="registerForm" style="display:none">
-        <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Full name">
-        <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
-        <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
-        <label class="lbl">WhatsApp Number</label>
-        <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
-        <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
-        <div id="registerAlert" class="lf-alert"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MAIN APP -->
-<div id="app">
-  <div class="topbar">
-    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
-    <div class="topbar-r">
-      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
-      <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
-      <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
-    </div>
-  </div>
-  <div class="main" id="mainContent"></div>
-</div>
-
-<div class="wa-backdrop" id="waOverlay">
-  <div class="wa-modal">
-    <h3>📲 Send via WhatsApp</h3>
-    <div class="wa-preview" id="waPreview"></div>
-    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Later</button></div>
-  </div>
-</div>
-
-<script>
-// ═══════════════════════════════════════════════════════════
-// HARDCODED CREDENTIALS - These get replaced during setup
-// ═══════════════════════════════════════════════════════════
-let HARDCODED_BIN_KEY = '%%BIN_KEY%%';
-let HARDCODED_BIN_ID = '%%BIN_ID%%';
-const HAS_CREDENTIALS = (HARDCODED_BIN_KEY !== '%%BIN_KEY%%' && HARDCODED_BIN_KEY !== '');
-
-let BIN_API_KEY = HAS_CREDENTIALS ? HARDCODED_BIN_KEY : '';
-let BIN_ID = HAS_CREDENTIALS ? HARDCODED_BIN_ID : '';
-let DB_CACHE = null;
-let CU_username = null;
-
-// ═══════════════════════════════════════════════════════════
-// DEBUG LOGGING SYSTEM
-// ═══════════════════════════════════════════════════════════
-function createLogPanel() {
-  let logPanel = document.getElementById('debugLogPanel');
-  if (!logPanel) {
-    const panel = document.createElement('div');
-    panel.id = 'debugLogPanel';
-    panel.style.cssText = `
-      position: fixed;
-      bottom: 50px;
-      right: 10px;
-      width: 450px;
-      max-height: 350px;
-      background: #1e1e1e;
-      color: #0f0;
-      font-family: monospace;
-      font-size: 11px;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-y: auto;
-      z-index: 10000;
-      border: 1px solid #333;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    `;
-    panel.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:8px;position:sticky;top:0;background:#1e1e1e;padding-bottom:5px"><strong>🔍 Debug Log</strong><div><button onclick="clearLogs()" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;margin-right:5px;cursor:pointer">Clear</button><button onclick="document.getElementById(\'debugLogPanel\').style.display=\'none\'" style="background:#333;border:none;color:#fff;border-radius:4px;padding:2px 8px;cursor:pointer">✖</button></div></div><div id="debugLogContent"></div>';
-    document.body.appendChild(panel);
-  }
-  return document.getElementById('debugLogPanel');
-}
-
-function clearLogs() {
-  const content = document.getElementById('debugLogContent');
-  if (content) content.innerHTML = '';
-  addLog('Logs cleared', 'info');
-}
-
-function addLog(message, type = 'info') {
-  const panel = createLogPanel();
-  const content = document.getElementById('debugLogContent');
-  const colors = { info: '#0f0', error: '#f00', warning: '#ff0', step: '#0ff', success: '#0f0' };
-  const timestamp = new Date().toLocaleTimeString();
-  const logEntry = document.createElement('div');
-  logEntry.style.cssText = `color: ${colors[type] || '#0f0'}; margin-bottom: 4px; border-bottom: 1px solid #333; padding: 2px 0; font-size: 10px;`;
-  logEntry.innerHTML = `[${timestamp}] ${message}`;
-  content.appendChild(logEntry);
-  content.scrollTop = content.scrollHeight;
-  console.log(`[${type.toUpperCase()}] ${message}`);
-  
-  if (type === 'error') {
-    panel.style.display = 'block';
-  }
-}
-
-function toggleLogPanel() {
-  const panel = document.getElementById('debugLogPanel');
-  if (panel) {
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  } else {
-    createLogPanel().style.display = 'block';
-  }
-}
-
-function addLogButton() {
-  if (!document.getElementById('debugLogButton')) {
-    const btn = document.createElement('button');
-    btn.id = 'debugLogButton';
-    btn.innerHTML = '🔍 Show Logs';
-    btn.style.cssText = `
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background: #2c5364;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 11px;
-      cursor: pointer;
-      z-index: 9999;
-      font-family: monospace;
-    `;
-    btn.onclick = toggleLogPanel;
-    document.body.appendChild(btn);
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// JSONBin API Functions
-// ═══════════════════════════════════════════════════════════
-async function dbRead() {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  addLog(`Reading from JSONBin: ${BIN_ID}`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-    headers: { 'X-Master-Key': BIN_API_KEY }
-  });
-  if (!r.ok) throw new Error(`Read failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Read successful, users: ${(DB_CACHE.users || []).length}`, 'info');
-  return DB_CACHE;
-}
-
-async function dbWrite(newData) {
-  if (!BIN_ID || !BIN_API_KEY) throw new Error('Database not configured');
-  showSaving(true);
-  addLog(`Writing to JSONBin...`, 'info');
-  const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_API_KEY },
-    body: JSON.stringify(newData)
-  });
-  showSaving(false);
-  if (!r.ok) throw new Error(`Write failed (${r.status})`);
-  const data = await r.json();
-  DB_CACHE = data.record;
-  addLog(`Write successful`, 'success');
-  return DB_CACHE;
-}
-
-function showSaving(on) { const el = document.getElementById('savingIndicator'); if(el) el.style.display = on ? 'flex' : 'none'; }
-function findUser(db, username) { return (db.users || []).find(u => u.username === username); }
-
-// ═══════════════════════════════════════════════════════════
-// ONE-TIME SETUP
-// ═══════════════════════════════════════════════════════════
-async function saveCredentialsPermanently() {
-  const apiKey = document.getElementById('setupApiKey').value.trim();
-  const binId = document.getElementById('setupBinId').value.trim();
-  const adminPw = document.getElementById('setupAdminPw').value;
-  const adminWa = document.getElementById('setupAdminWa').value.trim();
-  const ghToken = document.getElementById('setupGhToken').value.trim();
-  const repo = document.getElementById('setupRepo').value.trim();
-  
-  if (!apiKey || !binId) { showSetupAlert('❌ API Key and Bin ID required', 'setup-error'); return; }
-  if (!adminPw || adminPw.length < 4) { showSetupAlert('❌ Admin password must be at least 4 characters', 'setup-error'); return; }
-  if (!ghToken || !repo) { showSetupAlert('❌ GitHub token and repo required', 'setup-error'); return; }
-  if (!repo.includes('/')) { showSetupAlert('❌ Repo format: username/repo-name', 'setup-error'); return; }
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Creating database...';
-  
-  try {
-    addLog('Creating JSONBin with admin user...', 'step');
-    const createRes = await fetch('https://api.jsonbin.io/v3/b', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': apiKey,
-        'X-Bin-Name': 'FabricFlow-DB',
-        'X-Bin-Private': 'true'
-      },
-      body: JSON.stringify({
-        github: { token: '', username: '', gistId: '' },
-        users: [{
-          username: 'admin',
-          password: adminPw,
-          name: 'Administrator',
-          role: 'admin',
-          status: 'approved',
-          whatsapp: adminWa
-        }]
-      })
-    });
-    
-    if (!createRes.ok) throw new Error('Failed to create JSONBin');
-    const createData = await createRes.json();
-    const newBinId = createData.metadata.id;
-    addLog(`JSONBin created with ID: ${newBinId}`, 'success');
-    
-    const [owner, repoName] = repo.split('/');
-    const fileUrl = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
-    addLog(`Updating GitHub file: ${fileUrl}`, 'step');
-    
-    let currentSha = '';
-    try {
-      const getRes = await fetch(fileUrl, {
-        headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
-      });
-      if (getRes.ok) {
-        const data = await getRes.json();
-        currentSha = data.sha;
-        addLog(`Current file SHA: ${currentSha}`, 'info');
-      }
-    } catch(e) { addLog(`No existing file or error: ${e.message}`, 'warning'); }
-    
-    const response = await fetch(window.location.href);
-    let html = await response.text();
-    html = html
-      .replace(/let HARDCODED_BIN_KEY = '%%BIN_KEY%%';/, `let HARDCODED_BIN_KEY = '${apiKey}';`)
-      .replace(/let HARDCODED_BIN_ID = '%%BIN_ID%%';/, `let HARDCODED_BIN_ID = '${newBinId}';`);
-    
-    const putRes = await fetch(fileUrl, {
-      method: 'PUT',
-      headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: 'Setup complete - credentials saved',
-        content: btoa(unescape(encodeURIComponent(html))),
-        sha: currentSha || undefined
-      })
-    });
-    
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || 'GitHub update failed');
-    }
-    
-    addLog(`GitHub file updated successfully!`, 'success');
-    showSetupAlert('✅ Setup complete! Netlify will redeploy in 1-2 minutes. Page will refresh...', 'setup-success');
-    setTimeout(() => window.location.reload(), 5000);
-    
-  } catch(e) {
-    addLog(`Setup error: ${e.message}`, 'error');
-    showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
-    btn.disabled = false;
-    btn.textContent = '💾 Save & Create Admin →';
-  }
-}
-
-function showSetupAlert(msg, cls) {
-  const el = document.getElementById('setupAlert');
-  el.textContent = msg;
-  el.className = `setup-alert ${cls}`;
-  el.style.display = 'block';
-}
-
-// ═══════════════════════════════════════════════════════════
-// BOOT SEQUENCE
-// ═══════════════════════════════════════════════════════════
-let aTab = 'github';
-let sTab = 'upload';
-
-async function boot() {
-  const loading = document.getElementById('loadingScreen');
-  addLog('Boot sequence started', 'step');
-  
-  if (!HAS_CREDENTIALS) {
-    addLog('No hardcoded credentials found - showing setup wizard', 'info');
-    loading.classList.add('hide');
-    setTimeout(() => { loading.style.display = 'none'; }, 400);
-    document.getElementById('setupContainer').classList.add('show');
+  if (!n) {
+    alert('Enter WhatsApp number with country code (e.g., 919876543210)');
     return;
   }
-  
-  addLog('Hardcoded credentials found - connecting to JSONBin', 'info');
-  try {
-    await dbRead();
-    addLog('Connected to JSONBin successfully', 'success');
-    const sess = localStorage.getItem('ff_sess');
-    if (sess) {
-      const user = findUser(DB_CACHE, sess);
-      if (user && user.status === 'approved') {
-        CU_username = sess;
-        addLog(`Auto-login as ${sess}`, 'success');
-        loading.classList.add('hide');
-        setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
-        return;
-      } else {
-        localStorage.removeItem('ff_sess');
-      }
-    }
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('loginPage').classList.add('show');
-      document.body.classList.add('login-active');
-      addLog('Showing login page', 'info');
-    }, 400);
-  } catch(e) {
-    addLog(`Boot error: ${e.message}`, 'error');
-    loading.classList.add('hide');
-    setTimeout(() => {
-      loading.style.display = 'none';
-      document.getElementById('setupContainer').classList.add('show');
-    }, 400);
-  }
-}
-
-function launchApp() {
-  addLog('Launching app...', 'step');
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('app').classList.add('show');
-  document.getElementById('loginPage').classList.remove('show');
-  document.body.classList.remove('login-active');
-  const cu = currentUser();
-  document.getElementById('topbarUser').textContent = cu.name;
-  const rb = document.getElementById('topbarRole');
-  rb.textContent = cu.role === 'admin' ? 'Admin' : 'Sub-Admin';
-  rb.className = 'role-tag ' + (cu.role === 'admin' ? 'rt-admin' : 'rt-sub');
-  renderMain();
-  addLogButton();
-  addLog('App ready - role: ' + cu.role, 'success');
-}
-
-function currentUser() { return DB_CACHE ? findUser(DB_CACHE, CU_username) : null; }
-
-// ═══════════════════════════════════════════════════════════
-// AUTHENTICATION FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-async function doLogin() {
-  const u = document.getElementById('loginUsername').value.trim();
-  const p = document.getElementById('loginPassword').value;
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = true; btn.textContent = 'Signing in...';
-  addLog(`Login attempt for: ${u}`, 'info');
-  try {
-    const db = await dbRead();
-    const user = findUser(db, u);
-    if (!user || user.password !== p) { 
-      addLog(`Login failed: Invalid credentials for ${u}`, 'error');
-      showLF('loginAlert','❌ Invalid credentials','lf-error'); 
-      return; 
-    }
-    if (user.status === 'pending') { 
-      addLog(`Login blocked: Account ${u} pending approval`, 'warning');
-      showLF('loginAlert','⏳ Account pending admin approval','lf-error'); 
-      return; 
-    }
-    if (user.status === 'rejected') { 
-      addLog(`Login blocked: Account ${u} rejected`, 'error');
-      showLF('loginAlert','🚫 Account rejected. Contact admin.','lf-error'); 
-      return; 
-    }
-    CU_username = u;
-    localStorage.setItem('ff_sess', u);
-    addLog(`Login successful: ${u} (${user.role})`, 'success');
-    launchApp();
-  } catch(e) { 
-    addLog(`Login error: ${e.message}`, 'error');
-    showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); 
-  }
-  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
-}
-
-async function doRegister() {
-  const name = document.getElementById('regName').value.trim();
-  const username = document.getElementById('regUsername').value.trim();
-  const password = document.getElementById('regPassword').value;
-  const wa = document.getElementById('regWhatsapp').value.trim();
-  if (!name||!username||!password) { showLF('registerAlert','❌ All fields required','lf-error'); return; }
-  if (password.length < 4) { showLF('registerAlert','❌ Password must be at least 4 characters','lf-error'); return; }
-  const btn = document.getElementById('registerBtn');
-  btn.disabled = true; btn.textContent = 'Submitting...';
-  addLog(`Registration attempt: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    if (findUser(db, username)) { 
-      addLog(`Registration failed: Username ${username} already taken`, 'error');
-      showLF('registerAlert','❌ Username already taken','lf-error'); 
-      return; 
-    }
-    db.users.push({ username, password, name, role:'subadmin', status:'pending', whatsapp:wa });
-    await dbWrite(db);
-    addLog(`Registration successful: ${username} (pending approval)`, 'success');
-    showLF('registerAlert','✅ Registration submitted! Wait for admin approval.','lf-success');
-    setTimeout(() => switchAuthTab('login'), 2000);
-  } catch(e) { 
-    addLog(`Registration error: ${e.message}`, 'error');
-    showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); 
-  }
-  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
-}
-
-function switchAuthTab(t) {
-  document.querySelectorAll('.auth-tab').forEach((b,i) => b.classList.toggle('active', (t==='login'&&i===0)||(t==='register'&&i===1)));
-  document.getElementById('loginForm').style.display = t==='login' ? 'block' : 'none';
-  document.getElementById('registerForm').style.display = t==='register' ? 'block' : 'none';
-}
-
-function logout() {
-  addLog(`Logout: ${CU_username}`, 'info');
-  CU_username = null;
-  localStorage.removeItem('ff_sess');
-  document.getElementById('app').classList.remove('show');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginPage').classList.add('show');
-  document.body.classList.add('login-active');
-}
-
-function showLF(id, msg, cls) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.className = `lf-alert ${cls}`; el.style.display = 'block';
-  setTimeout(() => { if(el) el.style.display = 'none'; }, 4000);
-}
-
-// ═══════════════════════════════════════════════════════════
-// RENDER FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-function renderMain() {
-  const cu = currentUser();
-  if (!cu) return;
-  document.getElementById('mainContent').innerHTML = cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
-}
-
-function switchATab(t) { aTab = t; renderMain(); }
-function switchSTab(t) { sTab = t; renderMain(); }
-
-function renderAdmin() {
-  const db = DB_CACHE;
-  const pending = (db.users||[]).filter(u => u.status==='pending' && u.username !== 'admin');
-  const others = (db.users||[]).filter(u => u.username !== 'admin');
-  const gh = db.github || {};
-  const ghReady = !!(gh.token && gh.username);
-  const hasGist = !!gh.gistId;
-  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  
-  return `
-    <div class="ptabs">
-      <button class="ptab ${aTab==='github'?'active':''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady?'✅':'⚠️'}</button>
-      <button class="ptab ${aTab==='upload'?'active':''}" onclick="switchATab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${aTab==='users'?'active':''}" onclick="switchATab('users')">👥 Users ${pending.length?`<span class="badge-red">${pending.length}</span>`:''}</button>
-      <button class="ptab ${aTab==='pw'?'active':''}" onclick="switchATab('pw')">🔑 Password</button>
-    </div>
-    ${aTab==='github' ? renderGithubTab(gh) : ''}
-    ${aTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : ''}
-    ${aTab==='users' ? renderUsersTab(others, pending) : ''}
-    ${aTab==='pw' ? renderPwTab() : ''}`;
-}
-
-function renderSubAdmin() {
-  const gh = (DB_CACHE && DB_CACHE.github) || {};
-  const hasGist = !!gh.gistId;
-  const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
-  return `
-    <div class="ptabs">
-      <button class="ptab ${sTab==='upload'?'active':''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
-      <button class="ptab ${sTab==='pw'?'active':''}" onclick="switchSTab('pw')">🔑 Password</button>
-    </div>
-    ${sTab==='upload' ? renderUploadTab(gh, savedUrl, hasGist) : renderPwTab()}`;
-}
-
-function renderGithubTab(gh) {
-  return `
-    <div class="card">
-      <div class="card-title"><span class="step-num ${gh.token?'done':''}">1</span> GitHub Authentication</div>
-      <div class="info-box" style="margin-bottom:16px">
-        🔑 <strong>GitHub Personal Access Token</strong><br>
-        1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
-        2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
-        3. Copy token (starts with ghp_) and paste below<br>
-        <br>
-        ✅ Once saved, credentials are stored in cloud and used by all users.
-      </div>
-      <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escHtml(gh.token||'')}" placeholder="ghp_xxxx..."></div>
-      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escHtml(gh.username||'')}" placeholder="your-github-username"></div>
-      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
-      <div id="ghAlert" class="alert"></div>
-    </div>`;
-}
-
-function renderUploadTab(gh, savedUrl, hasGist) {
-  const ghReady = !!(gh.token && gh.username);
-  return `
-    <div class="card ${ghReady?'':'step-locked'}">
-      <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
-      ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
-      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new Gist with a permanent URL.</div>'}
-      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
-      <div class="fg"><label>Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
-      <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
-      <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady?'disabled':''}>🚀 Upload to Gist</button>
-      <div id="uploadAlert" class="alert"></div>
-      <div class="fg"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
-      <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
-    </div>
-    ${hasGist ? `
-    <div class="card">
-      <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
-      <div class="url-result">
-        <strong>🎉 Copy this URL to FabricFlow:</strong>
-        <div class="url-text" id="rawUrl">${savedUrl}</div>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-          <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
-          <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
-          <a id="gistLink" href="https://gist.github.com/${gh.username}/${gh.gistId}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
-      </div>
-    </div>` : ''}`;
-}
-
-function renderUsersTab(others, pending) {
-  let rows = '';
-  others.forEach(u => {
-    rows += `<tr>
-      <td><strong>${escHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escHtml(u.username)}</span></td>
-      <td>${escHtml(u.whatsapp||'-')}</td>
-      <td><span class="sdot ${u.status==='approved'?'d-green':u.status==='pending'?'d-orange':'d-red'}"></span>${u.status}</td>
-      <td>${u.status==='pending'?`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`:u.status==='approved'?`<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`:`<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`}</td>
-    </tr>`;
-  });
-  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows||'<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td></tr>'}</tbody></td></div>`;
-}
-
-function renderPwTab() {
-  return `<div class="card">
-    <div class="card-title">🔑 Change Password</div>
-    <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
-    <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
-    <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
-    <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
-    <div id="pwAlert" class="alert"></div>
-  </div>`;
-}
-
-// ═══════════════════════════════════════════════════════════
-// ADMIN ACTIONS
-// ═══════════════════════════════════════════════════════════
-async function saveGithub() {
-  const token = document.getElementById('ghToken').value.trim();
-  const username = document.getElementById('ghUsername').value.trim();
-  if (!token || !username) { showAlert('ghAlert', 'Both fields required', 'a-error'); return; }
-  addLog(`Saving GitHub credentials for user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    db.github = { ...db.github, token, username };
-    await dbWrite(db);
-    addLog(`GitHub credentials saved successfully`, 'success');
-    showAlert('ghAlert', '✅ GitHub credentials saved to cloud! All users can now upload.', 'a-success');
-    renderMain();
-  } catch(e) { 
-    addLog(`Save GitHub error: ${e.message}`, 'error');
-    showAlert('ghAlert', e.message, 'a-error'); 
-  }
-}
-
-async function approveUser(username) {
-  addLog(`Approving user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'approved'; await dbWrite(db); renderMain(); showAlert('ghAlert', `✅ ${username} approved`, 'a-success'); addLog(`User ${username} approved`, 'success'); }
-  } catch(e) { addLog(`Approve error: ${e.message}`, 'error'); alert(e.message); }
-}
-
-async function rejectUser(username) {
-  addLog(`Rejecting user: ${username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === username);
-    if (u) { u.status = 'rejected'; await dbWrite(db); renderMain(); showAlert('ghAlert', `❌ ${username} rejected`, 'a-success'); addLog(`User ${username} rejected`, 'success'); }
-  } catch(e) { addLog(`Reject error: ${e.message}`, 'error'); alert(e.message); }
-}
-
-async function changePassword() {
-  const cur = document.getElementById('pwCur').value;
-  const nw = document.getElementById('pwNew').value;
-  const cf = document.getElementById('pwConf').value;
-  const cu = currentUser();
-  if (cur !== cu.password) { showAlert('pwAlert', 'Current password incorrect', 'a-error'); return; }
-  if (nw.length < 4) { showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error'); return; }
-  if (nw !== cf) { showAlert('pwAlert', 'Passwords do not match', 'a-error'); return; }
-  addLog(`Changing password for ${CU_username}`, 'info');
-  try {
-    const db = await dbRead();
-    const u = db.users.find(x => x.username === CU_username);
-    if (u) u.password = nw;
-    await dbWrite(db);
-    addLog(`Password changed successfully`, 'success');
-    showAlert('pwAlert', '✅ Password updated successfully!', 'a-success');
-    document.getElementById('pwCur').value = '';
-    document.getElementById('pwNew').value = '';
-    document.getElementById('pwConf').value = '';
-  } catch(e) { 
-    addLog(`Password change error: ${e.message}`, 'error');
-    showAlert('pwAlert', e.message, 'a-error'); 
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// GITHUB GIST UPLOAD - WITH FULL LOGGING
-// ═══════════════════════════════════════════════════════════
-async function uploadGist() {
-  addLog('════════════════════════════════════════', 'step');
-  addLog('🚀 UPLOAD STARTED', 'step');
-  
-  const gh = DB_CACHE.github || {};
-  addLog(`GitHub config: username=${gh.username || 'NOT SET'}, hasToken=${!!gh.token}, hasGistId=${!!gh.gistId}`, 'info');
-  
-  if (!gh.token || !gh.username) { 
-    const errMsg = '❌ GitHub not configured by Admin';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  addLog('✅ GitHub configuration found', 'info');
-  
-  const jsonStr = document.getElementById('jsonData').value.trim();
-  if (!jsonStr) { 
-    const errMsg = '❌ No data. Load an Excel file first';
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  addLog(`JSON data length: ${jsonStr.length} characters`, 'info');
-  
-  let data;
-  try { 
-    data = JSON.parse(jsonStr); 
-    if (!Array.isArray(data)) throw new Error('Data must be an array');
-    addLog(`✅ JSON parsed: ${data.length} items`, 'success');
-    if (data.length > 0) {
-      addLog(`Sample item: ${JSON.stringify(data[0]).substring(0, 100)}...`, 'info');
-    }
-  } catch(e) { 
-    const errMsg = `❌ Invalid JSON: ${e.message}`;
-    addLog(errMsg, 'error');
-    showAlert('uploadAlert', errMsg, 'a-error'); 
-    return; 
-  }
-  
-  const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
-  const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
-  addLog(`Filename: ${filename}`, 'info');
-  addLog(`Description: ${description}`, 'info');
-  
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Uploading...';
-  showAlert('uploadAlert', `⏳ Uploading ${data.length} items to GitHub...`, 'a-warning');
-  
-  try {
-    const hasExistingGist = gh.gistId && gh.gistId.length > 0 && gh.gistId !== 'undefined';
-    addLog(`Has existing Gist? ${hasExistingGist}`, 'step');
-    
-    let method, url, body;
-    
-    if (hasExistingGist) {
-      method = 'PATCH';
-      url = `https://api.github.com/gists/${gh.gistId}`;
-      body = {
-        description: description,
-        files: {
-          [filename]: {
-            content: JSON.stringify(data, null, 2)
-          }
-        }
-      };
-      addLog(`🔄 Updating existing gist: ${gh.gistId}`, 'info');
-    } else {
-      method = 'POST';
-      url = 'https://api.github.com/gists';
-      body = {
-        description: description,
-        public: true,
-        files: {
-          [filename]: {
-            content: JSON.stringify(data, null, 2)
-          }
-        }
-      };
-      addLog(`🆕 Creating NEW gist`, 'info');
-    }
-    
-    addLog(`Request URL: ${url}`, 'info');
-    addLog(`Method: ${method}`, 'info');
-    addLog(`Authorization: token ${gh.token.substring(0, 8)}...${gh.token.substring(gh.token.length - 4)}`, 'info');
-    
-    const res = await fetch(url, { 
-      method: method, 
-      headers: { 
-        'Authorization': `token ${gh.token}`, 
-        'Content-Type': 'application/json',
-        'User-Agent': 'FabricFlow'
-      }, 
-      body: JSON.stringify(body) 
-    });
-    
-    addLog(`Response status: ${res.status} ${res.statusText}`, 'info');
-    
-    if (!res.ok) {
-      let errorData;
-      try {
-        errorData = await res.json();
-        addLog(`Error response: ${JSON.stringify(errorData)}`, 'error');
-      } catch(e) {
-        const errorText = await res.text();
-        addLog(`Error response text: ${errorText.substring(0, 500)}`, 'error');
-        errorData = { message: errorText.substring(0, 200) };
-      }
-      
-      if (res.status === 401) {
-        throw new Error('GitHub token is invalid or expired. Please update in GitHub settings tab.');
-      } else if (res.status === 404) {
-        if (hasExistingGist) {
-          addLog(`Gist ${gh.gistId} not found - will clear and create new one`, 'warning');
-          const db = await dbRead();
-          if (db.github) db.github.gistId = '';
-          await dbWrite(db);
-          throw new Error('Gist not found. Please try uploading again - it will create a new gist.');
-        } else {
-          throw new Error('GitHub API endpoint not found. Check your token permissions (needs "gist" scope).');
-        }
-      } else if (res.status === 422) {
-        throw new Error(`GitHub validation error: ${errorData.message || 'Filename conflict or invalid data'}`);
-      } else {
-        throw new Error(errorData.message || `HTTP ${res.status}: ${res.statusText}`);
-      }
-    }
-    
-    const gist = await res.json();
-    addLog(`✅ Gist ${hasExistingGist ? 'updated' : 'created'} successfully!`, 'success');
-    addLog(`Gist ID: ${gist.id}`, 'info');
-    addLog(`Gist URL: ${gist.html_url}`, 'info');
-    
-    const rawUrl = gist.files[filename]?.raw_url || 
-                   `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
-    addLog(`Raw URL: ${rawUrl}`, 'info');
-    
-    addLog(`Saving gist ID to JSONBin...`, 'step');
-    const db = await dbRead();
-    if (!db.github) db.github = {};
-    db.github.gistId = gist.id;
-    db.github.username = gh.username;
-    db.github.token = gh.token;
-    await dbWrite(db);
-    addLog(`✅ Gist ID saved to cloud database`, 'success');
-    
-    addLog(`Updating UI...`, 'step');
-    renderMain();
-    
-    addLog(`════════════════════════════════════════`, 'step');
-    addLog(`🎉 UPLOAD COMPLETED! ${data.length} items uploaded.`, 'success');
-    addLog(`════════════════════════════════════════`, 'step');
-    
-    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
-    showPreview(data);
-    
-  } catch(e) { 
-    addLog(`❌ ERROR: ${e.message}`, 'error');
-    if (e.stack) addLog(`Stack: ${e.stack.substring(0, 300)}`, 'error');
-    addLog(`════════════════════════════════════════`, 'error');
-    showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error'); 
-  } finally { 
-    btn.disabled = false; 
-    btn.textContent = '🚀 Upload to Gist'; 
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// FILE HANDLING FUNCTIONS
-// ═══════════════════════════════════════════════════════════
-async function handleFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  addLog(`File selected: ${file.name} (${(file.size/1024).toFixed(1)} KB)`, 'info');
-  try {
-    const json = await parseExcel(file);
-    document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    addLog(`✅ Loaded ${json.length} items from ${file.name}`, 'success');
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
-    showPreview(json);
-  } catch(e) { 
-    addLog(`File parse error: ${e.message}`, 'error');
-    showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
-  }
-}
-
-async function parseExcel(file) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      try {
-        const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(sheet);
-        if (!json.length) rej(new Error('No data found in file'));
-        else res(json);
-      } catch(e) { rej(e); }
-    };
-    reader.onerror = rej;
-    reader.readAsArrayBuffer(file);
-  });
-}
-
-function showPreview(data) {
-  const el = document.getElementById('preview');
-  if (!data || !data.length) { if(el) el.style.display = 'none'; return; }
-  const headers = Object.keys(data[0]);
-  let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
-  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
-  data.slice(0, 10).forEach(row => {
-    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
-  });
-  html += `</tbody></table></div>`;
-  if (el) { el.innerHTML = html; el.style.display = 'block'; }
-}
-
-function copyUrl() {
-  const url = document.getElementById('rawUrl')?.textContent;
-  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success'); addLog('URL copied to clipboard', 'info'); }
-}
-
-function triggerWA(url) {
-  const cu = currentUser();
-  document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\nStock data updated.\n\n🔗 Raw URL:\n${url}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
-  document.getElementById('waNumber').value = cu.whatsapp || '';
-  document.getElementById('waOverlay').classList.add('show');
-}
-
-function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
-
-function openWhatsApp() {
-  const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
-  const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
   window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
   closeWA();
 }
 
 function showAlert(id, msg, cls) {
   const el = document.getElementById(id);
-  if (el) { el.textContent = msg; el.className = `alert ${cls}`; el.style.display = 'block'; setTimeout(() => { if(el) el.style.display = 'none'; }, 5000); }
+  if (el) {
+    el.textContent = msg;
+    el.className = `alert ${cls}`;
+    el.style.display = 'block';
+    setTimeout(() => {
+      if (el) el.style.display = 'none';
+    }, 5000);
+  }
 }
 
-function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function escHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
 function toggleTheme() {
   document.body.classList.toggle('dark');
-  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('ff_theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
 }
 
-if (localStorage.getItem('ff_theme') === 'dark') { 
-  document.body.classList.add('dark'); 
-  if(document.getElementById('themeLabel')) document.getElementById('themeLabel').textContent = 'Light';
+// ============================================================
+// INITIALIZE
+// ============================================================
+if (localStorage.getItem('ff_theme') === 'dark') {
+  document.body.classList.add('dark');
+  document.getElementById('themeLabel').textContent = 'Light';
 }
 
-// Start the app
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
 </script>
 </body>
 </html>
