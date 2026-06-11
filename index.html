@@ -22,7 +22,7 @@ body.dark{
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);transition:background .3s}
 .theme-btn{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:7px 14px;cursor:pointer;z-index:9999;font-size:12px;font-weight:600;color:#fff}
-body:not(.setup-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
+body:not(.login-active) .theme-btn{background:var(--surface);border-color:var(--border);color:var(--text)}
 #loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1923,#1a2e40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .4s}
 #loadingScreen.hide{opacity:0;pointer-events:none}
 .loader-logo{width:60px;height:60px;background:linear-gradient(135deg,#2c5364,#3a7bd5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
@@ -93,8 +93,8 @@ body.dark .rt-sub{background:#1e3a5f;color:#93c5fd}
 body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 .badge-red{background:#dc2626;color:#fff;font-size:10px;padding:1px 7px;border-radius:50px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px}
-.card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px}
-.step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.step-num{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#24292e,#2c5364);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .step-num.done{background:#16a34a}
 .step-locked{opacity:0.5;pointer-events:none}
 .fg{margin-bottom:14px}
@@ -109,20 +109,25 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 .btn-sm{padding:7px 13px;font-size:12px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
-.a-success{background:#dcfce7;color:#166534}
-.a-error{background:#fee2e2;color:#991b1b}
-.a-warning{background:#fef3c7;color:#92400e}
+.a-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+.a-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.a-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.a-info{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
+body.dark .a-success{background:#0b2e1a;color:#4ade80}
+body.dark .a-error{background:#3d1a1a;color:#f87171}
+body.dark .a-warning{background:#3d2e1a;color:#fbbf24}
 .utab{width:100%;border-collapse:collapse;font-size:13px}
-.utab th{background:var(--surface2);padding:9px 12px;text-align:left;border-bottom:1px solid var(--border)}
-.utab td{padding:9px 12px;border-bottom:1px solid var(--border)}
+.utab th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
+.utab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 .sdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
-.d-green{background:#16a34a}
-.d-orange{background:#ea580c}
+.d-green{background:#16a34a}.d-orange{background:#ea580c}.d-red{background:#dc2626}
 .url-result{background:var(--surface2);border:2px dashed #16a34a;border-radius:8px;padding:18px;text-align:center}
-.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0}
-.wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center}
+.url-text{font-family:monospace;font-size:13px;word-break:break-all;background:var(--surface);padding:10px;border-radius:6px;margin:10px 0;border:1px solid var(--border)}
+.wa-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;padding:20px}
 .wa-backdrop.show{display:flex}
-.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%}
+.wa-modal{background:var(--surface);border-radius:20px;padding:28px;max-width:440px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.wa-modal h3{font-size:18px;font-weight:700;margin-bottom:5px}
+.wa-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
 .wa-preview{background:#e8f5e9;border-radius:10px;padding:14px;font-size:13px;margin-bottom:16px;border-left:4px solid #25d366;white-space:pre-wrap}
 .saving-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c;margin-right:6px;animation:pulse .8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -130,6 +135,7 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
   .login-left{display:none}
   .login-right{width:100%;padding:40px 28px}
   .main{padding:16px 12px}
+  .ptab{padding:8px 10px;font-size:12px}
 }
 </style>
 </head>
@@ -140,29 +146,31 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 <div id="loadingScreen">
   <div class="loader-logo">📊</div>
   <div class="loader-text">FabricFlow Stock Manager</div>
-  <div class="loader-sub">Loading...</div>
+  <div class="loader-sub">Connecting to cloud database...</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<!-- SETUP SCREEN -->
+<!-- SETUP SCREEN - ONLY SHOWS ON FIRST DEVICE EVER -->
 <div id="setupScreen" class="setup-screen">
   <div class="setup-card">
     <div class="logo-mark" style="width:48px;height:48px;font-size:22px;margin-bottom:16px">📊</div>
-    <h2>First-Time Setup</h2>
-    <p>Enter your JSONBin credentials to get started.</p>
+    <h2>One-Time Setup</h2>
+    <p>This setup runs only once. After this, every device will go directly to login.</p>
     <div class="info-box">
-      🔐 <strong>Get free JSONBin credentials:</strong><br>
-      1. <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up<br>
-      2. Dashboard → API Keys → Create Access Key<br>
-      3. Create a new bin → Copy Bin ID
+      🔐 <strong>Get JSONBin credentials (free):</strong><br>
+      1. Go to <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> → Sign up<br>
+      2. Dashboard → API Keys → Create Access Key (Master Key)<br>
+      3. Create a new bin → Copy the Bin ID from URL
     </div>
-    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key</label>
+    <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin API Key (Master Key)</label>
     <input class="setup-input" type="password" id="setupApiKey" placeholder="$2b$10$...">
     <label class="lbl" style="color:rgba(255,255,255,.7)">JSONBin Bin ID</label>
-    <input class="setup-input" type="text" id="setupBinId" placeholder="Bin ID from URL">
+    <input class="setup-input" type="text" id="setupBinId" placeholder="e.g. 67f9a6fcacd3cb34a8e8a1a2">
     <label class="lbl" style="color:rgba(255,255,255,.7)">Admin Password</label>
-    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Create password (min 4 chars)">
-    <button class="setup-btn" onclick="setupDatabase()">🚀 Create Database →</button>
+    <input class="setup-input" type="password" id="setupAdminPw" placeholder="Create admin password (min 4 chars)">
+    <label class="lbl" style="color:rgba(255,255,255,.7)">Admin WhatsApp (optional)</label>
+    <input class="setup-input" type="text" id="setupAdminWa" placeholder="e.g. 919876543210">
+    <button class="setup-btn" onclick="saveCloudConfig()">💾 Save to Cloud →</button>
     <div id="setupAlert" class="setup-alert"></div>
   </div>
 </div>
@@ -186,20 +194,20 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
       </div>
       <div id="loginForm">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="loginUsername" placeholder="Username">
+        <input class="lf-input" type="text" id="loginUsername" placeholder="Enter your username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+        <input class="lf-input" type="password" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()">
         <button class="btn-login" onclick="doLogin()" id="loginBtn">Sign In →</button>
         <div id="loginAlert" class="lf-alert"></div>
       </div>
       <div id="registerForm" style="display:none">
         <label class="lbl">Full Name</label>
-        <input class="lf-input" type="text" id="regName" placeholder="Full name">
+        <input class="lf-input" type="text" id="regName" placeholder="Your full name">
         <label class="lbl">Username</label>
-        <input class="lf-input" type="text" id="regUsername" placeholder="Username">
+        <input class="lf-input" type="text" id="regUsername" placeholder="Choose a username">
         <label class="lbl">Password</label>
-        <input class="lf-input" type="password" id="regPassword" placeholder="Password (min 4 chars)">
-        <label class="lbl">WhatsApp</label>
+        <input class="lf-input" type="password" id="regPassword" placeholder="Choose a password (min 4 chars)">
+        <label class="lbl">WhatsApp Number</label>
         <input class="lf-input" type="text" id="regWhatsapp" placeholder="e.g. 919876543210">
         <button class="btn-login" onclick="doRegister()" id="registerBtn">Request Account →</button>
         <div id="registerAlert" class="lf-alert"></div>
@@ -211,9 +219,12 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 <!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-l"><div class="tbar-logo">📊</div><h2>FabricFlow Stock Manager</h2></div>
+    <div class="topbar-l">
+      <div class="tbar-logo">📊</div>
+      <h2>FabricFlow Stock Manager</h2>
+    </div>
     <div class="topbar-r">
-      <span id="savingIndicator" style="display:none"><span class="saving-dot"></span>Saving...</span>
+      <span id="savingIndicator" style="font-size:12px;display:none"><span class="saving-dot"></span>Saving...</span>
       <div class="user-chip"><span id="topbarUser">—</span><span class="role-tag" id="topbarRole">—</span></div>
       <button class="btn btn-danger btn-sm" onclick="logout()" style="background:#dc2626;color:white">🚪 Logout</button>
     </div>
@@ -225,30 +236,37 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
   <div class="wa-modal">
     <h3>📲 Send via WhatsApp</h3>
     <div class="wa-preview" id="waPreview"></div>
-    <div class="fg"><label>WhatsApp Number</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Close</button></div>
+    <div class="fg"><label>WhatsApp Number (with country code)</label><input type="text" id="waNumber" placeholder="e.g. 919876543210"></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-wa" style="flex:1" onclick="openWhatsApp()">📲 Open WhatsApp</button><button class="btn btn-ghost" onclick="closeWA()">Close</button></div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// SIMPLE WORKING VERSION - ALWAYS CREATES NEW GIST
+// FABRICFLOW - ONE TIME SETUP, THEN EVERY DEVICE GOES DIRECTLY TO LOGIN
 // ============================================================
 
 let DB_CACHE = null;
 let CU_username = null;
 
-function getCredentials() {
-  const apiKey = localStorage.getItem('ff_api_key');
-  const binId = localStorage.getItem('ff_bin_id');
-  return (apiKey && binId) ? { apiKey, binId } : null;
+// Check if cloud config exists (credentials stored in localStorage of this device)
+function hasLocalConfig() {
+  return !!(localStorage.getItem('ff_api_key') && localStorage.getItem('ff_bin_id'));
 }
 
-function saveCredentials(apiKey, binId) {
+function saveLocalConfig(apiKey, binId) {
   localStorage.setItem('ff_api_key', apiKey);
   localStorage.setItem('ff_bin_id', binId);
 }
 
+function getLocalConfig() {
+  return {
+    apiKey: localStorage.getItem('ff_api_key'),
+    binId: localStorage.getItem('ff_bin_id')
+  };
+}
+
+// JSONBin API functions
 async function dbRead(apiKey, binId) {
   const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
     headers: { 'X-Master-Key': apiKey }
@@ -260,18 +278,22 @@ async function dbRead(apiKey, binId) {
 async function dbWrite(apiKey, binId, data) {
   const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'X-Master-Key': apiKey },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': apiKey
+    },
     body: JSON.stringify(data)
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return (await res.json()).record;
 }
 
-// SETUP
-async function setupDatabase() {
+// ONE-TIME SETUP - Saves credentials to CLOUD (JSONBin) and to localStorage
+async function saveCloudConfig() {
   const apiKey = document.getElementById('setupApiKey').value.trim();
   const binId = document.getElementById('setupBinId').value.trim();
   const adminPw = document.getElementById('setupAdminPw').value;
+  const adminWa = document.getElementById('setupAdminWa').value.trim();
   
   if (!apiKey || !binId) {
     showSetupAlert('❌ API Key and Bin ID required', 'setup-error');
@@ -284,30 +306,53 @@ async function setupDatabase() {
   
   const btn = event.target;
   btn.disabled = true;
-  btn.textContent = '⏳ Creating...';
+  btn.textContent = '⏳ Creating cloud database...';
   
   try {
-    let existing;
-    try { existing = await dbRead(apiKey, binId); } catch(e) { existing = null; }
+    // Check if bin already has data
+    let existingData;
+    try {
+      existingData = await dbRead(apiKey, binId);
+    } catch(e) {
+      existingData = null;
+    }
     
-    if (existing && existing.users && existing.users.length > 0) {
-      saveCredentials(apiKey, binId);
-      showSetupAlert('✅ Connected! Redirecting...', 'setup-success');
-      setTimeout(() => location.reload(), 1500);
+    if (existingData && existingData.cloudConfig) {
+      // Cloud config already exists - just save to localStorage
+      saveLocalConfig(apiKey, binId);
+      showSetupAlert('✅ Connected to existing cloud database! Redirecting...', 'setup-success');
+      setTimeout(() => window.location.reload(), 1500);
     } else {
-      const newDb = {
+      // Create new cloud database with config and admin user
+      const newDatabase = {
+        cloudConfig: {
+          apiKey: apiKey,
+          binId: binId,
+          configured: true,
+          configuredAt: new Date().toISOString()
+        },
         github: { token: '', username: '', gistId: '' },
-        users: [{ username: 'admin', password: adminPw, name: 'Administrator', role: 'admin', status: 'approved', whatsapp: '' }]
+        users: [
+          {
+            username: 'admin',
+            password: adminPw,
+            name: 'Administrator',
+            role: 'admin',
+            status: 'approved',
+            whatsapp: adminWa
+          }
+        ]
       };
-      await dbWrite(apiKey, binId, newDb);
-      saveCredentials(apiKey, binId);
-      showSetupAlert('✅ Database created! Redirecting...', 'setup-success');
-      setTimeout(() => location.reload(), 1500);
+      
+      await dbWrite(apiKey, binId, newDatabase);
+      saveLocalConfig(apiKey, binId);
+      showSetupAlert('✅ Cloud database created! Redirecting to login...', 'setup-success');
+      setTimeout(() => window.location.reload(), 1500);
     }
   } catch(e) {
     showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
     btn.disabled = false;
-    btn.textContent = '🚀 Create Database →';
+    btn.textContent = '💾 Save to Cloud →';
   }
 }
 
@@ -318,12 +363,14 @@ function showSetupAlert(msg, cls) {
   el.style.display = 'block';
 }
 
-// BOOT
+// BOOT SEQUENCE - First checks localStorage, then validates against cloud
 async function boot() {
   const loading = document.getElementById('loadingScreen');
-  const creds = getCredentials();
   
-  if (!creds) {
+  // Check if this device has localStorage config
+  if (!hasLocalConfig()) {
+    // No local config - check if cloud config exists in a known location?
+    // For first device ever, show setup
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
@@ -333,24 +380,57 @@ async function boot() {
     return;
   }
   
+  // Has local config - try to connect
+  const localConfig = getLocalConfig();
+  
   try {
-    DB_CACHE = await dbRead(creds.apiKey, creds.binId);
-    if (!DB_CACHE.github) DB_CACHE.github = { token: '', username: '', gistId: '' };
+    // Read from cloud using local config
+    DB_CACHE = await dbRead(localConfig.apiKey, localConfig.binId);
     
-    const sess = localStorage.getItem('ff_sess');
-    if (sess && (DB_CACHE.users || []).find(u => u.username === sess && u.status === 'approved')) {
-      CU_username = sess;
+    // Verify cloud config exists
+    if (!DB_CACHE.cloudConfig || !DB_CACHE.cloudConfig.configured) {
+      // Cloud config missing - need to run setup again
+      localStorage.removeItem('ff_api_key');
+      localStorage.removeItem('ff_bin_id');
       loading.classList.add('hide');
-      setTimeout(() => { loading.style.display = 'none'; launchApp(); }, 400);
+      setTimeout(() => {
+        loading.style.display = 'none';
+        document.getElementById('setupScreen').classList.add('show');
+        document.body.classList.add('setup-active');
+        showSetupAlert('⚠️ Cloud configuration missing. Please re-run setup.', 'setup-error');
+      }, 400);
       return;
     }
     
+    // Ensure github object exists
+    if (!DB_CACHE.github) DB_CACHE.github = { token: '', username: '', gistId: '' };
+    
+    // Check for existing session
+    const sess = localStorage.getItem('ff_sess');
+    if (sess) {
+      const user = (DB_CACHE.users || []).find(u => u.username === sess);
+      if (user && user.status === 'approved') {
+        CU_username = sess;
+        loading.classList.add('hide');
+        setTimeout(() => {
+          loading.style.display = 'none';
+          launchApp();
+        }, 400);
+        return;
+      } else {
+        localStorage.removeItem('ff_sess');
+      }
+    }
+    
+    // No valid session - show login
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
       document.getElementById('loginPage').classList.add('show');
     }, 400);
   } catch(e) {
+    console.error('Boot error:', e);
+    // Connection failed - clear localStorage and show setup
     localStorage.removeItem('ff_api_key');
     localStorage.removeItem('ff_bin_id');
     loading.classList.add('hide');
@@ -358,7 +438,7 @@ async function boot() {
       loading.style.display = 'none';
       document.getElementById('setupScreen').classList.add('show');
       document.body.classList.add('setup-active');
-      showSetupAlert(`❌ Connection failed: ${e.message}`, 'setup-error');
+      showSetupAlert(`❌ Connection failed: ${e.message}. Please re-enter credentials.`, 'setup-error');
     }, 400);
   }
 }
@@ -368,7 +448,7 @@ function launchApp() {
   document.getElementById('app').classList.add('show');
   document.getElementById('loginPage').classList.remove('show');
   document.body.classList.remove('setup-active');
-  const cu = DB_CACHE.users.find(u => u.username === CU_username);
+  const cu = currentUser();
   document.getElementById('topbarUser').textContent = cu.name;
   const rb = document.getElementById('topbarRole');
   rb.textContent = cu.role === 'admin' ? 'Admin' : 'Sub-Admin';
@@ -376,7 +456,34 @@ function launchApp() {
   renderMain();
 }
 
-// AUTH
+function currentUser() {
+  if (!DB_CACHE || !CU_username) return null;
+  return (DB_CACHE.users || []).find(u => u.username === CU_username);
+}
+
+async function getDB() {
+  if (DB_CACHE) return DB_CACHE;
+  const localConfig = getLocalConfig();
+  if (!localConfig.apiKey || !localConfig.binId) throw new Error('Not configured');
+  DB_CACHE = await dbRead(localConfig.apiKey, localConfig.binId);
+  return DB_CACHE;
+}
+
+async function updateDB(newData) {
+  const localConfig = getLocalConfig();
+  if (!localConfig.apiKey || !localConfig.binId) throw new Error('Not configured');
+  showSaving(true);
+  DB_CACHE = await dbWrite(localConfig.apiKey, localConfig.binId, newData);
+  showSaving(false);
+  return DB_CACHE;
+}
+
+function showSaving(on) {
+  const el = document.getElementById('savingIndicator');
+  if (el) el.style.display = on ? 'flex' : 'none';
+}
+
+// AUTHENTICATION
 async function doLogin() {
   const u = document.getElementById('loginUsername').value.trim();
   const p = document.getElementById('loginPassword').value;
@@ -385,18 +492,35 @@ async function doLogin() {
   btn.textContent = 'Signing in...';
   
   try {
-    const creds = getCredentials();
-    const db = await dbRead(creds.apiKey, creds.binId);
-    const user = db.users.find(u => u.username === u);
-    if (!user || user.password !== p) { showLF('loginAlert', '❌ Invalid credentials', 'lf-error'); return; }
-    if (user.status === 'pending') { showLF('loginAlert', '⏳ Pending approval', 'lf-error'); return; }
-    if (user.status === 'rejected') { showLF('loginAlert', '🚫 Account rejected', 'lf-error'); return; }
+    const db = await getDB();
+    const user = (db.users || []).find(user => user.username === u);
+    
+    if (!user) {
+      showLF('loginAlert', '❌ Username not found', 'lf-error');
+      return;
+    }
+    if (user.password !== p) {
+      showLF('loginAlert', '❌ Incorrect password', 'lf-error');
+      return;
+    }
+    if (user.status === 'pending') {
+      showLF('loginAlert', '⏳ Account pending admin approval', 'lf-error');
+      return;
+    }
+    if (user.status === 'rejected') {
+      showLF('loginAlert', '🚫 Account rejected. Contact admin.', 'lf-error');
+      return;
+    }
+    
     CU_username = u;
     localStorage.setItem('ff_sess', u);
-    DB_CACHE = db;
     launchApp();
-  } catch(e) { showLF('loginAlert', `❌ ${e.message}`, 'lf-error'); }
-  finally { btn.disabled = false; btn.textContent = 'Sign In →'; }
+  } catch(e) {
+    showLF('loginAlert', `❌ ${e.message}`, 'lf-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In →';
+  }
 }
 
 async function doRegister() {
@@ -406,27 +530,50 @@ async function doRegister() {
   const wa = document.getElementById('regWhatsapp').value.trim();
   const btn = document.getElementById('registerBtn');
   
-  if (!name || !username || !password) { showLF('registerAlert', '❌ All fields required', 'lf-error'); return; }
-  if (password.length < 4) { showLF('registerAlert', '❌ Password must be 4+ chars', 'lf-error'); return; }
+  if (!name || !username || !password) {
+    showLF('registerAlert', '❌ Please fill all required fields', 'lf-error');
+    return;
+  }
+  if (password.length < 4) {
+    showLF('registerAlert', '❌ Password must be at least 4 characters', 'lf-error');
+    return;
+  }
   
   btn.disabled = true;
   btn.textContent = 'Submitting...';
   
   try {
-    const creds = getCredentials();
-    const db = await dbRead(creds.apiKey, creds.binId);
-    if (db.users.find(u => u.username === username)) { showLF('registerAlert', '❌ Username taken', 'lf-error'); return; }
-    db.users.push({ username, password, name, role: 'subadmin', status: 'pending', whatsapp: wa });
-    await dbWrite(creds.apiKey, creds.binId, db);
-    showLF('registerAlert', '✅ Submitted! Wait for admin approval.', 'lf-success');
+    const db = await getDB();
+    if ((db.users || []).find(u => u.username === username)) {
+      showLF('registerAlert', '❌ Username already taken', 'lf-error');
+      return;
+    }
+    
+    db.users.push({
+      username,
+      password,
+      name,
+      role: 'subadmin',
+      status: 'pending',
+      whatsapp: wa
+    });
+    
+    await updateDB(db);
+    showLF('registerAlert', '✅ Registration submitted! Wait for admin approval.', 'lf-success');
     setTimeout(() => switchAuthTab('login'), 2000);
-  } catch(e) { showLF('registerAlert', `❌ ${e.message}`, 'lf-error'); }
-  finally { btn.disabled = false; btn.textContent = 'Request Account →'; }
+  } catch(e) {
+    showLF('registerAlert', `❌ ${e.message}`, 'lf-error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Request Account →';
+  }
 }
 
 function switchAuthTab(t) {
   const isLogin = t === 'login';
-  document.querySelectorAll('.auth-tab').forEach((tab, i) => tab.classList.toggle('active', (isLogin && i === 0) || (!isLogin && i === 1)));
+  document.querySelectorAll('.auth-tab').forEach((tab, i) => {
+    tab.classList.toggle('active', (isLogin && i === 0) || (!isLogin && i === 1));
+  });
   document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
   document.getElementById('registerForm').style.display = isLogin ? 'none' : 'block';
 }
@@ -437,23 +584,30 @@ function logout() {
   document.getElementById('app').classList.remove('show');
   document.getElementById('app').style.display = 'none';
   document.getElementById('loginPage').classList.add('show');
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
   renderMain();
 }
 
 function showLF(id, msg, cls) {
   const el = document.getElementById(id);
-  el.textContent = msg;
-  el.className = `lf-alert ${cls}`;
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 5000);
+  if (el) {
+    el.textContent = msg;
+    el.className = `lf-alert ${cls}`;
+    el.style.display = 'block';
+    setTimeout(() => {
+      if (el) el.style.display = 'none';
+    }, 5000);
+  }
 }
 
-// RENDER
+// RENDER FUNCTIONS
 let aTab = 'github';
 let sTab = 'upload';
 
 function renderMain() {
-  const cu = DB_CACHE.users.find(u => u.username === CU_username);
+  const cu = currentUser();
+  if (!cu) return;
   document.getElementById('mainContent').innerHTML = cu.role === 'admin' ? renderAdmin() : renderSubAdmin();
 }
 
@@ -461,15 +615,17 @@ function switchATab(t) { aTab = t; renderMain(); }
 function switchSTab(t) { sTab = t; renderMain(); }
 
 function renderAdmin() {
-  const pending = DB_CACHE.users.filter(u => u.status === 'pending' && u.username !== 'admin');
-  const others = DB_CACHE.users.filter(u => u.username !== 'admin');
-  const gh = DB_CACHE.github;
+  const db = DB_CACHE;
+  const pending = (db.users || []).filter(u => u.status === 'pending' && u.username !== 'admin');
+  const others = (db.users || []).filter(u => u.username !== 'admin');
+  const gh = db.github || {};
+  const ghReady = !!(gh.token && gh.username);
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
   
   return `
     <div class="ptabs">
-      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${gh.token ? '✅' : '⚠️'}</button>
+      <button class="ptab ${aTab === 'github' ? 'active' : ''}" onclick="switchATab('github')">⚙️ GitHub ${ghReady ? '✅' : '⚠️'}</button>
       <button class="ptab ${aTab === 'upload' ? 'active' : ''}" onclick="switchATab('upload')">📁 Upload Stock</button>
       <button class="ptab ${aTab === 'users' ? 'active' : ''}" onclick="switchATab('users')">👥 Users ${pending.length ? `<span class="badge-red">${pending.length}</span>` : ''}</button>
       <button class="ptab ${aTab === 'pw' ? 'active' : ''}" onclick="switchATab('pw')">🔑 Password</button>
@@ -482,9 +638,10 @@ function renderAdmin() {
 }
 
 function renderSubAdmin() {
-  const gh = DB_CACHE.github;
+  const gh = (DB_CACHE && DB_CACHE.github) || {};
   const hasGist = !!gh.gistId;
   const savedUrl = hasGist ? `https://gist.githubusercontent.com/${gh.username}/${gh.gistId}/raw/stock.json` : '';
+  
   return `
     <div class="ptabs">
       <button class="ptab ${sTab === 'upload' ? 'active' : ''}" onclick="switchSTab('upload')">📁 Upload Stock</button>
@@ -498,10 +655,15 @@ function renderGithubTab(gh) {
   return `
     <div class="card">
       <div class="card-title"><span class="step-num ${gh.token ? 'done' : ''}">1</span> GitHub Authentication</div>
-      <div class="info-box" style="margin-bottom:16px">🔑 <strong>GitHub Token (gist scope only)</strong> - <a href="https://github.com/settings/tokens" target="_blank">Get token</a></div>
+      <div class="info-box" style="margin-bottom:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
+        🔑 <strong>GitHub Personal Access Token</strong><br>
+        1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
+        2. Generate new token (classic) → Select only <strong>gist</strong> scope<br>
+        3. Copy token (starts with ghp_) and paste below
+      </div>
       <div class="fg"><label>GitHub Token</label><input type="password" id="ghToken" value="${escapeHtml(gh.token || '')}" placeholder="ghp_xxxx..."></div>
-      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escapeHtml(gh.username || '')}" placeholder="your-username"></div>
-      <button class="btn btn-primary" onclick="saveGithub()">💾 Save</button>
+      <div class="fg"><label>GitHub Username</label><input type="text" id="ghUsername" value="${escapeHtml(gh.username || '')}" placeholder="your-github-username"></div>
+      <button class="btn btn-primary" onclick="saveGithub()">💾 Save GitHub Credentials</button>
       <div id="ghAlert" class="alert"></div>
     </div>
   `;
@@ -509,24 +671,32 @@ function renderGithubTab(gh) {
 
 function renderUploadTab(gh, savedUrl, hasGist) {
   const ghReady = !!(gh.token && gh.username);
+  
   return `
     <div class="card ${ghReady ? '' : 'step-locked'}">
       <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
-      ${!ghReady ? '<div class="alert a-warning" style="display:block">⚠️ Configure GitHub first</div>' : ''}
-      <div class="fg"><label>Excel File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
+      ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
+      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new permanent Gist URL.</div>'}
+      <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
+      <div class="fg"><label>Gist Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
       <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
       <button class="btn btn-primary" onclick="uploadGist()" ${!ghReady ? 'disabled' : ''}>🚀 Upload to Gist</button>
       <div id="uploadAlert" class="alert"></div>
-      <textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;margin-top:10px"></textarea>
-      <div id="preview" style="margin-top:10px;display:none"></div>
+      <div class="fg" style="margin-top:14px"><label>JSON Preview (Editable)</label><textarea id="jsonData" rows="8" style="width:100%;padding:10px;font-family:monospace;font-size:12px;background:var(--surface2);color:var(--text);resize:vertical"></textarea></div>
+      <div id="preview" style="margin-top:12px;overflow-x:auto;display:none"></div>
     </div>
     ${hasGist ? `
     <div class="card">
-      <div class="card-title"><span class="step-num done">3</span> Your URL</div>
+      <div class="card-title"><span class="step-num done">3</span> Your Permanent Raw URL</div>
       <div class="url-result">
+        <strong>🎉 Copy this URL to FabricFlow:</strong>
         <div class="url-text" id="rawUrl">${savedUrl}</div>
-        <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy</button>
-        <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-success btn-sm" onclick="copyUrl()">📋 Copy URL</button>
+          <button class="btn btn-wa btn-sm" onclick="triggerWA('${savedUrl}')">📲 WhatsApp</button>
+          <a id="gistLink" href="https://gist.github.com/${gh.username}/${gh.gistId}" target="_blank" class="btn btn-ghost btn-sm">🔗 View Gist</a>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:12px">✅ Same URL every time — paste once in FabricFlow</div>
       </div>
     </div>` : ''}
   `;
@@ -535,72 +705,132 @@ function renderUploadTab(gh, savedUrl, hasGist) {
 function renderUsersTab(others, pending) {
   let rows = '';
   others.forEach(u => {
-    rows += `<tr><td><strong>${escapeHtml(u.name)}</strong><br>${escapeHtml(u.username)}</td><td>${escapeHtml(u.whatsapp || '-')}</td><td><span class="sdot ${u.status === 'approved' ? 'd-green' : 'd-orange'}"></span>${u.status}</td>
-    <td>${u.status === 'pending' ? `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Reject</button>` : u.status === 'approved' ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">Revoke</button>` : ''}</td></tr>`;
+    rows += `
+      <tr>
+        <td><strong>${escapeHtml(u.name)}</strong><br><span style="font-size:11px;color:var(--muted)">${escapeHtml(u.username)}</span></td>
+        <td>${escapeHtml(u.whatsapp || '-')}</td>
+        <td><span class="sdot ${u.status === 'approved' ? 'd-green' : u.status === 'pending' ? 'd-orange' : 'd-red'}"></span>${u.status}</td>
+        <td>
+          ${u.status === 'pending' 
+            ? `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button> <button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">❌ Reject</button>`
+            : u.status === 'approved'
+              ? `<button class="btn btn-danger btn-sm" onclick="rejectUser('${u.username}')">🔴 Revoke</button>`
+              : `<button class="btn btn-success btn-sm" onclick="approveUser('${u.username}')">✅ Approve</button>`
+          }
+        </table>
+      </tr>
+    `;
   });
-  return `<div class="card"><table class="utab"><thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows || '<tr><td colspan="4">No users</td></tr>'}</tbody></table></div>`;
+  
+  return `
+    <div class="card">
+      <table class="utab">
+        <thead><tr><th>User</th><th>WhatsApp</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="4" style="text-align:center;padding:24px">No sub-admins registered yet</td>'}</tbody>
+      </table>
+    </div>
+  `;
 }
 
 function renderPwTab() {
-  return `<div class="card"><div class="card-title">🔑 Change Password</div>
-    <div class="fg"><label>Current</label><input type="password" id="pwCur"></div>
-    <div class="fg"><label>New (min 4)</label><input type="password" id="pwNew"></div>
-    <div class="fg"><label>Confirm</label><input type="password" id="pwConf"></div>
-    <button class="btn btn-primary" onclick="changePassword()">Update</button>
-    <div id="pwAlert" class="alert"></div></div>`;
+  return `
+    <div class="card">
+      <div class="card-title">🔑 Change Password</div>
+      <div class="fg"><label>Current Password</label><input type="password" id="pwCur"></div>
+      <div class="fg"><label>New Password (min 4 chars)</label><input type="password" id="pwNew"></div>
+      <div class="fg"><label>Confirm New Password</label><input type="password" id="pwConf"></div>
+      <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+      <div id="pwAlert" class="alert"></div>
+    </div>
+  `;
 }
 
-// ACTIONS
+// ADMIN ACTIONS
 async function saveGithub() {
   const token = document.getElementById('ghToken').value.trim();
   const username = document.getElementById('ghUsername').value.trim();
-  if (!token || !username) { showAlert('ghAlert', 'Both required', 'a-error'); return; }
+  
+  if (!token || !username) {
+    showAlert('ghAlert', 'Both fields required', 'a-error');
+    return;
+  }
+  
   try {
-    const creds = getCredentials();
-    DB_CACHE.github = { token, username, gistId: DB_CACHE.github?.gistId || '' };
-    await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
-    showAlert('ghAlert', '✅ Saved!', 'a-success');
+    const db = DB_CACHE;
+    db.github = { ...db.github, token, username };
+    await updateDB(db);
+    showAlert('ghAlert', '✅ GitHub credentials saved!', 'a-success');
     renderMain();
-  } catch(e) { showAlert('ghAlert', e.message, 'a-error'); }
+  } catch(e) {
+    showAlert('ghAlert', e.message, 'a-error');
+  }
 }
 
 async function approveUser(username) {
-  const creds = getCredentials();
-  const u = DB_CACHE.users.find(x => x.username === username);
-  if (u) { u.status = 'approved'; await dbWrite(creds.apiKey, creds.binId, DB_CACHE); renderMain(); }
+  try {
+    const db = DB_CACHE;
+    const u = db.users.find(x => x.username === username);
+    if (u) {
+      u.status = 'approved';
+      await updateDB(db);
+      renderMain();
+      showAlert('ghAlert', `✅ ${username} approved`, 'a-success');
+    }
+  } catch(e) { alert(e.message); }
 }
 
 async function rejectUser(username) {
-  const creds = getCredentials();
-  const u = DB_CACHE.users.find(x => x.username === username);
-  if (u) { u.status = 'rejected'; await dbWrite(creds.apiKey, creds.binId, DB_CACHE); renderMain(); }
+  try {
+    const db = DB_CACHE;
+    const u = db.users.find(x => x.username === username);
+    if (u) {
+      u.status = 'rejected';
+      await updateDB(db);
+      renderMain();
+      showAlert('ghAlert', `❌ ${username} rejected`, 'a-success');
+    }
+  } catch(e) { alert(e.message); }
 }
 
 async function changePassword() {
   const cur = document.getElementById('pwCur').value;
   const nw = document.getElementById('pwNew').value;
   const cf = document.getElementById('pwConf').value;
-  const cu = DB_CACHE.users.find(u => u.username === CU_username);
-  if (cur !== cu.password) { showAlert('pwAlert', 'Wrong password', 'a-error'); return; }
-  if (nw.length < 4) { showAlert('pwAlert', 'Min 4 chars', 'a-error'); return; }
-  if (nw !== cf) { showAlert('pwAlert', 'Passwords dont match', 'a-error'); return; }
-  cu.password = nw;
-  const creds = getCredentials();
-  await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
-  showAlert('pwAlert', '✅ Updated!', 'a-success');
-  document.getElementById('pwCur').value = '';
-  document.getElementById('pwNew').value = '';
-  document.getElementById('pwConf').value = '';
+  const cu = currentUser();
+  
+  if (cur !== cu.password) {
+    showAlert('pwAlert', 'Current password incorrect', 'a-error');
+    return;
+  }
+  if (nw.length < 4) {
+    showAlert('pwAlert', 'Password must be at least 4 characters', 'a-error');
+    return;
+  }
+  if (nw !== cf) {
+    showAlert('pwAlert', 'Passwords do not match', 'a-error');
+    return;
+  }
+  
+  try {
+    const db = DB_CACHE;
+    const u = db.users.find(x => x.username === CU_username);
+    if (u) u.password = nw;
+    await updateDB(db);
+    showAlert('pwAlert', '✅ Password updated!', 'a-success');
+    document.getElementById('pwCur').value = '';
+    document.getElementById('pwNew').value = '';
+    document.getElementById('pwConf').value = '';
+  } catch(e) {
+    showAlert('pwAlert', e.message, 'a-error');
+  }
 }
 
-// ============================================================
-// FIXED UPLOAD - ALWAYS CREATES NEW GIST (NO "NOT FOUND" ERROR)
-// ============================================================
+// GITHUB UPLOAD
 async function uploadGist() {
-  const gh = DB_CACHE.github;
+  const gh = DB_CACHE.github || {};
   
   if (!gh.token || !gh.username) {
-    showAlert('uploadAlert', '❌ GitHub not configured', 'a-error');
+    showAlert('uploadAlert', '❌ GitHub not configured by Admin', 'a-error');
     return;
   }
   
@@ -621,56 +851,97 @@ async function uploadGist() {
   
   const btn = event.target;
   btn.disabled = true;
-  btn.textContent = '⏳ Creating Gist...';
-  showAlert('uploadAlert', `⏳ Creating Gist with ${data.length} items...`, 'a-warning');
+  btn.textContent = '⏳ Uploading...';
+  showAlert('uploadAlert', `⏳ Uploading ${data.length} items...`, 'a-warning');
   
   try {
     const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
+    const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
+    const gistId = gh.gistId;
     
-    // ALWAYS CREATE A NEW GIST - This avoids "Not Found" error completely
-    const res = await fetch('https://api.github.com/gists', {
-      method: 'POST',
-      headers: {
-        'Authorization': `token ${gh.token}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'FabricFlow'
-      },
-      body: JSON.stringify({
-        description: 'FabricFlow Stock Data',
-        public: true,
-        files: {
-          [filename]: {
-            content: JSON.stringify(data, null, 2)
-          }
+    let gist = null;
+    
+    // Try to update existing gist
+    if (gistId && gistId.length > 0) {
+      try {
+        const updateRes = await fetch(`https://api.github.com/gists/${gistId}`, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `token ${gh.token}`,
+            'Content-Type': 'application/json',
+            'User-Agent': 'FabricFlow'
+          },
+          body: JSON.stringify({
+            description: description,
+            files: {
+              [filename]: {
+                content: JSON.stringify(data, null, 2)
+              }
+            }
+          })
+        });
+        
+        if (updateRes.ok) {
+          gist = await updateRes.json();
+        } else if (updateRes.status === 404) {
+          console.log('Gist not found, creating new...');
+        } else {
+          throw new Error(`HTTP ${updateRes.status}`);
         }
-      })
-    });
-    
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.message || `HTTP ${res.status}`);
+      } catch(e) {
+        console.log('Update failed, creating new gist...');
+      }
     }
     
-    const gist = await res.json();
+    // Create new gist if needed
+    if (!gist) {
+      const createRes = await fetch('https://api.github.com/gists', {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${gh.token}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'FabricFlow'
+        },
+        body: JSON.stringify({
+          description: description,
+          public: true,
+          files: {
+            [filename]: {
+              content: JSON.stringify(data, null, 2)
+            }
+          }
+        })
+      });
+      
+      if (!createRes.ok) {
+        const errorData = await createRes.json();
+        throw new Error(errorData.message || `HTTP ${createRes.status}`);
+      }
+      
+      gist = await createRes.json();
+    }
+    
+    // Save gist ID
+    const db = DB_CACHE;
+    if (!db.github) db.github = {};
+    db.github.gistId = gist.id;
+    await updateDB(db);
+    
     const rawUrl = `https://gist.githubusercontent.com/${gh.username}/${gist.id}/raw/${filename}`;
     
-    // Save the new Gist ID
-    const creds = getCredentials();
-    DB_CACHE.github.gistId = gist.id;
-    await dbWrite(creds.apiKey, creds.binId, DB_CACHE);
-    
     renderMain();
-    showAlert('uploadAlert', `✅ Success! Created new Gist with ${data.length} items.`, 'a-success');
+    showAlert('uploadAlert', `✅ Success! Uploaded ${data.length} items.`, 'a-success');
     showPreview(data);
     
-    // Auto-show WhatsApp
+    // Auto-show WhatsApp modal
     setTimeout(() => {
-      document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\n✅ ${data.length} items uploaded\n\n🔗 URL:\n${rawUrl}`;
-      document.getElementById('waNumber').value = DB_CACHE.users.find(u => u.username === CU_username)?.whatsapp || '';
+      document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\n✅ Stock data updated successfully!\n\n📦 Items: ${data.length}\n\n🔗 Permanent URL:\n${rawUrl}\n\nPaste this URL in FabricFlow App → Stock → Fetch from URL`;
+      document.getElementById('waNumber').value = currentUser().whatsapp || '';
       document.getElementById('waOverlay').classList.add('show');
     }, 500);
     
   } catch(e) {
+    console.error('Upload error:', e);
     showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error');
   } finally {
     btn.disabled = false;
@@ -682,22 +953,27 @@ async function uploadGist() {
 async function handleFile(input) {
   const file = input.files[0];
   if (!file) return;
+  
   try {
     const json = await parseExcel(file);
     document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items`, 'a-success');
+    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
     showPreview(json);
-  } catch(e) { showAlert('uploadAlert', `❌ ${e.message}`, 'a-error'); }
+  } catch(e) {
+    showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
+  }
 }
 
-function parseExcel(file) {
+async function parseExcel(file) {
   return new Promise((res, rej) => {
     const reader = new FileReader();
     reader.onload = e => {
       try {
         const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
-        const json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-        json.length ? res(json) : rej(new Error('No data'));
+        const sheet = wb.Sheets[wb.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        if (!json.length) rej(new Error('No data found in file'));
+        else res(json);
       } catch(e) { rej(e); }
     };
     reader.onerror = rej;
@@ -707,55 +983,82 @@ function parseExcel(file) {
 
 function showPreview(data) {
   const el = document.getElementById('preview');
-  if (!data?.length) { el.style.display = 'none'; return; }
+  if (!data || !data.length) {
+    if (el) el.style.display = 'none';
+    return;
+  }
+  
   const headers = Object.keys(data[0]);
-  let html = `<div style="font-size:12px">📊 ${data.length} items</div><table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px">${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  let html = `<div style="font-size:12px;margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
+  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escapeHtml(h)}</th>`).join('')}<tr></thead><tbody>`;
   data.slice(0, 10).forEach(row => {
-    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
+    html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}<tr>`;
   });
-  html += `</tbody></table>`;
-  el.innerHTML = html;
-  el.style.display = 'block';
+  html += `</tbody></table></div>`;
+  if (el) {
+    el.innerHTML = html;
+    el.style.display = 'block';
+  }
 }
 
 function copyUrl() {
   const url = document.getElementById('rawUrl')?.textContent;
-  if (url) { navigator.clipboard.writeText(url); showAlert('uploadAlert', '📋 Copied!', 'a-success'); }
+  if (url) {
+    navigator.clipboard.writeText(url);
+    showAlert('uploadAlert', '📋 URL copied to clipboard!', 'a-success');
+  }
 }
 
 function triggerWA(url) {
-  document.getElementById('waPreview').innerHTML = `FabricFlow Stock\n\nURL:\n${url}`;
-  document.getElementById('waNumber').value = DB_CACHE.users.find(u => u.username === CU_username)?.whatsapp || '';
+  const cu = currentUser();
+  document.getElementById('waPreview').innerHTML = `🧵 FabricFlow Stock Update\n\nStock data updated.\n\n🔗 Raw URL:\n${url}\n\nPaste in FabricFlow → Stock → Fetch from URL`;
+  document.getElementById('waNumber').value = cu.whatsapp || '';
   document.getElementById('waOverlay').classList.add('show');
 }
 
 function closeWA() { document.getElementById('waOverlay').classList.remove('show'); }
+
 function openWhatsApp() {
   const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
   const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number'); return; }
+  if (!n) { alert('Enter WhatsApp number with country code (e.g., 919876543210)'); return; }
   window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
   closeWA();
 }
 
 function showAlert(id, msg, cls) {
   const el = document.getElementById(id);
-  el.textContent = msg;
-  el.className = `alert ${cls}`;
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 5000);
+  if (el) {
+    el.textContent = msg;
+    el.className = `alert ${cls}`;
+    el.style.display = 'block';
+    setTimeout(() => {
+      if (el) el.style.display = 'none';
+    }, 5000);
+  }
 }
 
-function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function toggleTheme() {
   document.body.classList.toggle('dark');
-  localStorage.setItem('ff_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  document.getElementById('themeLabel').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('ff_theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
 }
 
-if (localStorage.getItem('ff_theme') === 'dark') document.body.classList.add('dark');
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
+if (localStorage.getItem('ff_theme') === 'dark') {
+  document.body.classList.add('dark');
+  document.getElementById('themeLabel').textContent = 'Light';
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
 </script>
 </body>
 </html>
