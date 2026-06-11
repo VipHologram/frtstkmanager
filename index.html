@@ -237,8 +237,7 @@ body.dark .ptab.active{color:#58a6ff;border-bottom-color:#58a6ff}
 
 <script>
 // ============================================================
-// FABRICFLOW STOCK MANAGER - FIXED VERSION
-// Properly creates admin user during setup
+// FABRICFLOW STOCK MANAGER - COMPLETE WORKING VERSION
 // ============================================================
 
 let DB_CACHE = null;
@@ -286,7 +285,7 @@ async function dbWrite(apiKey, binId, data) {
   return result.record;
 }
 
-// SETUP FUNCTION - Creates database with admin user
+// SETUP FUNCTION
 async function setupDatabase() {
   const apiKey = document.getElementById('setupApiKey').value.trim();
   const binId = document.getElementById('setupBinId').value.trim();
@@ -307,22 +306,18 @@ async function setupDatabase() {
   btn.textContent = '⏳ Creating database...';
   
   try {
-    // Check if bin exists and has data
     let existingData = null;
     try {
       existingData = await dbRead(apiKey, binId);
     } catch(e) {
-      // Bin might be empty or not exist
       existingData = null;
     }
     
     if (existingData && existingData.users && existingData.users.length > 0) {
-      // Bin already has users - just save config
       saveCloudConfig(apiKey, binId);
       showSetupAlert('✅ Connected to existing database! Redirecting...', 'setup-success');
       setTimeout(() => window.location.reload(), 1500);
     } else {
-      // Create new database with admin user
       const newDatabase = {
         github: { token: '', username: '', gistId: '' },
         users: [
@@ -339,11 +334,10 @@ async function setupDatabase() {
       
       await dbWrite(apiKey, binId, newDatabase);
       saveCloudConfig(apiKey, binId);
-      showSetupAlert('✅ Database created! Admin user added. Redirecting to login...', 'setup-success');
+      showSetupAlert('✅ Database created! Redirecting to login...', 'setup-success');
       setTimeout(() => window.location.reload(), 1500);
     }
   } catch(e) {
-    console.error('Setup error:', e);
     showSetupAlert(`❌ Error: ${e.message}`, 'setup-error');
     btn.disabled = false;
     btn.textContent = '🚀 Create Database →';
@@ -363,7 +357,6 @@ async function boot() {
   CLOUD_CONFIG = getCloudConfig();
   
   if (!CLOUD_CONFIG) {
-    // No config - show setup
     loading.classList.add('hide');
     setTimeout(() => {
       loading.style.display = 'none';
@@ -373,14 +366,11 @@ async function boot() {
     return;
   }
   
-  // Has config - connect to database
   try {
     DB_CACHE = await dbRead(CLOUD_CONFIG.apiKey, CLOUD_CONFIG.binId);
     
-    // Check if admin exists
     const hasAdmin = (DB_CACHE.users || []).some(u => u.username === 'admin');
     if (!hasAdmin) {
-      // Admin missing - need to re-run setup
       localStorage.removeItem('ff_cloud_config');
       loading.classList.add('hide');
       setTimeout(() => {
@@ -414,7 +404,6 @@ async function boot() {
       document.getElementById('loginPage').classList.add('show');
     }, 400);
   } catch(e) {
-    console.error('Boot error:', e);
     localStorage.removeItem('ff_cloud_config');
     loading.classList.add('hide');
     setTimeout(() => {
@@ -426,7 +415,6 @@ async function boot() {
   }
 }
 
-// Helper functions
 async function getDB() {
   if (DB_CACHE) return DB_CACHE;
   if (!CLOUD_CONFIG) throw new Error('Not configured');
@@ -656,7 +644,7 @@ function renderUploadTab(gh, savedUrl, hasGist) {
     <div class="card ${ghReady ? '' : 'step-locked'}">
       <div class="card-title"><span class="step-num">2</span> Upload Excel File</div>
       ${!ghReady ? '<div class="alert a-warning" style="display:block;margin-bottom:12px">⚠️ Admin needs to configure GitHub credentials first.</div>' : ''}
-      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : ''}
+      ${hasGist ? '<div class="alert a-info" style="display:block;margin-bottom:12px">🔄 Gist exists — uploading will <strong>update</strong> the same permanent URL.</div>' : '<div class="alert a-info" style="display:block;margin-bottom:12px">✨ First upload will create a new permanent Gist URL.</div>'}
       <div class="fg"><label>Excel / CSV File</label><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this)"></div>
       <div class="fg"><label>Gist Description</label><input type="text" id="gistDesc" value="FabricFlow Stock Data"></div>
       <div class="fg"><label>Filename</label><input type="text" id="gistFilename" value="stock.json"></div>
@@ -754,6 +742,7 @@ async function approveUser(username) {
       u.status = 'approved';
       await updateDB(db);
       renderMain();
+      showAlert('ghAlert', `✅ ${username} approved`, 'a-success');
     }
   } catch(e) { alert(e.message); }
 }
@@ -766,6 +755,7 @@ async function rejectUser(username) {
       u.status = 'rejected';
       await updateDB(db);
       renderMain();
+      showAlert('ghAlert', `❌ ${username} rejected`, 'a-success');
     }
   } catch(e) { alert(e.message); }
 }
@@ -803,7 +793,7 @@ async function changePassword() {
   }
 }
 
-// GITHUB UPLOAD
+// FIXED GITHUB UPLOAD FUNCTION - Handles "Not Found" error automatically
 async function uploadGist() {
   const gh = DB_CACHE.github || {};
   
@@ -830,51 +820,111 @@ async function uploadGist() {
   const btn = event.target;
   btn.disabled = true;
   btn.textContent = '⏳ Uploading...';
+  showAlert('uploadAlert', `⏳ Uploading ${data.length} items...`, 'a-warning');
   
   try {
     const filename = document.getElementById('gistFilename').value.trim() || 'stock.json';
     const description = document.getElementById('gistDesc').value.trim() || 'FabricFlow Stock Data';
     
-    const hasExistingGist = gh.gistId && gh.gistId.length > 0;
+    let existingGistId = gh.gistId;
+    let gistExists = false;
     
-    let method, url, body;
+    // Verify if stored Gist ID is valid
+    if (existingGistId && existingGistId.length > 0 && existingGistId !== 'undefined') {
+      try {
+        const checkRes = await fetch(`https://api.github.com/gists/${existingGistId}`, {
+          headers: {
+            'Authorization': `token ${gh.token}`,
+            'User-Agent': 'FabricFlow'
+          }
+        });
+        gistExists = checkRes.ok;
+        if (!gistExists) {
+          // Clear invalid Gist ID from database
+          const db = await getDB();
+          if (db.github) db.github.gistId = '';
+          await updateDB(db);
+          showAlert('uploadAlert', 'Previous Gist not found. Creating new one...', 'a-warning');
+        }
+      } catch(e) {
+        gistExists = false;
+      }
+    }
     
-    if (hasExistingGist) {
+    let method, url, body, gist;
+    
+    if (gistExists) {
+      // UPDATE existing gist
       method = 'PATCH';
-      url = `https://api.github.com/gists/${gh.gistId}`;
+      url = `https://api.github.com/gists/${existingGistId}`;
       body = {
         description: description,
-        files: { [filename]: { content: JSON.stringify(data, null, 2) } }
+        files: {
+          [filename]: {
+            content: JSON.stringify(data, null, 2)
+          }
+        }
       };
-    } else {
+      
+      const res = await fetch(url, {
+        method: method,
+        headers: {
+          'Authorization': `token ${gh.token}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'FabricFlow'
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if (res.status === 404) {
+        // Gist not found - fall through to create new one
+        gistExists = false;
+      } else if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `HTTP ${res.status}`);
+      } else {
+        gist = await res.json();
+      }
+    }
+    
+    // CREATE new gist (if no existing or update failed)
+    if (!gistExists) {
       method = 'POST';
       url = 'https://api.github.com/gists';
       body = {
         description: description,
         public: true,
-        files: { [filename]: { content: JSON.stringify(data, null, 2) } }
+        files: {
+          [filename]: {
+            content: JSON.stringify(data, null, 2)
+          }
+        }
       };
+      
+      const res = await fetch(url, {
+        method: method,
+        headers: {
+          'Authorization': `token ${gh.token}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'FabricFlow'
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `HTTP ${res.status}`);
+      }
+      
+      gist = await res.json();
     }
     
-    const res = await fetch(url, {
-      method: method,
-      headers: {
-        'Authorization': `token ${gh.token}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'FabricFlow'
-      },
-      body: JSON.stringify(body)
-    });
-    
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || `HTTP ${res.status}`);
-    }
-    
-    const gist = await res.json();
+    // Save the gist ID to database
     const db = await getDB();
     if (!db.github) db.github = {};
     db.github.gistId = gist.id;
+    db.github.username = gh.username;
+    db.github.token = gh.token;
     await updateDB(db);
     
     renderMain();
@@ -882,6 +932,7 @@ async function uploadGist() {
     showPreview(data);
     
   } catch(e) {
+    console.error('Upload error:', e);
     showAlert('uploadAlert', `❌ Error: ${e.message}`, 'a-error');
   } finally {
     btn.disabled = false;
@@ -897,7 +948,7 @@ async function handleFile(input) {
   try {
     const json = await parseExcel(file);
     document.getElementById('jsonData').value = JSON.stringify(json, null, 2);
-    showAlert('uploadAlert', `✅ Loaded ${json.length} items`, 'a-success');
+    showAlert('uploadAlert', `✅ Loaded ${json.length} items from ${file.name}`, 'a-success');
     showPreview(json);
   } catch(e) {
     showAlert('uploadAlert', `❌ ${e.message}`, 'a-error');
@@ -912,7 +963,7 @@ async function parseExcel(file) {
         const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
         const sheet = wb.Sheets[wb.SheetNames[0]];
         const json = XLSX.utils.sheet_to_json(sheet);
-        if (!json.length) rej(new Error('No data found'));
+        if (!json.length) rej(new Error('No data found in file'));
         else res(json);
       } catch(e) { rej(e); }
     };
@@ -929,12 +980,12 @@ function showPreview(data) {
   }
   
   const headers = Object.keys(data[0]);
-  let html = `<div style="font-size:12px;margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)}</div>`;
-  html += `<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
+  let html = `<div style="font-size:12px;margin-bottom:8px">📊 ${data.length} items — first ${Math.min(10, data.length)} shown</div>`;
+  html += `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>${headers.map(h => `<th style="border:1px solid var(--border);padding:6px;background:var(--surface2)">${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>`;
   data.slice(0, 10).forEach(row => {
     html += `<tr>${headers.map(h => `<td style="border:1px solid var(--border);padding:6px">${escapeHtml(String(row[h] || ''))}</td>`).join('')}</tr>`;
   });
-  html += `</tbody></table>`;
+  html += `</tbody></table></div>`;
   if (el) {
     el.innerHTML = html;
     el.style.display = 'block';
@@ -961,7 +1012,7 @@ function closeWA() { document.getElementById('waOverlay').classList.remove('show
 function openWhatsApp() {
   const n = document.getElementById('waNumber').value.trim().replace(/\D/g, '');
   const m = document.getElementById('waPreview').textContent;
-  if (!n) { alert('Enter WhatsApp number'); return; }
+  if (!n) { alert('Enter WhatsApp number with country code'); return; }
   window.open(`https://wa.me/${n}?text=${encodeURIComponent(m)}`, '_blank');
   closeWA();
 }
